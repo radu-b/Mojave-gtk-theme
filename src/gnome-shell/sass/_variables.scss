@@ -1,3 +1,7 @@
+@function rescale($pixels) {  
+    @return floor(1.375 * $pixels);  
+}
+
 $asset_suffix: if($variant == 'dark', '-dark', '');
 $extra_background_clip: if($variant == 'light', padding-box, border-box);
 
@@ -21,19 +25,19 @@ $hint_opacity: 0.6;
 $disabled_opacity: 0.5;
 
 // sizes
-$small_size: if($laptop == 'false', 24px, 20px);
-$medium_size: if($laptop == 'false', 36px, 32px);
-$large_size: if($laptop == 'false', 48px, 44px);
+$small_size: if($laptop == 'false', rescale(24px), rescale(20px));
+$medium_size: if($laptop == 'false', rescale(36px), rescale(32px));
+$large_size: if($laptop == 'false', rescale(48px), rescale(44px));
 
-$container_padding: 6px;
+$container_padding: rescale(6px);
 
-$bar_size: 4px;
-$menuitem_size: if($laptop == 'false', 32px, 28px);
+$bar_size: rescale(4px);
+$menuitem_size: if($laptop == 'false', rescale(32px), rescale(28px));
 
 // radiuses
-$material_radius: 5px;
-$bt_radius: 8px;
-$circular_radius: 9999px;
+$material_radius: rescale(5px);
+$bt_radius: rescale(8px);
+$circular_radius: rescale(9999px);
 
 // durations
 $shorter_duration: 200ms / 2;
@@ -56,11 +60,11 @@ $shadow_transition: box-shadow $shorter_duration $deceleration_curve;
 // https://material-design.storage.googleapis.com/images/layout-principles-dimensionality-shadows-08_large_mdpi.png
 
 $shadow_0: 0 0 transparent;
-$shadow_1: 0 1px 1.5px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
-$shadow_2: 0 3px 3px rgba(0, 0, 0, 0.16 * 1.5), 0 3px 3px rgba(0, 0, 0, 0.23 * 1.5);
-$shadow_3: 0 10px 10px rgba(0, 0, 0, 0.19 * 1.5), 0 6px 3px rgba(0, 0, 0, 0.23 * 1.5);
-$shadow_4: 0 14px 14px rgba(0, 0, 0, 0.25 * 2), 0 10px 5px rgba(0, 0, 0, 0.22 * 2);
-$shadow_5: 0 19px 19px rgba(0, 0, 0, 0.30 * 2), 0 15px 6px rgba(0, 0, 0, 0.22 * 2);
-$shadow_6: 0 0 8px rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.3);
-$text_shadow: 0 -1px rgba(#ffffff, 0.04), -1px  0px rgba(#202020, 0.05), 1px  0px rgba(#202020, 0.05),
-              0px  1px rgba(#202020, 0.3), 0px  2px rgba(#202020, 0.05); // text and icon shadow
+$shadow_1: 0 rescale(1px) 1rescale(.5px) rgba(0, 0, 0, 0.12), 0 rescale(1px) rescale(1px) rgba(0, 0, 0, 0.24);
+$shadow_2: 0 rescale(3px) rescale(3px) rgba(0, 0, 0, 0.16 * 1.5), 0 rescale(3px) rescale(3px) rgba(0, 0, 0, 0.23 * 1.5);
+$shadow_3: 0 rescale(10px) rescale(10px) rgba(0, 0, 0, 0.19 * 1.5), 0 rescale(6px) rescale(3px) rgba(0, 0, 0, 0.23 * 1.5);
+$shadow_4: 0 rescale(14px) rescale(14px) rgba(0, 0, 0, 0.25 * 2), 0 rescale(10px) rescale(5px) rgba(0, 0, 0, 0.22 * 2);
+$shadow_5: 0 rescale(19px) rescale(19px) rgba(0, 0, 0, 0.30 * 2), 0 rescale(15px) rescale(6px) rgba(0, 0, 0, 0.22 * 2);
+$shadow_6: 0 0 rescale(8px) rgba(0, 0, 0, 0.2), 0 0 rescale(4px) rgba(0, 0, 0, 0.3);
+$text_shadow: 0 rescale(-1px) rgba(#ffffff, 0.04), rescale(-1px)  rescale(0px) rgba(#202020, 0.05), rescale(1px)  rescale(0px) rgba(#202020, 0.05),
+              rescale(0px)  rescale(1px) rgba(#202020, 0.3), rescale(0px)  rescale(2px) rgba(#202020, 0.05); // text and icon shadow

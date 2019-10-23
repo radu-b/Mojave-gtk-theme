@@ -14,12 +14,12 @@
 
 #dashtodockContainer.left #dash,
 #dashtodockContainer.right #dash {
-  padding: 3px 0;
+  padding: rescale(3px) 0;
 }
 
 #dashtodockContainer.top #dash,
 #dashtodockContainer.bottom #dash {
-  padding: 0 3px;
+  padding: 0 rescale(3px);
 }
 
 #dashtodockContainer.extended #dash {
@@ -31,34 +31,34 @@
 #dashtodockContainer.right .dash-item-container > StWidget,
 #dashtodockContainer.extended.left .dash-item-container > StWidget,
 #dashtodockContainer.extended.right .dash-item-container > StWidget {
-  padding: 3px 6px;
+  padding: rescale(3px) rescale(6px);
 }
 
 #dashtodockContainer.extended.left .dash-item-container:first-child > StWidget,
 #dashtodockContainer.extended.right .dash-item-container:first-child > StWidget {
-  padding: 6px 6px 3px 6px;
+  padding: rescale(6px) rescale(6px) rescale(3px) rescale(6px);
 }
 
 #dashtodockContainer.extended.left .dash-item-container:last-child > StWidget,
 #dashtodockContainer.extended.right .dash-item-container:last-child > StWidget {
-  padding: 3px 6px 6px 6px;
+  padding: rescale(3px) rescale(6px) rescale(6px) rescale(6px);
 }
 
 #dashtodockContainer.top .dash-item-container > StWidget,
 #dashtodockContainer.bottom .dash-item-container > StWidget,
 #dashtodockContainer.extended.top .dash-item-container > StWidget,
 #dashtodockContainer.extended.bottom .dash-item-container > StWidget {
-  padding: 6px 3px;
+  padding: rescale(6px) rescale(3px);
 }
 
 #dashtodockContainer.extended.top .dash-item-container:first-child > StWidget,
 #dashtodockContainer.extended.bottom .dash-item-container:first-child > StWidget {
-  padding: 6px 3px 6px 6px;
+  padding: rescale(6px) rescale(3px) rescale(6px) rescale(6px);
 }
 
 #dashtodockContainer.extended.top .dash-item-container:last-child > StWidget,
 #dashtodockContainer.extended.bottom .dash-item-container:last-child > StWidget {
-  padding: 6px 6px 6px 3px;
+  padding: rescale(6px) rescale(6px) rescale(6px) rescale(3px);
 }
 
 #dashtodockContainer .app-well-app-running-dot {

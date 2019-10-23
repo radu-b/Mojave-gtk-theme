@@ -41,7 +41,7 @@ stage {
 /* Buttons */
 .button {
   min-height: $medium_size;
-  padding: 0 16px;
+  padding: 0 rescale(16px);
   border-width: 0;
   border-radius: $bt_radius;
   @include font(button);
@@ -55,7 +55,7 @@ stage {
 /* Entries */
 StEntry {
   min-height: $medium_size;
-  padding: 0 8px;
+  padding: 0 rescale(8px);
   border-radius: 0;
   border-width: 0;
   color: $fg_color;
@@ -67,7 +67,7 @@ StEntry {
   &:focus { @include entry(focus);}
   &:insensitive { @include entry(insensitive);}
   StIcon.capslock-warning {
-    icon-size: 16px;
+    icon-size: rescale(16px);
     warning-color: $warning_color;
     padding: 0 0;
   }
@@ -77,29 +77,29 @@ StEntry {
 /* Scrollbars */
 
 StScrollView {
-  &.vfade { -st-vfade-offset: 32px; }
-  &.hfade { -st-hfade-offset: 32px; }
+  &.vfade { -st-vfade-offset: rescale(32px); }
+  &.hfade { -st-hfade-offset: rescale(32px); }
 }
 
 StScrollBar {
   padding: 0;
 
   StScrollView & {
-    min-width: 16px;
-    min-height: 6px;
+    min-width: rescale(16px);
+    min-height: rescale(6px);
   }
 
   StBin#trough {
-    margin: 6px;
-    border-radius: 100px;
+    margin: rescale(6px);
+    border-radius: rescale(100px);
     background-color: $divider_color;
   }
 
   StButton#vhandle, StButton#hhandle {
-    border-radius: 100px;
+    border-radius: rescale(100px);
     background-color: $hint_fg_color;
-    //border: 4px solid transparent; //would be nice to margin or at least to transparent
-    margin: 6px;
+    //border: rescale(4px) solid transparent; //would be nice to margin or at least to transparent
+    margin: rescale(6px);
     &:hover { background-color: $secondary_fg_color; }
     &:active { background-color: $fg_color; }
   }
@@ -123,27 +123,27 @@ $slider_color: if($variant == 'light', white, white);
 $selected_slider_color: white;
 
 .slider {
-  height: 20px;
+  height: rescale(20px);
   color: $slider_color;
-  -slider-height: 2px;
+  -slider-height: rescale(2px);
   -slider-background-color: $track_color; //background of the trough
   -slider-border-color: transparent; //trough border color
   -slider-active-background-color: $accent_color; //active trough fill
   -slider-active-border-color: transparent; //active trough border
   -slider-border-width: 0;
-  -slider-handle-radius: 7px;
-  -slider-handle-border-width: 1px;
+  -slider-handle-radius: rescale(7px);
+  -slider-handle-border-width: rescale(1px);
   -slider-handle-border-color: $dark_borders_color;
 
   // barlevels are for >= 3.29.90
-  -barlevel-height: 2px;
+  -barlevel-height: rescale(2px);
   -barlevel-background-color: $track_color;
   -barlevel-border-color: transparent;
   -barlevel-active-background-color: $accent_color;
   -barlevel-active-border-color: transparent;
   -barlevel-overdrive-color: $destructive_color;
   -barlevel-overdrive-border-color: transparent;
-  -barlevel-overdrive-separator-width: 2px;
+  -barlevel-overdrive-separator-width: rescale(2px);
   -barlevel-border-width: 0;
 
   .popup-menu-item.selected & {
@@ -161,15 +161,15 @@ $selected_slider_color: white;
 
 .check-box {
   * {
-    min-height: $medium_size - 8px * 2;
-    padding: 8px 0;
+    min-height: $medium_size - rescale(8px) * 2;
+    padding: rescale(8px) 0;
   }
-  StBoxLayout { spacing: 8px; }
+  StBoxLayout { spacing: rescale(8px); }
   StBin {
-    width: 24px;
-    height: 24px;
-    padding: ($medium_size - 24px) / 2;
-    border-radius: 100px;
+    width: rescale(24px);
+    height: rescale(24px);
+    padding: ($medium_size - rescale(24px)) / 2;
+    border-radius: rescale(100px);
     background-image: url("assets/checkbox-off.svg");
   }
   &:focus StBin {
@@ -197,8 +197,8 @@ $selected_slider_color: white;
 
 /* Switches */
 .toggle-switch {
-  width: 50px;
-  height: 20px;
+  width: rescale(50px);
+  height: rescale(20px);
   background-size: contain;
   background-image: url("assets/toggle-off.svg");
 
@@ -243,7 +243,7 @@ $selected_slider_color: white;
   background-color: transparent;
   border: none;
   box-shadow: none;
-  padding: 0 5px 6px 5px;
+  padding: 0 rescale(5px) rescale(6px) rescale(5px);
 
   @if $trans == 'true' {
     border-image: url("assets/menu.svg") 24 32 28 28;
@@ -254,10 +254,10 @@ $selected_slider_color: white;
   }
 
   &-linked-button {
-    min-height: 40px;
-    padding: 0 16px;
-    margin-bottom: 3px;
-    border-top: 1px solid $border_color !important;
+    min-height: rescale(40px);
+    padding: 0 rescale(16px);
+    margin-bottom: rescale(3px);
+    border-top: rescale(1px) solid $border_color !important;
     border-right-width: 0;
     @include font(button);
     @include button(flat-normal);
@@ -267,27 +267,27 @@ $selected_slider_color: white;
     &:focus { @include button(flat-focus); }
 
     &:first-child {
-      margin-left: 2px;
-      border-radius: 0px 0px 0px $bt_radius;
+      margin-left: rescale(2px);
+      border-radius: rescale(0px) rescale(0px) rescale(0px) $bt_radius;
     }
     &:last-child {
-      margin-right: 2px;
-      border-right-width: 0px;
-      border-radius: 0px 0px $bt_radius 0px;
+      margin-right: rescale(2px);
+      border-right-width: rescale(0px);
+      border-radius: rescale(0px) rescale(0px) $bt_radius rescale(0px);
     }
     &:first-child:last-child {
-      border-right-width: 0px;
-      border-radius: 0px 0px $bt_radius $bt_radius;
+      border-right-width: rescale(0px);
+      border-radius: rescale(0px) rescale(0px) $bt_radius $bt_radius;
     }
   }
 
   .modal-dialog-content-box {
-    padding: 24px;
+    padding: rescale(24px);
   }
-  .run-dialog-entry { width: 20em; margin-bottom: 6px; }
+  .run-dialog-entry { width: 20em; margin-bottom: rescale(6px); }
   .run-dialog-error-box {
-    padding-top: 16px;
-    spacing: 6px;
+    padding-top: rescale(16px);
+    spacing: rescale(6px);
   }
   .run-dialog-button-box {
     padding-top: 1em;
@@ -307,18 +307,18 @@ $selected_slider_color: white;
 
 /* Message Dialog */
   .message-dialog-main-layout {
-    padding: 12px 20px 0;
-    spacing: 12px;
+    padding: rescale(12px) rescale(20px) 0;
+    spacing: rescale(12px);
   }
 
   .message-dialog-content {
     max-width: 28em;
-    spacing: 20px;
+    spacing: rescale(20px);
   }
 
   .message-dialog-icon {
-    min-width: 48px;
-    icon-size: 48px;
+    min-width: rescale(48px);
+    icon-size: rescale(48px);
   }
 
   .message-dialog-title {
@@ -332,22 +332,22 @@ $selected_slider_color: white;
 
 /* End Session Dialog */
 .end-session-dialog {
-  spacing: 42px;
+  spacing: rescale(42px);
   border: none;
 }
 
   .end-session-dialog-list {
-      padding-top: 20px;
+      padding-top: rescale(20px);
   }
 
   .end-session-dialog-layout {
-    padding-left: 17px;
-    &:rtl { padding-right: 17px; }
+    padding-left: rescale(17px);
+    &:rtl { padding-right: rescale(17px); }
   }
 
   .end-session-dialog-description {
     width: 28em;
-    padding-bottom: 10px;
+    padding-bottom: rescale(10px);
     &:rtl {
       text-align: right;
     }
@@ -356,31 +356,31 @@ $selected_slider_color: white;
   .end-session-dialog-warning {
     width: 28em;
     color: $warning_color;
-    padding-top: 6px;
+    padding-top: rescale(6px);
     &:rtl {
       text-align: right;
     }
   }
 
   .end-session-dialog-logout-icon {
-    //border: 2px solid #8b8b8b;
-    border-radius: 5px;
-    width: 48px;
-    height: 48px;
+    //border: rescale(2px) solid #8b8b8b;
+    border-radius: rescale(5px);
+    width: rescale(48px);
+    height: rescale(48px);
     background-size: contain;
   }
 
   .end-session-dialog-shutdown-icon {
     color: $hint_fg_color;
-    width: 48px;
-    height: 48px;
+    width: rescale(48px);
+    height: rescale(48px);
   }
 
   .end-session-dialog-inhibitor-layout {
-    spacing: 16px;
-    max-height: 200px;
-    padding-right: 65px;
-    padding-left: 65px;
+    spacing: rescale(16px);
+    max-height: rescale(200px);
+    padding-right: rescale(65px);
+    padding-left: rescale(65px);
   }
 
   .end-session-dialog-session-list,
@@ -409,44 +409,44 @@ $selected_slider_color: white;
   }
 
 /* ShellMountOperation Dialogs */
-.shell-mount-operation-icon { icon-size: 48px; }
+.shell-mount-operation-icon { icon-size: rescale(48px); }
 
   .mount-dialog {
-    spacing: 24px;
+    spacing: rescale(24px);
 
     .message-dialog-title {
-      padding-top: 10px;
-      padding-left: 17px;
-      padding-bottom: 6px;
+      padding-top: rescale(10px);
+      padding-left: rescale(17px);
+      padding-bottom: rescale(6px);
       max-width: 34em;
     }
 
     .message-dialog-title:rtl {
-      padding-left: 0px;
-      padding-right: 17px;
+      padding-left: rescale(0px);
+      padding-right: rescale(17px);
     }
 
     .message-dialog-body {
-      padding-left: 17px;
+      padding-left: rescale(17px);
       width: 28em;
     }
 
     .message-dialog-body:rtl {
-      padding-left: 0px;
-      padding-right: 17px;
+      padding-left: rescale(0px);
+      padding-right: rescale(17px);
     }
   }
 
   .mount-dialog-app-list {
-    max-height: 200px;
-    padding-top: 24px;
-    padding-left: 49px;
-    padding-right: 32px;
+    max-height: rescale(200px);
+    padding-top: rescale(24px);
+    padding-left: rescale(49px);
+    padding-right: rescale(32px);
   }
 
   .mount-dialog-app-list:rtl {
-    padding-right: 49px;
-    padding-left: 32px;
+    padding-right: rescale(49px);
+    padding-left: rescale(32px);
   }
 
   .mount-dialog-app-list-item {
@@ -457,8 +457,8 @@ $selected_slider_color: white;
   }
 
   .mount-dialog-app-list-item-icon {
-    &:ltr { padding-right: 17px; }
-    &:rtl { padding-left: 17px; }
+    &:ltr { padding-right: rescale(17px); }
+    &:rtl { padding-left: rescale(17px); }
   }
 
   .mount-dialog-app-list-item-name {
@@ -473,8 +473,8 @@ $selected_slider_color: white;
   width: 34em;
   border: none;
 
-  .message-dialog-main-layout { spacing: 24px; padding: 10px; }
-  .message-dialog-content { spacing: 16px; }
+  .message-dialog-main-layout { spacing: rescale(24px); padding: rescale(10px); }
+  .message-dialog-content { spacing: rescale(16px); }
   .message-dialog-title { @include font(title); color: $fg_color; }
 }
 
@@ -490,12 +490,12 @@ $selected_slider_color: white;
   .prompt-dialog-error-label {
     font-size: 1em;
     color: $error_color;
-    padding-bottom: 8px;
+    padding-bottom: rescale(8px);
   }
 
   .prompt-dialog-info-label {
     font-size: 1em;
-    padding-bottom: 8px;
+    padding-bottom: rescale(8px);
   }
 
   .hidden {
@@ -504,18 +504,18 @@ $selected_slider_color: white;
 
   .prompt-dialog-null-label {
     font-size: 1em;
-    padding-bottom: 8px;
+    padding-bottom: rescale(8px);
   }
 
 
 /* Polkit Dialog */
 
 .polkit-dialog-user-layout {
-  padding-left: 10px;
-  spacing: 10px;
+  padding-left: rescale(10px);
+  spacing: rescale(10px);
   &:rtl {
-    padding-left: 0px;
-    padding-right: 10px;
+    padding-left: rescale(0px);
+    padding-right: rescale(10px);
   }
 }
 
@@ -524,20 +524,20 @@ $selected_slider_color: white;
   }
 
   .polkit-dialog-user-icon {
-    border-radius: 5px;
+    border-radius: rescale(5px);
     background-size: contain;
-    width: 48px;
-    height: 48px;
+    width: rescale(48px);
+    height: rescale(48px);
   }
 
 /* Audio selection dialog */
 .audio-device-selection-dialog {
-  spacing: 30px;
+  spacing: rescale(30px);
 }
 
   .audio-selection-content {
-    spacing: 20px;
-    padding: 24px;
+    spacing: rescale(20px);
+    padding: rescale(24px);
   }
 
   .audio-selection-title {
@@ -546,54 +546,54 @@ $selected_slider_color: white;
   }
 
   .audio-selection-box {
-    spacing: 20px;
+    spacing: rescale(20px);
   }
 
   .audio-selection-device {
-    border: 1px solid $border_color;
+    border: rescale(1px) solid $border_color;
     border-radius: $bt_radius;
     &:active,&:hover,&:focus { background-color: $primary_color; }
   }
 
   .audio-selection-device-box {
-    padding: 20px;
-    spacing: 20px;
+    padding: rescale(20px);
+    spacing: rescale(20px);
   }
 
   .audio-selection-device-icon {
-    icon-size: 64px;
+    icon-size: rescale(64px);
   }
 
 /* Access Dialog */
 .access-dialog {
-  spacing: 30px;
+  spacing: rescale(30px);
 }
 
 /* Geolocation Dialog */
 .geolocation-dialog {
-  spacing: 30px;
+  spacing: rescale(30px);
 }
 
 /* Extension Dialog */
 .extension-dialog {
-  .message-dialog-main-layout { spacing: 24px; padding: 10px; }
+  .message-dialog-main-layout { spacing: rescale(24px); padding: rescale(10px); }
   .message-dialog-title { color: $secondary_fg_color; }
 }
 
 /* Inhibit-Shortcuts Dialog */
 .inhibit-shortcuts-dialog {
-  spacing: 30px;
+  spacing: rescale(30px);
 }
 
 /* Network Agent Dialog */
 
 .network-dialog-secret-table {
-  spacing-rows: 15px;
+  spacing-rows: rescale(15px);
   spacing-columns: 1em;
 }
 
 .keyring-dialog-control-table {
-  spacing-rows: 15px;
+  spacing-rows: rescale(15px);
   spacing-columns: 1em;
 }
 
@@ -602,7 +602,7 @@ $selected_slider_color: white;
 .popup-menu {
   min-width: 12em;
   color: $fg_color;
-  padding: 3px 0 2px 0;
+  padding: rescale(3px) 0 rescale(2px) 0;
 
   @if $trans == 'true' {
     border-image: url("assets/menu.svg") 24 32 28 28;
@@ -621,11 +621,11 @@ $selected_slider_color: white;
 
   .popup-menu-content { padding: 1em 0; }
   .popup-menu-item {
-    spacing: 12px;
+    spacing: rescale(12px);
     transition-duration: 0s;
 
-    &:ltr { padding: 0.4em 24px 0.4em 0; }
-    &:rtl { padding: 0.4em 0 0.4em 24px; }
+    &:ltr { padding: 0.4em rescale(24px) 0.4em 0; }
+    &:rtl { padding: 0.4em 0 0.4em rescale(24px); }
 
     &:checked {
       font-weight: normal;
@@ -636,7 +636,7 @@ $selected_slider_color: white;
       .popup-menu-icon,
       .app-menu-icon > StIcon,
       .popup-menu-arrow {
-        icon-shadow: 0 1px rgba(black, 0.45);
+        icon-shadow: 0 rescale(1px) rgba(black, 0.45);
       }
 
       &.selected {
@@ -693,15 +693,15 @@ $selected_slider_color: white;
 
   //.popup-status-menu-item { font-weight: normal;  color: pink; } //dunno what that is
   &.panel-menu {
-    -boxpointer-gap: 4px;
+    -boxpointer-gap: rescale(4px);
     margin-bottom: 1.75em;
   }
 }
 
 .popup-menu-ornament {
   text-align: right;
-  width: 16px;
-  height: 16px;
+  width: rescale(16px);
+  height: rescale(16px);
 }
 
 .popup-menu-boxpointer {
@@ -722,9 +722,9 @@ $selected_slider_color: white;
 }
 
 .candidate-popup-boxpointer {
-  -arrow-border-radius: 2px;
+  -arrow-border-radius: rescale(2px);
   -arrow-background-color: $base_color;
-  -arrow-border-width: 1px;
+  -arrow-border-width: rescale(1px);
   -arrow-border-color: $dark_borders_color;
   -arrow-base: 5;
   -arrow-rise: 5;
@@ -734,7 +734,7 @@ $selected_slider_color: white;
 }
 
 .popup-separator-menu-item {
-  height: 1px; //not really the whole box
+  height: rescale(1px); //not really the whole box
   margin: 0 0;
   background-color: $border_color;
   border-color: transparent;
@@ -745,38 +745,38 @@ $selected_slider_color: white;
 // a little unstructured mess:
 
 .system-switch-user-submenu-icon.user-icon {
-  icon-size: 20px;
-  padding: 0 2px;
+  icon-size: rescale(20px);
+  padding: 0 rescale(2px);
 }
 
 .system-switch-user-submenu-icon.default-icon {
-  icon-size: 16px;
-  padding: 0 4px;
+  icon-size: rescale(16px);
+  padding: 0 rescale(4px);
 }
 
 .system-switch-user-submenu-icon {
-  icon-size: 16px;
-  padding: 0 4px;
+  icon-size: rescale(16px);
+  padding: 0 rescale(4px);
 }
 
 #appMenu {
   spinner-image: url("process-working.svg");
-  spacing: 4px;
+  spacing: rescale(4px);
 
   .label-shadow { color: transparent; }
 }
 
 // system status popover menu
 .aggregate-menu {
-  min-width: 240px;
+  min-width: rescale(240px);
 
-  .popup-menu-icon { padding: 0 4px; }
+  .popup-menu-icon { padding: 0 rescale(4px); }
 }
 
 .system-menu-action {
   color: $secondary_fg_color;
-  border-radius: 100px; /* wish we could do 50% */
-  padding: ($large_size - 20px) / 2;
+  border-radius: rescale(100px); /* wish we could do 50% */
+  padding: ($large_size - rescale(20px)) / 2;
   border: none;
   -st-icon-style: symbolic; // >= 3.29.90
 
@@ -784,16 +784,16 @@ $selected_slider_color: white;
     background-color: $divider_color;
     color: $fg_color;
     border: none;
-    padding: ($large_size - 20px) / 2;
+    padding: ($large_size - rescale(20px)) / 2;
   }
 
   &:active { background-color: $track_color; color: $fg_color; }
 
-  & > StIcon { icon-size: 16px; }
+  & > StIcon { icon-size: rescale(16px); }
 }
 
 // Background menu
-.background-menu { -boxpointer-gap: 8px; -arrow-rise: 0; }
+.background-menu { -boxpointer-gap: rescale(8px); -arrow-rise: 0; }
 
 /* fallback menu
 - odd thing for styling App menu when apparently not running under shell. Light Adwaita styled
@@ -805,42 +805,42 @@ $selected_slider_color: white;
   text-align: center;
   font-weight: bold;
   spacing: 1em;
-  margin: 32px;
-  min-width: 64px;
-  min-height: 64px;
+  margin: rescale(32px);
+  min-width: rescale(64px);
+  min-height: rescale(64px);
 
   .osd-monitor-label { @include font(display-2); }
 
   .level {
-    height: 4px;
-    border-radius: 3px;
+    height: rescale(4px);
+    border-radius: rescale(3px);
     background-color: rgba($primary_color, $lower_opacity);
     color: $fg_color;
 
     // For >= 3.29.90
-    -barlevel-height: 4px;
+    -barlevel-height: rescale(4px);
     // FIXME: above 'background-color' property rendered correct trough
     // colour already, so keep -background-color style-property transparent
     -barlevel-background-color: rgba($primary_color, $lower_opacity);
     -barlevel-active-background-color: $primary_color;
     -barlevel-overdrive-color: $destructive_color;
-    -barlevel-overdrive-separator-width: 3px;
+    -barlevel-overdrive-separator-width: rescale(3px);
     -barlevel-border-width: 0;
   }
 
   .level-bar {
     background-color: $primary_color;
-    border-radius: 3px;
+    border-radius: rescale(3px);
   }
 }
 
 /* Pad OSD */
 .pad-osd-window {
-  padding: 32px;
+  padding: rescale(32px);
   background-color: $bg_color;
 
-  .pad-osd-title-box { spacing: 12px; }
-  .pad-osd-title-menu-box { spacing: 6px; }
+  .pad-osd-title-box { spacing: rescale(12px); }
+  .pad-osd-title-menu-box { spacing: rescale(6px); }
 }
 
 .combo-box-label {
@@ -849,8 +849,8 @@ $selected_slider_color: white;
 
 /* App Switcher */
 .switcher-popup {
-  padding: 8px;
-  spacing: 16px;
+  padding: rescale(8px);
+  spacing: rescale(16px);
 }
 
 .osd-window,
@@ -859,15 +859,15 @@ $selected_slider_color: white;
   @extend %osd-panel;
 }
 
-  .switcher-list-item-container { spacing: 8px; }
+  .switcher-list-item-container { spacing: rescale(8px); }
 
   .switcher-list .item-box {
-    padding: 8px;
+    padding: rescale(8px);
     border-radius: $bt_radius;
   }
 
   .switcher-list .item-box:outlined {
-    padding: 8px;
+    padding: rescale(8px);
     border: none;
     background-color: $divider_color;
     color: $fg_color; // for Ubuntu session
@@ -879,16 +879,16 @@ $selected_slider_color: white;
   }
 
   .switcher-list .thumbnail-box {
-    padding: 2px;
-    spacing: 4px;
+    padding: rescale(2px);
+    spacing: rescale(4px);
   }
 
   .switcher-list .thumbnail {
-    width:  256px;
+    width:  rescale(256px);
   }
 
   .switcher-list .separator {
-    width: 1px;
+    width: rescale(1px);
     background: $border_color;
   }
 
@@ -902,15 +902,15 @@ $selected_slider_color: white;
 
   .input-source-switcher-symbol {
     @include font(display-2);
-    width: 96px;
-    height: 96px;
+    width: rescale(96px);
+    height: rescale(96px);
   }
 
 /* Window Cycler */
-.cycler-highlight { border: 4px solid $primary_color; }
+.cycler-highlight { border: rescale(4px) solid $primary_color; }
 
 /* Workspace Switcher */
-.workspace-switcher-group { padding: 8px; }
+.workspace-switcher-group { padding: rescale(8px); }
 
   .workspace-switcher-container {
     @extend %osd-panel;
@@ -918,22 +918,22 @@ $selected_slider_color: white;
 
   .workspace-switcher {
     background: transparent;
-    border: 0px;
-    border-radius: 0px;
-    padding: 0px;
-    spacing: 8px;
+    border: rescale(0px);
+    border-radius: rescale(0px);
+    padding: rescale(0px);
+    spacing: rescale(8px);
   }
 
   .ws-switcher-active-up, .ws-switcher-active-down {
-    height: 48px;
+    height: rescale(48px);
     background-color: $primary_color;
     color: $inverse_fg_color;
-    background-size: 32px;
+    background-size: rescale(32px);
     border-radius: $bt_radius;
   }
 
   .ws-switcher-box {
-    height: 48px;
+    height: rescale(48px);
     border: none;
     background: $divider_color;
     border-radius: $bt_radius;
@@ -945,13 +945,13 @@ $selected_slider_color: white;
   border: none;
   box-shadow: $shadow_4;
   border-radius: $bt_radius;
-  padding: 12px;
+  padding: rescale(12px);
 }
 
 /* Tiled window previews */
 .tile-preview {
   background-color: rgba($alt_primary_color, $lower_opacity);
-  border: 1px solid $alt_primary_color;
+  border: rescale(1px) solid $alt_primary_color;
 }
 
   .tile-preview-left.on-primary {
@@ -990,7 +990,7 @@ $selected_slider_color: white;
   .panel-corner {
     -panel-corner-radius: $panel-corner-radius;
     -panel-corner-background-color: $panel_bg_color;
-    -panel-corner-border-width: 2px;
+    -panel-corner-border-width: rescale(2px);
     -panel-corner-border-color: transparent;
 
     &:active, &:overview, &:focus {
@@ -1003,18 +1003,18 @@ $selected_slider_color: white;
       -panel-corner-border-color: transparent;
     }
 
-    StLabel { padding: 0 4px; }
+    StLabel { padding: 0 rescale(4px); }
   }
 
   .panel-button {
-    -natural-hpadding: 4px;
-    -minimum-hpadding: 4px;
+    -natural-hpadding: rescale(4px);
+    -minimum-hpadding: rescale(4px);
     font-weight: bold;
     color: $panel_fg_color;
     text-shadow: none;
     transition-duration: $longer_duration;
 
-    StLabel { padding: 0 2px; }
+    StLabel { padding: 0 rescale(2px); }
 
     .app-menu-icon {
       -st-icon-style: symbolic;
@@ -1044,17 +1044,17 @@ $selected_slider_color: white;
       // a box-shadow
       background-color: $primary_color;
       color: $inverse_fg_color;
-      text-shadow: 0 1px rgba(black, 0.45);
+      text-shadow: 0 rescale(1px) rgba(black, 0.45);
       box-shadow: none;
 
       .system-status-icon,
       .app-menu-icon > StIcon,
       .popup-menu-arrow {
-        icon-shadow: 0 1px rgba(black, 0.45);
+        icon-shadow: 0 rescale(1px) rgba(black, 0.45);
       }
     }
 
-    .system-status-icon { icon-size: em(16px); padding: 0 3px; }
+    .system-status-icon { icon-size: em(16px); padding: 0 rescale(3px); }
     .unlock-screen &,
     .login-screen &,
     .lock-screen & {
@@ -1065,7 +1065,7 @@ $selected_slider_color: white;
 
   .panel-status-indicators-box,
   .panel-status-menu-box {
-    spacing: 2px;
+    spacing: rescale(2px);
   }
 
   // spacing between power icon and (optional) percentage label
@@ -1095,7 +1095,7 @@ $selected_slider_color: white;
 
       &:active, &:overview, &:focus, &:checked {
         color: $inverse_fg_color;
-        text-shadow: 0 1px rgba(black, 0.45);
+        text-shadow: 0 rescale(1px) rgba(black, 0.45);
       }
     }
 
@@ -1105,7 +1105,7 @@ $selected_slider_color: white;
       icon-shadow: none;
 
       &:active, &:overview, &:focus, &:checked {
-        icon-shadow: 0 1px rgba(black, 0.45);
+        icon-shadow: 0 rescale(1px) rgba(black, 0.45);
       }
     }
   }
@@ -1117,8 +1117,8 @@ $selected_slider_color: white;
   > * {
     background-image: url("assets/activities.svg");
     background-position: center top;
-    width: 24px;
-    height: 24px;
+    width: rescale(24px);
+    height: rescale(24px);
     background-color: transparent !important;
     background-gradient-direction: none !important;
     border: none;
@@ -1135,7 +1135,7 @@ $selected_slider_color: white;
 
   // calendar popover
   #calendarArea {
-    padding: 8px 16px;
+    padding: rescale(8px) rescale(16px);
   }
 
   .calendar {
@@ -1146,12 +1146,12 @@ $selected_slider_color: white;
     .datemenu-today-button,
     .datemenu-displays-box,
     .message-list-sections {
-      margin: 0 8px;
+      margin: 0 rescale(8px);
     }
 
-    .datemenu-calendar-column { spacing: 8px; }
+    .datemenu-calendar-column { spacing: rescale(8px); }
     .datemenu-displays-section { padding-bottom: 0; }
-    .datemenu-displays-box { spacing: 8px; }
+    .datemenu-displays-box { spacing: rescale(8px); }
 
     .datemenu-calendar-column {
       border: 0 solid $border_color;
@@ -1163,13 +1163,13 @@ $selected_slider_color: white;
     .world-clocks-button,
     .weather-button,
     .events-section-title {
-      min-height: $menuitem_size - 4px * 2;
-      padding: 4px 8px;
+      min-height: $menuitem_size - rescale(4px) * 2;
+      padding: rescale(4px) rescale(8px);
       border-radius: $bt_radius;
     }
 
     .datemenu-today-button {
-      min-height: $menuitem_size * 2 - 4px * 2;
+      min-height: $menuitem_size * 2 - rescale(4px) * 2;
     }
 
     .message-list-section-list:ltr {
@@ -1214,9 +1214,9 @@ $selected_slider_color: white;
     }
 
     .calendar-month-label {
-      height: $menuitem_size - 4px * 2;
-      margin: 2px;
-      padding: 6px 16px;
+      height: $menuitem_size - rescale(4px) * 2;
+      margin: rescale(2px);
+      padding: rescale(6px) rescale(16px);
       border-radius: $bt_radius;
       color: $fg_color;
       font-weight: bold;
@@ -1227,8 +1227,8 @@ $selected_slider_color: white;
     .pager-button {
       width: $menuitem_size;
       height: $menuitem_size;
-      margin: 2px;
-      border-radius: 100px;
+      margin: rescale(2px);
+      border-radius: rescale(100px);
       background-color: transparent;
       color: $fg_color;
       &:hover, &:focus { background-color: $divider_color; }
@@ -1236,12 +1236,12 @@ $selected_slider_color: white;
     }
 
       .calendar-change-month-back { //arrow back
-        padding: 0 2px;
+        padding: 0 rescale(2px);
         background-image: url("assets/calendar-arrow-left.svg");
         &:rtl { background-image: url("assets/calendar-arrow-right.svg"); }
       }
       .calendar-change-month-forward { //arrow foreward
-        padding: 0 2px;
+        padding: 0 rescale(2px);
         background-image: url("assets/calendar-arrow-right.svg");
         &:rtl { background-image: url("assets/calendar-arrow-left.svg"); }
       }
@@ -1251,8 +1251,8 @@ $selected_slider_color: white;
       text-align: center;
       width: $menuitem_size; height: $menuitem_size;
       padding: 0;
-      margin: 2px;
-      border-radius: 100px;
+      margin: rescale(2px);
+      border-radius: rescale(100px);
       &:hover,&:focus { background-color: $divider_color; }
       &:active {
         color: inherit;
@@ -1265,10 +1265,10 @@ $selected_slider_color: white;
         border-color: transparent; //avoid jumparound due to today
       }
       &.calendar-day-heading {  //day of week heading
-        width: $menuitem_size; height: $menuitem_size - 7px;
-        margin-top: 2px;
-        padding: 7px 0 0;
-        border-radius: 100px;
+        width: $menuitem_size; height: $menuitem_size - rescale(7px);
+        margin-top: rescale(2px);
+        padding: rescale(7px) 0 0;
+        border-radius: rescale(100px);
         background-color: transparent;
         color: $hint_fg_color;
         @include font(caption);
@@ -1304,10 +1304,10 @@ $selected_slider_color: white;
         opacity: 0.5;
       }
       .calendar-week-number {
-        width: $menuitem_size; height: $menuitem_size - 7px;
-        margin: 2px;
-        padding: 7px 0 0;
-        border-radius: 100px;
+        width: $menuitem_size; height: $menuitem_size - rescale(7px);
+        margin: rescale(2px);
+        padding: rescale(7px) 0 0;
+        border-radius: rescale(100px);
         background-color: transparent;
         color: $hint_fg_color;
         font-size: inherit;
@@ -1317,29 +1317,29 @@ $selected_slider_color: white;
 
       /* Message list */
       .message-list {
-        width: 420px;
+        width: rescale(420px);
       }
 
         .message-list-clear-button.button {
           background-color: transparent;
           &:hover,&:focus { background-color: $divider_color; }
           &:active { background-color: $track_color; }
-          margin: 8px 8px 0;
+          margin: rescale(8px) rescale(8px) 0;
         }
 
         .message-list-sections {
-          spacing: 8px;
+          spacing: rescale(8px);
         }
 
         .message-list-section,
         .message-list-section-list {
-          spacing: 8px;
+          spacing: rescale(8px);
         }
 
         .message {
           min-height: $menuitem_size * 2;
           background-color: transparent;
-          border: 1px solid $border_color;
+          border: rescale(1px) solid $border_color;
 
           &:hover,&:focus { background-color: $divider_color; }
           &:active { background-color: $track_color; }
@@ -1347,25 +1347,25 @@ $selected_slider_color: white;
         }
 
           .message-icon-bin {
-            padding: 8px 0px 8px 8px;
-            &:rtl { padding: 8px 8px 8px 0px; }
+            padding: rescale(8px) rescale(0px) rescale(8px) rescale(8px);
+            &:rtl { padding: rescale(8px) rescale(8px) rescale(8px) rescale(0px); }
           }
 
           .message-icon-bin > StIcon {
             color: $fg_color;
-            icon-size: em(16px);
+            icon-size: em(rescale(16px));
             -st-icon-style: requested;
-            margin: 4px 0px 4px 4px;
-            &:rtl { margin: 4px 4px 4px 0px; }
+            margin: rescale(4px) rescale(0px) rescale(4px) rescale(4px);
+            &:rtl { margin: rescale(4px) rescale(4px) rescale(4px) rescale(0px); }
           }
 
           .message-secondary-bin {
-            padding: 0 8px;
+            padding: 0 rescale(8px);
           }
 
           .message-secondary-bin > .event-time {
-            min-height: $small_size - 2px;
-            padding-top: 2px;
+            min-height: $small_size - rescale(2px);
+            padding-top: rescale(2px);
             color: $secondary_fg_color;
             font-size: 1em;
             /* HACK: the label should be baseline-aligned with a 1em label,
@@ -1374,28 +1374,28 @@ $selected_slider_color: white;
           }
 
           .message-secondary-bin > StIcon {
-            icon-size: em(16px);
+            icon-size: em(rescale(16px));
           }
 
           .message-title {
-            min-height: $small_size - 2px;
-            padding-top: 2px;
+            min-height: $small_size - rescale(2px);
+            padding-top: rescale(2px);
             color: $fg_color;
             font-weight: bold;
             font-size: 1em;
           }
 
           .message-content {
-            min-height: $menuitem_size * 2 - 8px * 2;
-            padding: 8px;
+            min-height: $menuitem_size * 2 - rescale(8px) * 2;
+            padding: rescale(8px);
             color: $secondary_fg_color;
             font-size: 1em;
           }
 
           .message-content * > StIcon {
-            icon-size: 16px;
-            border-radius: 16px;
-            padding: ($small_size - 16px) / 2;
+            icon-size: rescale(16px);
+            border-radius: rescale(16px);
+            padding: ($small_size - rescale(16px)) / 2;
             color: $secondary_fg_color;
           }
 
@@ -1412,25 +1412,25 @@ $selected_slider_color: white;
           }
 
           .message-media-control {
-            margin: 16px 0;
-            padding: 8px;
-            border-radius: 100px;
+            margin: rescale(16px) 0;
+            padding: rescale(8px);
+            border-radius: rescale(100px);
             color: $secondary_fg_color;
             &:hover,&:focus { color: $fg_color; background-color: $divider_color; }
             &:active { color: $fg_color; background-color: $track_color; }
             &:insensitive { color: $disabled_secondary_fg_color; }
 
-            &:last-child:ltr { margin-right: 16px; padding-right: 8px; }
-            &:last-child:rtl { margin-left: 16px; padding-left: 8px; }
+            &:last-child:ltr { margin-right: rescale(16px); padding-right: rescale(8px); }
+            &:last-child:rtl { margin-left: rescale(16px); padding-left: rescale(8px); }
           }
 
           .media-message-cover-icon {
-            icon-size: 32px !important;
-            margin: 8px 0px 8px 4px !important;
-            &:rtl { margin: 8px 4px 8px 0px !important; }
+            icon-size: rescale(32px) !important;
+            margin: rescale(8px) rescale(0px) rescale(8px) rescale(4px) !important;
+            &:rtl { margin: rescale(8px) rescale(4px) rescale(8px) rescale(0px) !important; }
             &.fallback {
-              icon-size: 16px !important;
-              padding: 8px;
+              icon-size: rescale(16px) !important;
+              padding: rescale(8px);
               border: none;
               border-radius: $bt_radius;
               background-color: $divider_color;
@@ -1441,49 +1441,49 @@ $selected_slider_color: white;
 
 //Activities Ripples
 .ripple-box {
-  width: 48px;
-  height: 48px;
-  border-radius: 0 0 48px 0;
+  width: rescale(48px);
+  height: rescale(48px);
+  border-radius: 0 0 rescale(48px) 0;
   background-color: $inverse_track_color;
   background-image: none;
   background-size: auto;
 }
 
 .ripple-box:rtl {
-  border-radius: 0 0 0 48px;
+  border-radius: 0 0 0 rescale(48px);
   background-image: none;
 }
 
 // not really top bar only
-.popup-menu-arrow { width: 16px; height: 16px; }
+.popup-menu-arrow { width: rescale(16px); height: rescale(16px); }
 .popup-menu-icon { icon-size: em(16px); }
 
 //close buttons
 
 .window-close {
-  background-size: 26px;
-  height: 26px;
-  width: 26px;
-  -shell-close-overlap: 10px;
-  border-radius: 100px;
+  background-size: rescale(26px);
+  height: rescale(26px);
+  width: rescale(26px);
+  -shell-close-overlap: rescale(10px);
+  border-radius: rescale(100px);
   border: 0 none transparent;
   background-color: transparent;
   color: transparent;
   box-shadow: none;
-  StIcon { icon-size: 26px; } // for safety
+  StIcon { icon-size: rescale(26px); } // for safety
   background-image: url("assets/window-close.svg");
 
   &:hover {
-    background-size: 26px;
-    height: 26px;
-    width: 26px;
+    background-size: rescale(26px);
+    height: rescale(26px);
+    width: rescale(26px);
     background-image: url("assets/window-close-hover.svg");
   }
 
   &:active {
-    background-size: 26px;
-    height: 26px;
-    width: 26px;
+    background-size: rescale(26px);
+    height: rescale(26px);
+    width: rescale(26px);
     background-image: url("assets/window-close-active.svg");
   }
 }
@@ -1497,11 +1497,11 @@ $selected_slider_color: white;
 }
 
   .nm-dialog-content {
-    spacing: 20px;
-    padding: 24px;
+    spacing: rescale(20px);
+    padding: rescale(24px);
   }
-  .nm-dialog-header-hbox { spacing: 10px; }
-  .nm-dialog-airplane-box { spacing: 12px; }
+  .nm-dialog-header-hbox { spacing: rescale(10px); }
+  .nm-dialog-airplane-box { spacing: rescale(12px); }
 
   .nm-dialog-airplane-headline {
     font-weight: bold;
@@ -1509,7 +1509,7 @@ $selected_slider_color: white;
   }
 
   .nm-dialog-airplane-text { color: $fg_color; }
-  .nm-dialog-header-icon { icon-size: 32px; }
+  .nm-dialog-header-icon { icon-size: rescale(32px); }
   .nm-dialog-scroll-view { border: none; }
   .nm-dialog-header { @include font(title); }
 
@@ -1517,8 +1517,8 @@ $selected_slider_color: white;
     font-size: 1em;
     border-bottom: none;
     border-radius: $bt_radius;
-    padding: 12px;
-    spacing: 20px;
+    padding: rescale(12px);
+    spacing: rescale(20px);
     &:hover, &:focus { background-color: $divider_color; }
     &:active { background-color: $track_color; }
   }
@@ -1529,49 +1529,49 @@ $selected_slider_color: white;
   }
 
   .nm-dialog-icons { spacing: .5em; }
-  .nm-dialog-icon { icon-size: 16px; }
+  .nm-dialog-icon { icon-size: rescale(16px); }
   .no-networks-label { color: $hint_fg_color; }
-  .no-networks-box { spacing: 12px; }
+  .no-networks-box { spacing: rescale(12px); }
 
 /* OVERVIEW */
 
 #overview {
-  spacing: 24px; //
+  spacing: rescale(24px); //
   StScrollBar { @extend %overview_scrollbar; }
 }
 
 .overview-controls {
-  padding-bottom: 32px;
+  padding-bottom: rescale(32px);
 }
 
   .window-picker { //container around window thumbnails
-    -horizontal-spacing: 16px;
-    -vertical-spacing: 16px;
-    padding: 0 16px 32px;
+    -horizontal-spacing: rescale(16px);
+    -vertical-spacing: rescale(16px);
+    padding: 0 rescale(16px) rescale(32px);
 
-    &.external-monitor { padding: 16px; }
+    &.external-monitor { padding: rescale(16px); }
   }
 
   .window-clone-border {
-    border: 4px solid $inverse_track_color;
+    border: rescale(4px) solid $inverse_track_color;
     border-radius: $bt_radius;
     // For window decorations with round corners we can't match
     // the exact shape when the window is scaled. So apply a shadow
     // to fix that case
-    box-shadow: inset 0 0 0 1px $inverse_track_color;
+    box-shadow: inset 0 0 0 rescale(1px) $inverse_track_color;
   }
   .window-caption {
-    spacing: 25px;
+    spacing: rescale(25px);
     color: $inverse_fg_color;
     background-color: $bg_color;
     border-radius: $bt_radius;
-    padding: 4px 8px;
+    padding: rescale(4px) rescale(8px);
   }
 
   //search entry
   .search-entry {
-    width: 320px - 8px * 2;
-    padding: 0 8px;
+    width: rescale(320px) - rescale(8px) * 2;
+    padding: 0 rescale(8px);
     border: none;
     color: $inverse_hint_fg_color;
     selection-background-color: $inverse_track_color;
@@ -1579,12 +1579,12 @@ $selected_slider_color: white;
     @include search_entry(normal, $fc:$inverse_track_color);
     &:focus {
       @include search_entry(focus, $fc:$inverse_fg_color);
-      padding: 0 8px;
+      padding: 0 rescale(8px);
       border: none;
       color: $inverse_fg_color;
     }
 
-    .search-entry-icon { icon-size: 16px; padding: 0 0; color: $inverse_hint_fg_color; }
+    .search-entry-icon { icon-size: rescale(16px); padding: 0 0; color: $inverse_hint_fg_color; }
 
     &:hover, &:focus {
       .search-entry-icon { color: $inverse_fg_color; }
@@ -1594,31 +1594,31 @@ $selected_slider_color: white;
   //search results
 
   // #searchResultsBin {
-  //   max-width: 1000px;
+  //   max-width: rescale(1000px);
   // }
 
   #searchResultsContent {
-    max-width: 1000px;
-    padding-left: 20px;
-    padding-right: 20px;
-    spacing: 16px;
+    max-width: rescale(1000px);
+    padding-left: rescale(20px);
+    padding-right: rescale(20px);
+    spacing: rescale(16px);
   }
 
-  .search-section { spacing: 16px; } // This should be equal to #searchResultsContent spacing
-  .search-section-content { spacing: 32px; } // This is the space between the provider icon and the results container
+  .search-section { spacing: rescale(16px); } // This should be equal to #searchResultsContent spacing
+  .search-section-content { spacing: rescale(32px); } // This is the space between the provider icon and the results container
   .search-statustext { // "no results"
     @extend %status_text;
   }
-  .list-search-results { spacing: 3px; }
+  .list-search-results { spacing: rescale(3px); }
 
-  .search-section-separator { height: 1px; background-color: $inverse_divider_color; }
+  .search-section-separator { height: rescale(1px); background-color: $inverse_divider_color; }
 
-  .list-search-result-content { spacing: 30px; }
-  .list-search-result-title { @include font(subheading); color: $inverse_fg_color; spacing: 12px; }
+  .list-search-result-content { spacing: rescale(30px); }
+  .list-search-result-title { @include font(subheading); color: $inverse_fg_color; spacing: rescale(12px); }
   .list-search-result-description { color: $inverse_secondary_fg_color; }
-  .list-search-provider-details { width: 150px; color: $inverse_secondary_fg_color; margin-top: 0.24em; }
-  .list-search-provider-content { spacing: 20px; }
-  .search-provider-icon { padding: 15px; }
+  .list-search-provider-details { width: rescale(150px); color: $inverse_secondary_fg_color; margin-top: 0.24em; }
+  .list-search-provider-content { spacing: rescale(20px); }
+  .search-provider-icon { padding: rescale(15px); }
 
 
   /* DASHBOARD */
@@ -1627,10 +1627,10 @@ $selected_slider_color: white;
     font-size: 1em;
     color: $inverse_fg_color;
     background-color: $inverse_bg_color;
-    padding: 3px 0;
+    padding: rescale(3px) 0;
     border: none;
-    border-left: 0px;
-    border-radius: 0px $bt_radius $bt_radius 0px;
+    border-left: rescale(0px);
+    border-radius: rescale(0px) $bt_radius $bt_radius rescale(0px);
 
     &:rtl {
       border-radius: $bt_radius 0 0 $bt_radius;
@@ -1639,56 +1639,56 @@ $selected_slider_color: white;
     .placeholder {
       background-image: url("assets/dash-placeholder.svg");
       background-size: contain;
-      height: 24px;
+      height: rescale(24px);
     }
 
     .empty-dash-drop-target {
-      width: 24px;
-      height: 24px;
+      width: rescale(24px);
+      height: rescale(24px);
     }
 
   }
 
   .dash-item-container > StWidget {
-    padding: 3px 6px;
+    padding: rescale(3px) rescale(6px);
   }
 
   .dash-label { //osd tooltip
-    // min-height: 32px - 6px * 2;
+    // min-height: rescale(32px) - rescale(6px) * 2;
     border-radius: $bt_radius;
-    padding: 7px 8px;
+    padding: rescale(7px) rescale(8px);
     color: $fg_color;
     background-color: $base_color;
     box-shadow: $shadow_2;
     text-align: center;
-    -x-offset: 8px;
+    -x-offset: rescale(8px);
   }
 
   /* App Vault/Grid */
   .icon-grid {
-    spacing: 30px;
-    -shell-grid-horizontal-item-size: 136px;
-    -shell-grid-vertical-item-size: 136px;
+    spacing: rescale(30px);
+    -shell-grid-horizontal-item-size: rescale(136px);
+    -shell-grid-vertical-item-size: rescale(136px);
 
-    .overview-icon { icon-size: 96px; }
+    .overview-icon { icon-size: rescale(96px); }
   }
-  //.app-display { spacing: 20px; }
+  //.app-display { spacing: rescale(20px); }
 
   .system-action-icon {
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); // FIXME: this should really have a highlight
+    box-shadow: 0 rescale(4px) rescale(4px) rgba(0, 0, 0, 0.2); // FIXME: this should really have a highlight
     background-color: $grey_900;
     color: $white;
-    border-radius: 99px;
+    border-radius: rescale(99px);
     icon-size: 48px;
   }
 
   .app-view-controls { //favorties | all toggle container
-    width: 320px;
-    padding-bottom: 32px;
+    width: rescale(320px);
+    padding-bottom: rescale(32px);
     margin: 0 0;
   }
   .app-view-control { //favorties | all toggle button
-    padding: 0 16px;
+    padding: 0 rescale(16px);
     margin: 0 0;
     font-weight: bold;
     color: $inverse_secondary_fg_color;
@@ -1764,8 +1764,8 @@ $selected_slider_color: white;
   }
 
   .app-well-app-running-dot { //running apps indicator
-    width: 5px; height: 5px;
-    border-radius: 3px;
+    width: rescale(5px); height: rescale(5px);
+    border-radius: rescale(3px);
     background-color: $primary_color;
     margin-bottom: 0;
   }
@@ -1773,7 +1773,7 @@ $selected_slider_color: white;
   %icon_tile {
     color: $inverse_fg_color;
     border-radius: $bt_radius;
-    padding: 6px;
+    padding: rescale(6px);
     border: none;
     transition-duration: $longer_duration;
     text-align: center;
@@ -1803,22 +1803,22 @@ $selected_slider_color: white;
     -arrow-border-radius: $bt_radius;
     -arrow-background-color: $inverse_bg_color;
     -arrow-base: 0;
-    -arrow-rise: 12px;
+    -arrow-rise: rescale(12px);
   }
-  .app-folder-popup-bin { padding: 5px; }
+  .app-folder-popup-bin { padding: rescale(5px); }
   .app-folder-icon {
-    padding: 5px;
-    spacing-rows: 5px;
-    spacing-columns: 5px;
+    padding: rescale(5px);
+    spacing-rows: rescale(5px);
+    spacing-columns: rescale(5px);
   }
 
   .page-indicator {
-    padding: 15px 20px;
+    padding: rescale(15px) rescale(20px);
 
     .page-indicator-icon {
-      width: 12px;
-      height: 12px;
-      border-radius: 12px;
+      width: rescale(12px);
+      height: rescale(12px);
+      border-radius: rescale(12px);
       margin: 0;
       padding: 0;
       background-image: none;
@@ -1852,26 +1852,26 @@ $selected_slider_color: white;
 
   .app-well-app > .overview-icon.overview-icon-with-label,
   .grid-search-result .overview-icon.overview-icon-with-label {
-    padding: 10px 8px 5px 8px;
-    spacing: 4px;
+    padding: rescale(10px) rescale(8px) rescale(5px) rescale(8px);
+    spacing: rescale(4px);
   }
 
   // Workspace pager
   .workspace-thumbnails { //container ala dash
     @extend %overview-panel;
-    visible-width: 32px; //amount visible before hover
-    spacing: 12px;
-    padding: 16px;
+    visible-width: rescale(32px); //amount visible before hover
+    spacing: rescale(12px);
+    padding: rescale(16px);
     border-radius: $material_radius;
-    margin: 6px;
+    margin: rescale(6px);
     // border-width: 0; //fixme: can't have non unoform borders :(
     // &:rtl { border-radius: $material_radius; }
   }
   .workspace-thumbnail-indicator {
     border: 0 solid $primary_color;
-    border-width: 2px;
-    padding: 6px;
-    border-radius: 2px;
+    border-width: rescale(2px);
+    padding: rescale(6px);
+    border-radius: rescale(2px);
   }
 
   //Some hacks I don't even
@@ -1879,7 +1879,7 @@ $selected_slider_color: white;
   .all-apps,
   .frequent-apps > StBoxLayout {
     // horizontal padding to make sure scrollbars or dash don't overlap content
-    padding: 0px 88px 10px 88px;
+    padding: rescale(0px) rescale(88px) rescale(10px) rescale(88px);
   }
 
 %overview-panel {
@@ -1902,7 +1902,7 @@ $selected_slider_color: white;
     font-size: 1em;
     width: 34em;
     min-height: $menuitem_size * 2;
-    margin: 5px;
+    margin: rescale(5px);
     border-radius: $bt_radius;
     color: $fg_color;
     background-color: rgba($base_color, 0.92);
@@ -1911,23 +1911,23 @@ $selected_slider_color: white;
     &:hover { background-color: rgba($base_color, 0.95); }
     &:focus { background-color: $base_color; }
 
-    .notification-icon { padding: 5px; }
-    .notification-content { padding: 5px; spacing: 5px; }
-    .secondary-icon { icon-size: em(16px); }
+    .notification-icon { padding: rescale(5px); }
+    .notification-content { padding: rescale(5px); spacing: rescale(5px); }
+    .secondary-icon { icon-size: em(rescale(16px)); }
     .notification-actions {
       background-color: transparent;
       padding-top: 0;
-      border-top: 1px solid $border_color;
-      spacing: 1px;
+      border-top: rescale(1px) solid $border_color;
+      spacing: rescale(1px);
     }
     .notification-button {
-      min-height: 40px;
-      padding: 0 16px;
+      min-height: rescale(40px);
+      padding: 0 rescale(16px);
       background-color: transparent;
       color: $secondary_fg_color;
       font-weight: 500;
-      &:first-child { border-radius: 0 0 0 2px; }
-      &:last-child { border-radius: 0 0 2px 0; }
+      &:first-child { border-radius: 0 0 0 rescale(2px); }
+      &:last-child { border-radius: 0 0 rescale(2px) 0; }
       &:hover, &focus { background-color: $divider_color; color: $fg_color; }
       &:active { background-color: $track_color; color: $fg_color; }
     }
@@ -1936,25 +1936,25 @@ $selected_slider_color: white;
     font-size: 1em;
     font-weight: bold;
     height: 1.6em; width: 1.6em;
-    -shell-counter-overlap-x: 3px;
-    -shell-counter-overlap-y: 3px;
+    -shell-counter-overlap-x: rescale(3px);
+    -shell-counter-overlap-y: rescale(3px);
     background-color: $primary_color;
     color: $inverse_fg_color;
-    border: 2px solid $primary_color;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+    border: rescale(2px) solid $primary_color;
+    box-shadow: 0 rescale(2px) rescale(2px) rgba(0,0,0,0.5);
     border-radius: 0.9em; // should be 0.8 but whatever; wish I could do 50%;
   }
 
-  .secondary-icon { icon-size: em(16px); }
+  .secondary-icon { icon-size: em(rescale(16px)); }
 
   //chat bubbles
-  .chat-body { spacing: 5px; }
-  .chat-response { margin: 5px; }
+  .chat-body { spacing: rescale(5px); }
+  .chat-response { margin: rescale(5px); }
   .chat-log-message { color: $fg_color; }
   .chat-new-group { padding-top: 1em; }
   .chat-received {
-    padding-left: 4px;
-    &:rtl { padding-left: 0px; padding-right: 4px; }
+    padding-left: rescale(4px);
+    &:rtl { padding-left: rescale(0px); padding-right: rescale(4px); }
   }
   .chat-sent {
     padding-left: 18pt;
@@ -1962,31 +1962,31 @@ $selected_slider_color: white;
     &:rtl { padding-left: 0; padding-right: 18pt; }
   }
   .chat-meta-message {
-    padding-left: 4px;
+    padding-left: rescale(4px);
     @include font(caption);
     color: $hint_fg_color;
-    &:rtl { padding-left: 0; padding-right: 4px; }
+    &:rtl { padding-left: 0; padding-right: rescale(4px); }
   }
 
   //hotplug
   .hotplug-transient-box {
-    spacing: 6px;
-    padding: 2px 72px 2px 12px;
+    spacing: rescale(6px);
+    padding: rescale(2px) rescale(72px) rescale(2px) rescale(12px);
   }
     .hotplug-notification-item {
-      padding: 2px 10px;
-      &:focus { padding: 1px 71px 1px 11px; }
+      padding: rescale(2px) rescale(10px);
+      &:focus { padding: rescale(1px) rescale(71px) rescale(1px) rescale(11px); }
     }
 
     .hotplug-notification-item-icon {
-      icon-size: 24px;
-      padding: 2px 5px;
+      icon-size: rescale(24px);
+      padding: rescale(2px) rescale(5px);
     }
 
-    .hotplug-resident-box { spacing: 8px; }
+    .hotplug-resident-box { spacing: rescale(8px); }
 
     .hotplug-resident-mount {
-      spacing: 8px;
+      spacing: rescale(8px);
       border-radius: $bt_radius;
       &:hover { background-color: $divider_color; }
       &:active { background-color: $track_color; }
@@ -1994,20 +1994,20 @@ $selected_slider_color: white;
 
     .hotplug-resident-mount-label {
       color: inherit;
-      padding-left: 6px;
+      padding-left: rescale(6px);
     }
 
     .hotplug-resident-mount-icon {
-      icon-size: 24px;
-      padding-left: 6px;
+      icon-size: rescale(24px);
+      padding-left: rescale(6px);
     }
 
     .hotplug-resident-eject-icon {
-      icon-size: 16px;
+      icon-size: rescale(16px);
     }
 
     .hotplug-resident-eject-button {
-      padding: 7px;
+      padding: rescale(7px);
       border-radius: $bt_radius;
       color: $fg_color;
     }
@@ -2017,7 +2017,7 @@ $selected_slider_color: white;
 //magnifier
 
 .magnifier-zoom-region {
-  border: 2px solid $primary_color;
+  border: rescale(2px) solid $primary_color;
   &.full-screen { border-width: 0; }
 }
 
@@ -2025,7 +2025,7 @@ $selected_slider_color: white;
 /* On-screen Keyboard */
 .word-suggestions {
     font-size: 14pt;
-    spacing: 12px;
+    spacing: rescale(12px);
     min-height: 20pt;
 }
 
@@ -2034,11 +2034,11 @@ $selected_slider_color: white;
 }
 
   .keyboard-layout {
-    padding: 4px;
-    spacing: 4px;
+    padding: rescale(4px);
+    spacing: rescale(4px);
   }
 
-//  .keyboard-row { spacing: 15px; }
+//  .keyboard-row { spacing: rescale(15px); }
 
   .keyboard-key {
     min-height: 2em;
@@ -2049,7 +2049,7 @@ $selected_slider_color: white;
     border: none;
     color: inherit;
     background-color: $keyboard_bg_color;
-    box-shadow: 0 1px rgba($black, 0.2);
+    box-shadow: 0 rescale(1px) rgba($black, 0.2);
     &:focus, &:hover { color: $inverse_fg_color; background-color: $accent_color; }
     &:checked, &:active { color: $inverse_fg_color; background-color: darken($accent_color, 6%); }
     &:grayed { //FIXME
@@ -2058,7 +2058,7 @@ $selected_slider_color: white;
       border-color: $alt_bg_color;
     }
 
-    &.default-key { background-size: 20px; } // backspace button
+    &.default-key { background-size: rescale(20px); } // backspace button
     &.default-key,
     &.enter-key,
     &.shift-key-lowercase,
@@ -2066,7 +2066,7 @@ $selected_slider_color: white;
     &.hide-key,
     &.layout-key {
       background-color: $alt_keyboard_bg_color;
-      box-shadow: 0 1px rgba($black, 0.2);
+      box-shadow: 0 rescale(1px) rgba($black, 0.2);
       &:focus, &:hover { color: $button_fg_color; background-color: $keyboard_bg_color; }
       &:checked, &:active { color: $button_fg_color; background-color: darken($keyboard_bg_color, 6%); }
     }
@@ -2099,21 +2099,21 @@ $selected_slider_color: white;
     -arrow-background-color: rgba(black, 0.45);
     -arrow-border-width: 0;
     -arrow-border-color: transparent;
-    -arrow-base: 20px;
-    -arrow-rise: 10px;
-    -boxpointer-gap: 5px;
+    -arrow-base: rescale(20px);
+    -arrow-rise: rescale(10px);
+    -boxpointer-gap: rescale(5px);
     box-shadow: $shadow_2;
   }
 
 // IBus Candidate Popup
 
 .candidate-popup-content {
-  padding: 8px;
+  padding: rescale(8px);
   spacing: 0;
 }
 
   .candidate-index {
-    padding: 0 4px 0 0;
+    padding: 0 rescale(4px) 0 0;
     color: $hint_fg_color;
     .candidate-box:selected & { color: $inverse_hint_fg_color; }
   }
@@ -2121,7 +2121,7 @@ $selected_slider_color: white;
   .candidate-box {
     transition-duration: 0ms; // FIXME: needs more natural transitions
     min-height: $menuitem_size;
-    padding: 0 8px;
+    padding: 0 rescale(8px);
     border-radius: $bt_radius;
     &:hover { background-color: $divider_color; color: $fg_color; }
     &:active { background-color: $track_color; color: $fg_color; }
@@ -2142,7 +2142,7 @@ $selected_slider_color: white;
 
   .candidate-page-button-previous { border-radius: $bt_radius; border-right-width: 0; }
   .candidate-page-button-next { border-radius: $bt_radius;  }
-  .candidate-page-button-icon { icon-size: em(16px); }
+  .candidate-page-button-icon { icon-size: em(rescale(16px)); }
 
 /* Auth Dialogs & Screen Shield */
 
@@ -2160,7 +2160,7 @@ $selected_slider_color: white;
 // LOGIN DIALOG
 
 .login-dialog-banner-view {
-  padding-top: 24px;
+  padding-top: rescale(24px);
   max-width: 23em;
 }
 
@@ -2179,9 +2179,9 @@ $selected_slider_color: white;
     &:insensitive { @include entry(insensitive); }
   }
 
-  .modal-dialog-button-box { spacing: 3px; }
+  .modal-dialog-button-box { spacing: rescale(3px); }
   .modal-dialog-button {
-    padding: 0 16px;
+    padding: 0 rescale(16px);
     @include button(flat-normal, $tc: $inverse_fg_color);
     &:hover,&:focus { @include button(flat-hover, $tc: $inverse_fg_color); }
     &:active { @include button(flat-active, $tc: $inverse_fg_color); }
@@ -2196,14 +2196,14 @@ $selected_slider_color: white;
   }
 }
 
-.login-dialog-logo-bin { padding: 24px 0px; }
+.login-dialog-logo-bin { padding: rescale(24px) rescale(0px); }
 .login-dialog-banner { color: $inverse_secondary_fg_color; }
-.login-dialog-button-box { spacing: 5px; }
+.login-dialog-button-box { spacing: rescale(5px); }
 .login-dialog-message-warning { color: $warning_color; }
-.login-dialog-message-hint { padding-top: 0; padding-bottom: 20px; }
-.login-dialog-user-selection-box { padding: 100px 0px; }
+.login-dialog-message-hint { padding-top: 0; padding-bottom: rescale(20px); }
+.login-dialog-user-selection-box { padding: rescale(100px) rescale(0px); }
 .login-dialog-not-listed-label {
-  padding-left: 2px;
+  padding-left: rescale(2px);
   .login-dialog-not-listed-button:focus &,
   .login-dialog-not-listed-button:hover & {
     color: $inverse_fg_color;
@@ -2221,26 +2221,26 @@ $selected_slider_color: white;
 
 .login-dialog-user-list-view { -st-vfade-offset: 1em; }
 .login-dialog-user-list {
-  spacing: 12px;
+  spacing: rescale(12px);
   padding: .2em;
   width: 23em;
   &:expanded .login-dialog-user-list-item:selected { background-color: $inverse_divider_color; color: $inverse_fg_color; }
   &:expanded .login-dialog-user-list-item:hover { background-color: $inverse_divider_color; color: $inverse_fg_color; }
   &:expanded .login-dialog-user-list-item:active { background-color: $inverse_track_color; color: $inverse_fg_color; }
-  &:expanded .login-dialog-user-list-item:logged-in { border-right: 2px solid $inverse_fg_color; }
+  &:expanded .login-dialog-user-list-item:logged-in { border-right: rescale(2px) solid $inverse_fg_color; }
 }
 
 .login-dialog-user-list-item {
   border-radius: $bt_radius;
-  padding: 6px;
+  padding: rescale(6px);
   color: $inverse_secondary_fg_color;
   &:ltr { padding-right: 1em; }
   &:rtl { padding-left: 1em; }
   &:hover { background-color: $inverse_divider_color; color: $inverse_fg_color; }
   &:active { background-color: $inverse_track_color; color: $inverse_fg_color; }
   .login-dialog-timed-login-indicator {
-    height: 2px;
-    margin: 6px 0 0 0;
+    height: rescale(2px);
+    margin: rescale(6px) 0 0 0;
     background-color: $inverse_fg_color;
   }
   &:focus .login-dialog-timed-login-indicator { background-color: $inverse_fg_color; }
@@ -2251,18 +2251,18 @@ $selected_slider_color: white;
   color: $inverse_fg_color;
   @include font(title);
   text-align: left;
-  padding-left: 15px;
+  padding-left: rescale(15px);
 }
 
 .user-widget-label {
-  &:ltr { padding-left: 18px; }
-  &:rtl { padding-right: 18px; }
+  &:ltr { padding-left: rescale(18px); }
+  &:rtl { padding-right: rescale(18px); }
 }
 
 .login-dialog-prompt-layout {
-    padding-top: 24px;
-    padding-bottom: 12px;
-    spacing: 8px;
+    padding-top: rescale(24px);
+    padding-bottom: rescale(12px);
+    spacing: rescale(8px);
     width: 23em;
 }
 
@@ -2290,9 +2290,9 @@ $selected_slider_color: white;
 
 .screen-shield-arrows Gjs_Arrow {
   color: white;
-  width: 80px;
-  height: 48px;
-  -arrow-thickness: 12px;
+  width: rescale(80px);
+  height: rescale(48px);
+  -arrow-thickness: rescale(12px);
   -arrow-shadow: $shadow_1;
 }
 
@@ -2312,10 +2312,10 @@ $selected_slider_color: white;
 .screen-shield-clock-date { @include font(display-2); }
 
 .screen-shield-notifications-container {
-  spacing: 6px;
+  spacing: rescale(6px);
   width: 30em;
   background-color: transparent;
-  max-height: 500px;
+  max-height: rescale(500px);
   .summary-notification-stack-scrollview {
     padding-top: 0;
     padding-bottom: 0;
@@ -2323,25 +2323,25 @@ $selected_slider_color: white;
 
   .notification,
   .screen-shield-notification-source {
-    padding: 8px;
+    padding: rescale(8px);
     border: none;
     background-color: $alt_bg_color;
     color: $inverse_fg_color;
     border-radius: $bt_radius;
   }
-  .notification { margin-right: 16px; } //compensate for space allocated to the scrollbar
+  .notification { margin-right: rescale(16px); } //compensate for space allocated to the scrollbar
 }
 
 
 .screen-shield-notification-label {
-  min-height: $small_size - 2px;
-  padding: 2px 0px 0px 16px;
+  min-height: $small_size - rescale(2px);
+  padding: rescale(2px) rescale(0px) rescale(0px) rescale(16px);
   font-weight: bold;
 }
 
 .screen-shield-notification-count-text {
-  min-height: $small_size - 2px;
-  padding: 2px 0px 0px 16px;
+  min-height: $small_size - rescale(2px);
+  padding: rescale(2px) rescale(0px) rescale(0px) rescale(16px);
   color: $inverse_secondary_fg_color;
 }
 
@@ -2365,31 +2365,31 @@ $selected_slider_color: white;
 // Looking Glass
 #LookingGlassDialog {
   background-color: $base_color;
-  spacing: 4px;
+  spacing: rescale(4px);
   padding: 0;
   border: none;
   border-radius: $bt_radius;
   box-shadow: $shadow_4;
   & > #Toolbar {
-    padding: 0 8px;
+    padding: 0 rescale(8px);
     border: none;
     border-radius: 0;
     background-color: rgba($base_color, 0.01);
-    box-shadow: inset 0 -1px 0 $border_color;
+    box-shadow: inset 0 rescale(-1px) 0 $border_color;
   }
   .labels { spacing: 0; }
   .notebook-tab {
-    -natural-hpadding: 12px;
-    -minimum-hpadding: 6px;
+    -natural-hpadding: rescale(12px);
+    -minimum-hpadding: rescale(6px);
     font-weight: bold;
     color: $hint_fg_color;
     transition-duration: $longer_duration;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: rescale(16px);
+    padding-right: rescale(16px);
     min-height: $medium_size;
-    padding: 0 16px * 2;
+    padding: 0 rescale(16px) * 2;
     &:hover {
-      box-shadow: inset 0 -2px 0px $track_color;
+      box-shadow: inset 0 rescale(-2px) rescale(0px) $track_color;
       color: $fg_color;
       text-shadow: none;
     }
@@ -2397,13 +2397,13 @@ $selected_slider_color: white;
       border-bottom-width: 0;
       border-color: transparent;
       background-color: rgba($base_color, 0.01);
-      box-shadow: inset 0 -2px 0px $inverse_fg_color;
+      box-shadow: inset 0 rescale(-2px) rescale(0px) $inverse_fg_color;
       color: $fg_color;
       text-shadow: none;
     }
   }
-  StBoxLayout#EvalBox { padding: 4px; spacing: 4px; }
-  StBoxLayout#ResultsArea { spacing: 4px; }
+  StBoxLayout#EvalBox { padding: rescale(4px); spacing: rescale(4px); }
+  StBoxLayout#ResultsArea { spacing: rescale(4px); }
 }
 
   .lg-dialog {
@@ -2423,12 +2423,12 @@ $selected_slider_color: white;
   }
 
   .lg-obj-inspector-title {
-      spacing: 4px;
+      spacing: rescale(4px);
   }
 
   .lg-obj-inspector-button {
       min-height: $medium_size;
-      padding: 0 16px;
+      padding: 0 rescale(16px);
       border: none;
       border-radius: $bt_radius;
       @include font(button);
@@ -2440,17 +2440,17 @@ $selected_slider_color: white;
       &:hover { border: none; }
   }
 
-  #lookingGlassExtensions { padding: 4px; }
+  #lookingGlassExtensions { padding: rescale(4px); }
 
   .lg-extensions-list {
-      padding: 4px;
-      spacing: 6px;
+      padding: rescale(4px);
+      spacing: rescale(6px);
   }
 
   .lg-extension {
       border: none;
       border-radius: $bt_radius;
-      padding: 4px;
+      padding: rescale(4px);
   }
 
   .lg-extension-name {
@@ -2458,13 +2458,13 @@ $selected_slider_color: white;
   }
 
   .lg-extension-meta {
-      spacing: 6px;
+      spacing: rescale(6px);
   }
 
   #LookingGlassPropertyInspector {
     background: $base_color;
     border: none;
     border-radius: $bt_radius;
-    padding: 6px;
+    padding: rescale(6px);
     box-shadow: $shadow_4;
   }
