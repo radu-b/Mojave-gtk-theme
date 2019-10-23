@@ -4,9 +4,13 @@
 /*
 .gedit-bottom-panel-paned notebook,
 terminal-window notebook {
-  > header.top > tabs > tab:checked { box-shadow: inset 0 -1px $borders_color; }
+  > header.top > tabs > tab:checked { box-shadow: inset 0 rescale(-1px) $borders_color; }
 }
 */
+
+@function rescale($pixels) {  
+  @return floor(1.375 * $pixels);  
+}
 
 //
 // GNOME Terminal, MATE Terminal
@@ -16,7 +20,7 @@ terminal-window notebook {
   notebook {
     > header.top {
       > tabs > tab {
-        border-top: 1px solid transparent;
+        border-top: rescale(1px) solid transparent;
       }
     }
   }
@@ -46,7 +50,7 @@ terminal-window {
 window.background { // gnome-terminal 3.32 setting
   > box.vertical > box.horizontal > frame {
     > border {
-      border-width: 0 1px 0 0;
+      border-width: 0 rescale(1px) 0 0;
     }
 
     > scrolledwindow > viewport.frame {
@@ -58,7 +62,7 @@ window.background { // gnome-terminal 3.32 setting
 
   > box.vertical > box.horizontal > stack {
     > widget > notebook.frame {
-      border-width: 0 0 0 1px;
+      border-width: 0 0 0 rescale(1px);
 
       > stack {
         border-bottom-right-radius: $wm_radius;
@@ -72,9 +76,9 @@ window.background { // gnome-terminal 3.32 setting
 //
 
 %pathbar_box_button {
-  // min-height: if($variant == 'light', 24px, 26px);
+  // min-height: if($variant == 'light', rescale(24px), rescale(26px));
   border-radius: 0;
-  border: 1px solid rgba(black, 0.2);
+  border: rescale(1px) solid rgba(black, 0.2);
   border-right-style: none;
   border-bottom-color: $borders_bottom_color;
   background-color: $header_button_bg;
@@ -122,42 +126,42 @@ window.background { // gnome-terminal 3.32 setting
       button.flat.image-button.text-button.toggle {
         padding-top: 0;
         padding-bottom: 0;
-        margin: 0 0 0 -5px;
+        margin: 0 0 0 rescale(-5px);
         @extend %pathbar_box_button;
 
         @if $variant == 'light' {
-          &:active { box-shadow: 1px 0 darken($header_button_active_bg, 12%); }
+          &:active { box-shadow: rescale(1px) 0 darken($header_button_active_bg, 12%); }
         }
 
         @if $variant == 'dark' {
           border: none;
-          margin: 0 0 0 -4px;
-          box-shadow: inset 0 1px $header_button_highlight;
+          margin: 0 0 0 rescale(-4px);
+          box-shadow: inset 0 rescale(1px) $header_button_highlight;
 
           &:hover {
-            box-shadow: inset 0 1px $header_button_hover_highlight;
+            box-shadow: inset 0 rescale(1px) $header_button_hover_highlight;
           }
 
           &:checked {
-            box-shadow: inset 0 1px $header_button_checked_highlight;
+            box-shadow: inset 0 rescale(1px) $header_button_checked_highlight;
           }
         }
       }
 
       @if $variant == 'dark' {
         button.flat.text-button.toggle {
-          box-shadow: inset 0 1px $header_button_highlight, -1px 0 $borders_color;
+          box-shadow: inset 0 rescale(1px) $header_button_highlight, rescale(-1px) 0 $borders_color;
 
           &:hover {
-            box-shadow: inset 0 1px $header_button_hover_highlight, -1px 0 $borders_color;
+            box-shadow: inset 0 rescale(1px) $header_button_hover_highlight, rescale(-1px) 0 $borders_color;
           }
 
           &:active {
-            box-shadow: -1px 0 $borders_color;
+            box-shadow: rescale(-1px) 0 $borders_color;
           }
 
           &:checked {
-            box-shadow: inset 0 1px $header_button_checked_highlight, -1px 0 $borders_color;
+            box-shadow: inset 0 rescale(1px) $header_button_checked_highlight, rescale(-1px) 0 $borders_color;
           }
         }
       }
@@ -176,7 +180,7 @@ window.background { // gnome-terminal 3.32 setting
       button.image-button.text-button {
         margin-top: 0;
         margin-bottom: 0;
-        min-height: if($variant == 'light', 24px, 26px);
+        min-height: if($variant == 'light', rescale(24px), rescale(26px));
 
         &:not(:only-child):last-child {
           @include button(header-checked);
@@ -186,14 +190,14 @@ window.background { // gnome-terminal 3.32 setting
           &:hover { background-image: none; }
 
           @if $variant == 'light' {
-            box-shadow: -1px 0 mix(black, $header_button_checked_bg, 10%);
+            box-shadow: rescale(-1px) 0 mix(black, $header_button_checked_bg, 10%);
           }
         }
       }
     }
 
     // &.width-maximized {
-    //   border: 1px solid if($titlebar == 'light', rgba(black, 0.12), rgba(white, 0.12));
+    //   border: rescale(1px) solid if($titlebar == 'light', rgba(black, 0.12), rgba(white, 0.12));
     //   background-color: rgba($header_fg, 0.06);
     // }
 
@@ -205,12 +209,12 @@ window.background { // gnome-terminal 3.32 setting
   }
 }
 
-.nautilus-canvas-item { border-radius: 2px; }
+.nautilus-canvas-item { border-radius: rescale(2px); }
 
 // .view.nautilus-desktop,
 .nautilus-desktop.nautilus-canvas-item {
   color: white;
-  text-shadow: 1px 1px transparentize(black, 0.4);
+  text-shadow: rescale(1px) rescale(1px) transparentize(black, 0.4);
 
   &:active {
     color: white;
@@ -232,7 +236,7 @@ window.background { // gnome-terminal 3.32 setting
   }
 }
 
-$nautilus_radius: $wm_radius + 2px;
+$nautilus_radius: $wm_radius + rescale(2px);
 
 .nautilus-window {
   border-radius: $wm_radius $wm_radius $nautilus_radius $nautilus_radius;
@@ -240,15 +244,15 @@ $nautilus_radius: $wm_radius + 2px;
   &, &.background.csd { background-color: transparent; }
 
   // Workaround for https://bugzilla.gnome.org/show_bug.cgi?id=724096
-  searchbar { border-top: 1px solid $borders_color; }
-  .searchbar-container { margin-top: -1px; }
+  searchbar { border-top: rescale(1px) solid $borders_color; }
+  .searchbar-container { margin-top: rescale(-1px); }
 
   notebook {
-    margin-left: -1px;
-    margin-right: -1px;
+    margin-left: rescale(-1px);
+    margin-right: rescale(-1px);
     background-color: $base_color;
 
-    tab { margin-left: -1px; }
+    tab { margin-left: rescale(-1px); }
 
     scrolledwindow {
       .view:not(:hover):not(:active):not(:selected) {
@@ -268,10 +272,10 @@ $nautilus_radius: $wm_radius + 2px;
 
   // Floating Bar
   .floating-bar {
-    padding: 1px;
+    padding: rescale(1px);
     background-color: $selected_bg_color;
     color: $selected_fg_color;
-    border-radius: 3px 0 $wm_radius 0;
+    border-radius: rescale(3px) 0 $wm_radius 0;
 
     &.bottom.left {
       border-top-left-radius: 0;
@@ -283,11 +287,11 @@ $nautilus_radius: $wm_radius + 2px;
 
     button {
       border: none;
-      border-radius: 100px;
+      border-radius: rescale(100px);
       min-height: 0;
       min-width: 0;
       padding: 0;
-      margin-right: 6px;
+      margin-right: rescale(6px);
       -gtk-icon-shadow: none;
       @extend %selected-button;
     }
@@ -301,7 +305,7 @@ $nautilus_radius: $wm_radius + 2px;
       }
     }
 
-    .floating-bar { border-radius: 3px 0 0 0; }
+    .floating-bar { border-radius: rescale(3px) 0 0 0; }
   }
 }
 
@@ -326,7 +330,7 @@ $disk_space_free: darken($bg_color, 3%);
 
 .disk-space-display {
   border-style: solid;
-  border-width: 1px;
+  border-width: rescale(1px);
 
   &.unknown {
     background-color: $disk_space_unknown;
@@ -410,7 +414,7 @@ $disk_space_free: darken($bg_color, 3%);
 
   // Rename entry
   .nemo-window-pane widget.entry {
-    border: 2px solid if($variant =='light', $entry_highlight, $selected_bg_color);
+    border: rescale(2px) solid if($variant =='light', $entry_highlight, $selected_bg_color);
     background-color: $entry_bg;
     background-image: $header_button_image;
     border-radius: $bt_radius;
@@ -423,8 +427,8 @@ $disk_space_free: darken($bg_color, 3%);
 
   .toolbar {
     > button {
-      margin-top: 2px;
-      margin-bottom: 2px;
+      margin-top: rescale(2px);
+      margin-bottom: rescale(2px);
     }
   }
 
@@ -434,39 +438,39 @@ $disk_space_free: darken($bg_color, 3%);
     padding-bottom: 0;
     border: none;
     color: $header_fg;
-    box-shadow: inset 0 -1px $borders_color;
+    box-shadow: inset 0 rescale(-1px) $borders_color;
     background-color: $header_bg;
     background-image: $menubar_bg_image;
-    box-shadow: inset 0 -1px $borders_color;
+    box-shadow: inset 0 rescale(-1px) $borders_color;
 
     button {
       @extend %headerbar_buttons;
-      min-width: 22px;
+      min-width: rescale(22px);
       padding-top: 0;
       padding-bottom: 0;
-      margin-top: 6px;
-      margin-bottom: 6px;
+      margin-top: rescale(6px);
+      margin-bottom: rescale(6px);
     }
 
     entry {
       @extend %headerbar_entrys;
-      margin-top: if($variant=='light', 2px, 1px);
-      margin-bottom: if($variant=='light', 2px, 1px);
+      margin-top: if($variant=='light', rescale(2px), rescale(1px));
+      margin-bottom: if($variant=='light', rescale(2px), rescale(1px));
       margin-left: 0;
       margin-right: 0;
-      padding: 2px 10px;
+      padding: rescale(2px) rescale(10px);
     }
 
     .linked.raised > button {
       @extend %linked_header;
       @extend %outline_dashed;
       min-height: 0;
-      border-right: 1px solid $header_button_border;
+      border-right: rescale(1px) solid $header_button_border;
 
       @if $variant == 'light' {
         &:not(:first-child) {
-          &:active { box-shadow: -1px 0 mix(black, $header_button_active_bg, 15%); }
-          &:checked { box-shadow: -1px 0 mix(black, $header_button_checked_bg, 15%); }
+          &:active { box-shadow: rescale(-1px) 0 mix(black, $header_button_active_bg, 15%); }
+          &:checked { box-shadow: rescale(-1px) 0 mix(black, $header_button_checked_bg, 15%); }
         }
       }
 
@@ -485,11 +489,11 @@ $disk_space_free: darken($bg_color, 3%);
     .linked.path-bar {
       > button, > button.image-button {
         min-height: 0;
-        min-width: 20px;
+        min-width: rescale(20px);
         padding-top: 0;
         padding-bottom: 0;
         @extend %outline_dashed;
-        border-right: 1px solid $header_button_border;
+        border-right: rescale(1px) solid $header_button_border;
 
         &, &:hover, &:active, &:checked, &:disabled {
           @extend %linked_header;
@@ -497,8 +501,8 @@ $disk_space_free: darken($bg_color, 3%);
 
         @if $variant == 'light' {
           &:not(:first-child) {
-            &:active { box-shadow: -1px 0 mix(black, $header_button_active_bg, 15%); }
-            &:checked { box-shadow: -1px 0 mix(black, $header_button_checked_bg, 15%); }
+            &:active { box-shadow: rescale(-1px) 0 mix(black, $header_button_active_bg, 15%); }
+            &:checked { box-shadow: rescale(-1px) 0 mix(black, $header_button_checked_bg, 15%); }
           }
         }
 
@@ -513,7 +517,7 @@ $disk_space_free: darken($bg_color, 3%);
 
   // Floating Bar
   .floating-bar {
-    padding: 2px;
+    padding: rescale(2px);
     background-color: $selected_bg_color;
     color: $selected_fg_color;
     border-radius: 0;
@@ -529,9 +533,9 @@ $disk_space_free: darken($bg_color, 3%);
 
     button {
       border: none;
-      border-radius: 3px;
-      min-height: 16px;
-      min-width: 16px;
+      border-radius: rescale(3px);
+      min-height: rescale(16px);
+      min-width: rescale(16px);
       -gtk-icon-shadow: none;
       @extend %undecorated_button;
       @extend %selected-button;
@@ -549,7 +553,7 @@ $disk_space_free: darken($bg_color, 3%);
 // Gedit
 //
 .open-document-selector-treeview.view {
-  padding: 3px 6px 3px 6px;
+  padding: rescale(3px) rescale(6px) rescale(3px) rescale(6px);
   border-color: $base_color; // disable borders, making them transparent doesn't work for some reason
   &:hover {
     background-color: mix($fg_color, $base_color, 7%);
@@ -576,15 +580,15 @@ $disk_space_free: darken($bg_color, 3%);
 
 .gedit-document-panel { // 'documents' pane
 
-  row.activatable { padding: 6px 0; }
+  row.activatable { padding: rescale(6px) 0; }
 
   row button { // 'close' button
-    min-width: 22px;
-    min-height: 22px;
+    min-width: rescale(22px);
+    min-height: rescale(22px);
     padding: 0;
-    margin: 0 6px;
-    border-radius: 100px;
-    -gtk-outline-radius: 100px;
+    margin: 0 rescale(6px);
+    border-radius: rescale(100px);
+    -gtk-outline-radius: rescale(100px);
 
     image {
       color: inherit;
@@ -612,31 +616,31 @@ $disk_space_free: darken($bg_color, 3%);
 }
 
 .gedit-document-panel-dragged-row {
-  border: 1px solid $borders_color;
+  border: rescale(1px) solid $borders_color;
   background-color: darken($bg_color, 10%);
   color: $fg_color;
 }
 
 .gedit-side-panel-paned statusbar {
-  border-top: 1px solid $borders_color;
+  border-top: rescale(1px) solid $borders_color;
   background-color: $bg_color;
   border-radius: 0 0 $wm_radius $wm_radius;
 }
 
 .gedit-search-slider {
   background-color: lighten($bg_color, 2%);
-  padding: 6px;
+  padding: rescale(6px);
   border-color: $borders_color;
   border-radius: 0 0 $bt_radius $bt_radius;
-  border-width: 0 1px 1px 1px;
+  border-width: 0 rescale(1px) rescale(1px) rescale(1px);
   border-style: solid;
 }
 
 .gedit-search-entry-occurrences-tag {
   color: transparentize($fg_color, 0.4);
   border: none;
-  margin: 2px;
-  padding: 2px;
+  margin: rescale(2px);
+  padding: rescale(2px);
 }
 
 .gedit-map-frame {
@@ -647,10 +651,10 @@ $disk_space_free: darken($bg_color, 3%);
     border-width: 0;
 
     &:dir(ltr) {
-      border-left-width: 1px;
+      border-left-width: rescale(1px);
     }
     &:dir(rtl) {
-      border-right-width: 1px;
+      border-right-width: rescale(1px);
     }
   }
 }
@@ -659,10 +663,10 @@ $disk_space_free: darken($bg_color, 3%);
   // 'file-browser' pane
   > box.vertical > stack > grid.horizontal {
     > box.horizontal {  // header-part
-      margin: 4px 0;
+      margin: rescale(4px) 0;
     }
     > scrolledwindow { // raised widget
-      margin: 0 6px 6px 6px;
+      margin: 0 rescale(6px) rescale(6px) rescale(6px);
       border-radius: 0;
       box-shadow: $shadow_5;
     }
@@ -682,14 +686,14 @@ $disk_space_free: darken($bg_color, 3%);
 
 paned.titlebar.horizontal {
   headerbar {
-    box-shadow: inset 0 1px $highlight;
+    box-shadow: inset 0 rescale(1px) $highlight;
 
     button.flat.toggle.popup:not(.image-button) { // left-pane header button
       @extend %headerbar_buttons;
 
       box > .title {
         padding: 0; // remove lateral padding
-        margin: -2px 0;
+        margin: rescale(-2px) 0;
       }
     }
   }
@@ -704,7 +708,7 @@ paned.titlebar.horizontal {
 }
 
 .pluma-window notebook > stack scrolledwindow {
-    border-width: 0 0 1px 0;
+    border-width: 0 0 rescale(1px) 0;
 }
 
 #pluma-status-combo-button {
@@ -748,18 +752,18 @@ layouttab {
 }
 
 layout {
-  border: 1px solid $borders_color;
+  border: rescale(1px) solid $borders_color;
   -PnlDockBin-handle-size: 1;
 }
 
 eggsearchbar box.search-bar {
-  border-bottom: 1px solid $borders_color;
+  border-bottom: rescale(1px) solid $borders_color;
 }
 
 pillbox {
   color: $selected_fg_color;
   background-color: $selected_bg_color;
-  border-radius: 3px;
+  border-radius: rescale(3px);
 
   &:disabled label {
     color: transparentize($selected_fg_color, 0.5)
@@ -767,15 +771,15 @@ pillbox {
 }
 
 docktabstrip {
-  padding: 0 6px;
+  padding: 0 rescale(6px);
 
   background-color: $bg_color;
-  border-bottom: 1px solid $borders_color;
+  border-bottom: rescale(1px) solid $borders_color;
 
   docktab {
-    min-height: 28px;
+    min-height: rescale(28px);
     border: solid transparent;
-    border-width: 0 1px;
+    border-width: 0 rescale(1px);
 
     label {
       opacity: 0.5;
@@ -796,12 +800,12 @@ docktabstrip {
 }
 
 dockbin {
-  border: 1px solid $borders_color;
+  border: rescale(1px) solid $borders_color;
   -PnlDockBin-handle-size: 1;
 }
 
 dockpaned {
-  border: 1px solid $borders_color;
+  border: rescale(1px) solid $borders_color;
 }
 
 dockoverlayedge {
@@ -814,7 +818,7 @@ dockoverlayedge {
 
   &.left-edge tab:checked,
   &.right-edge tab:checked {
-    border-width: 1px 0;
+    border-width: rescale(1px) 0;
   }
 }
 
@@ -824,13 +828,13 @@ popover.messagepopover {
   }
 
   .popover-content-area {
-    margin: 16px;
+    margin: rescale(16px);
   }
   .popover-action-area {
-    margin: 8px;
+    margin: rescale(8px);
 
     button:not(:first-child):not(:last-child) {
-      margin: 0 4px;
+      margin: 0 rescale(4px);
     }
   }
 }
@@ -840,20 +844,20 @@ popover.popover-selector {
 
   list {
     row {
-      padding: 5px 0;
+      padding: rescale(5px) 0;
     }
 
     row image {
-      margin-left: 3px;
-      margin-right: 10px;
+      margin-left: rescale(3px);
+      margin-right: rescale(10px);
     }
   }
 }
 
 entry.search.preferences-search {
   border: none;
-  border-right: 1px solid $borders_color;
-  border-bottom: 1px solid $borders_color;
+  border-right: rescale(1px) solid $borders_color;
+  border-bottom: rescale(1px) solid $borders_color;
   border-radius: 0;
 }
 
@@ -873,12 +877,12 @@ symboltreepanel entry:focus {
 }
 
 button.run-arrow-button {
-  min-width: 12px;
+  min-width: rescale(12px);
 }
 
 omnibar.linked > entry:not(:only-child) {
-  margin-left: 1px;
-  margin-right: 1px;
+  margin-left: rescale(1px);
+  margin-right: rescale(1px);
   @include entry(header-normal);
   border-left: none;
 
@@ -895,14 +899,14 @@ entry.search.preferences-search { // preferences-search
 
   &:focus {
     box-shadow: none;
-    border-bottom: 1px solid $selected_bg_color;
+    border-bottom: rescale(1px) solid $selected_bg_color;
   }
 }
 
 preferencesbin {
   spinbutton {
     border-radius: $wm_radius;
-    border: 1px solid $borders_color;
+    border: rescale(1px) solid $borders_color;
     background-color: $bg_color;
 
     &:focus { border-color: $selected_bg_color; }
@@ -911,15 +915,15 @@ preferencesbin {
     entry:focus { border: none; box-shadow: none; }
 
     button {
-      border-width: 0 0 0 1px;
+      border-width: 0 0 0 rescale(1px);
 
       // &:first-child {
-      //   border-left: 1px solid $borders_color;
+      //   border-left: rescale(1px) solid $borders_color;
       // }
     }
   }
 
-  entry.search { margin: 2px; }
+  entry.search { margin: rescale(2px); }
 }
 
 gstyleslidein {
@@ -1053,27 +1057,27 @@ widget {
   &#MEMORY {
     list {
       row {
-        margin: -1px; // kill ugly parent borders
-        border: 1px solid $solid_borders_color;
+        margin: rescale(-1px); // kill ugly parent borders
+        border: rescale(1px) solid $solid_borders_color;
 
         &.max {
           color: $osd_bg_color; // enforce dark foreground
           // FIXME: we can't override the salmon-pinky background
           // background-image: image($destructive_color);
-          // border: 1px solid $destructive_color;
+          // border: rescale(1px) solid $destructive_color;
         }
       }
 
       // kill ugly separators
       separator.list {
-        box-shadow: inset 0 0 0 1px $solid_borders_color;
+        box-shadow: inset 0 0 0 rescale(1px) $solid_borders_color;
       }
     }
   }
 
   &#STORAGE {
     list {
-      margin: -1px; // kill ugly borders
+      margin: rescale(-1px); // kill ugly borders
 
       row.activatable {
         color: rgba($fg_color, 0.75);
@@ -1083,15 +1087,15 @@ widget {
 
       // kill ugly separators
       separator.list {
-        box-shadow: inset 0 0 0 1px $solid_borders_color;
+        box-shadow: inset 0 0 0 rescale(1px) $solid_borders_color;
       }
     }
   }
 
   &#PERFORMANCE {
     searchbar {
-      box-shadow: inset 0 -2px $borders_color, inset 0 -1px $bg_color;  // Removed double borders under headerbar
-      entry, button { margin-bottom: 2px; }
+      box-shadow: inset 0 rescale(-2px) $borders_color, inset 0 rescale(-1px) $bg_color;  // Removed double borders under headerbar
+      entry, button { margin-bottom: rescale(2px); }
     }
 
     .sidebar {
@@ -1125,7 +1129,7 @@ box.speedometer {
   &-outter { opacity: 0.8; } // reduce alpha for our troughs
 
   &-content-area { // cover up meter troughs with selection colour
-    box-shadow: 0 0 0 4px rgba($selected_bg_color, 0.2);
+    box-shadow: 0 0 0 rescale(4px) rgba($selected_bg_color, 0.2);
   }
 }
 
@@ -1138,19 +1142,19 @@ box.speedometer {
 }
 
 button.documents-load-more {
-  border-width: 1px 0 0;
+  border-width: rescale(1px) 0 0;
   border-radius: 0;
 }
 
 .documents-icon-bg {
   background-color: $selected_bg_color;
   color: $selected_fg_color;
-  border-radius: 2px;
+  border-radius: rescale(2px);
 }
 
 .documents-collection-icon {
   background-color: transparentize($fg_color, 0.7);
-  border-radius: 2px;
+  border-radius: rescale(2px);
 }
 
 button.documents-favorite:active,
@@ -1161,10 +1165,10 @@ button.documents-favorite:active:hover {
 .documents-entry-tag {
   color: $selected_fg_color;
   background: $selected_bg_color;
-  border-radius: 3px;
+  border-radius: rescale(3px);
   border-width: 0;
-  margin: 2px;
-  padding: 4px;
+  margin: rescale(2px);
+  padding: rescale(4px);
 
   &:hover {
     color: $selected_fg_color;
@@ -1183,7 +1187,7 @@ button.documents-favorite:active:hover {
 
 .content-view.document-page {
   border-style: solid;
-  border-width: 3px 3px 6px 4px;
+  border-width: rescale(3px) rescale(3px) rescale(6px) rescale(4px);
   border-image: url("assets/thumbnail-frame.png") 3 3 6 4;
 }
 
@@ -1218,12 +1222,12 @@ row#dynamic-workspaces,
 row#PrimaryWorkspaceTweak, // for 3.26.0
 row#workspaces-only-on-primary {
   padding: 0;
-  border: 1px solid $borders_color;
+  border: rescale(1px) solid $borders_color;
 
-  row:not(:last-child) { border-bottom: 1px solid $borders_color; }
+  row:not(:last-child) { border-bottom: rescale(1px) solid $borders_color; }
 
   &.tweak > list {
-    margin-top: -3px;
+    margin-top: rescale(-3px);
   }
 }
 
@@ -1231,16 +1235,16 @@ row#workspaces-only-on-primary {
 row#Focus,
 row#ClickMethod,
 row#PrimaryWorkspaceTweak, // for 3.26.0
-row#workspaces-only-on-primary { margin-top: 4px; }
+row#workspaces-only-on-primary { margin-top: rescale(4px); }
 
 row#AutostartTitle.tweak {
-  padding: 3px;
+  padding: rescale(3px);
   background-color: $base_color;
 }
 
 list#AutostartListBoxTweakGroup {
   &.tweak-group-startup {
-    border: 1px solid $borders_color;
+    border: rescale(1px) solid $borders_color;
   }
 }
 
@@ -1261,7 +1265,7 @@ list#AutostartListBoxTweakGroup {
 }
 
 .tweak-titlebar-right,
-dialog.csd > headerbar.titlebar { > switch { margin: 8px 0; } }
+dialog.csd > headerbar.titlebar { > switch { margin: rescale(8px) 0; } }
 
 //
 //  Gnome Control Center
@@ -1272,7 +1276,7 @@ window.background.csd {
     border-right: none;
     background: none;
     min-width: 0;
-    // box-shadow: inset 0 -1px $header_border;
+    // box-shadow: inset 0 rescale(-1px) $header_border;
   }
 
   > stack {
@@ -1302,7 +1306,7 @@ window.background.csd {
       > box.vertical > box.vertical { // Gnome 3.34 Wallpaper setting
         > scrolledwindow > viewport.frame {
           background-color: $base_color;
-          border-bottom-right-radius: $wm_radius + 1px;
+          border-bottom-right-radius: $wm_radius + rescale(1px);
 
           > box.vertical {
             background: none;
@@ -1315,7 +1319,7 @@ window.background.csd {
   > hdyleaflet > box.vertical > scrolledwindow.view, // > 3.34.0
   > box.horizontal > box.vertical > scrolledwindow.view { // > 3.25.90
     background-color: $base_color;
-    border-bottom-left-radius: $wm_radius + 1px;
+    border-bottom-left-radius: $wm_radius + rescale(1px);
 
     > viewport.frame > stack {
       background-color: transparent;
@@ -1416,7 +1420,7 @@ window.background.csd {
 
     > overlay > stack > box.horizontal > grid.horizontal {
       > scrolledwindow.contacts-contact-form {
-        border-bottom-right-radius: $wm_radius + 1px;
+        border-bottom-right-radius: $wm_radius + rescale(1px);
       }
     }
   }
@@ -1427,7 +1431,7 @@ window.background.csd {
 //
 stack.view.polari-entry-area {
   background-color: $bg_color;
-  border-top: 1px solid $borders_color;
+  border-top: rescale(1px) solid $borders_color;
 
   button.popup.flat.toggle.polari-nick-button {
     &:hover {
@@ -1471,8 +1475,8 @@ stack:disabled.view.polari-entry-area { background-image: image($bg_color); }
   &, &.solid {
     color: lighten($osd_fg_color, 7%);
     background-color: $osd_bg_color;
-    border: 1px solid darken($osd_bg_color, 8%);
-    border-radius: 2px;
+    border: rescale(1px) solid darken($osd_bg_color, 8%);
+    border-radius: rescale(2px);
   }
 
   levelbar {
@@ -1490,26 +1494,26 @@ stack:disabled.view.polari-entry-area { background-image: image($bg_color); }
 }
 
 #gf-input-source {
-  min-height: 32px;
-  min-width: 40px;
+  min-height: rescale(32px);
+  min-width: rescale(40px);
 
   &:selected {
     color: $selected_fg_color;
     background-color: $selected_bg_color;
-    border-radius: 2px;
+    border-radius: rescale(2px);
   }
 }
 
 gf-candidate-box {
   label {
-    padding: 3px;
+    padding: rescale(3px);
   }
 
   &:hover,
   &:selected {
     color: $selected_fg_color;
     background-color: $selected_bg_color;
-    border-radius: 2px;
+    border-radius: rescale(2px);
   }
 }
 
@@ -1519,14 +1523,14 @@ gf-candidate-box {
 
 // add top-border to inline-toolbar
 .sidebar-paned .inline-toolbar.horizontal.sidebar-toolbar {
-  box-shadow: inset 0 1px $borders_color;
-  padding: 4px;
+  box-shadow: inset 0 rescale(1px) $borders_color;
+  padding: rescale(4px);
   background-color: darken($bg_color, 3%);
 
   button.image-button {
-//    min-width: 24px;
-//    min-width: 24px;
-//    padding: 2px;
+//    min-width: rescale(24px);
+//    min-width: rescale(24px);
+//    padding: rescale(2px);
     @if $variant == 'dark' { border: none; }
     &:active, &:checked { @include button(flat-active); border-color: $borders_color; }
 
@@ -1545,19 +1549,19 @@ gf-candidate-box {
 window.csd > box.vertical > box.vertical,
 window.solid-csd > box.vertical > box.vertical {
   > toolbar.horizontal {
-    margin: -1px 0;
-    border-top: 1px solid $borders_color;
+    margin: rescale(-1px) 0;
+    border-top: rescale(1px) solid $borders_color;
     border-bottom: none;
     box-shadow: none;
     background-color: transparent;
 
     > toolitem > .linked > button,
     > toolitem > box.horizontal > button {
-      min-height: 36px;
-      min-width: 36px;
+      min-height: rescale(36px);
+      min-width: rescale(36px);
       padding: 0;
-      margin-top: 8px;
-      margin-bottom: 8px;
+      margin-top: rescale(8px);
+      margin-bottom: rescale(8px);
       @if $variant == 'dark' { border: none; }
       // &:hover { @include button(flat-hover); }
       &:active, &:checked { @include button(flat-active); border-color: $borders_color; }
@@ -1565,7 +1569,7 @@ window.solid-csd > box.vertical > box.vertical {
   }
 
   > frame {
-    margin: -1px 0;
+    margin: rescale(-1px) 0;
     padding: 0;
 
     > border { border: none; }
@@ -1577,8 +1581,8 @@ window.solid-csd > box.vertical > box.vertical {
 window.background > box.vertical > toolbar.primary-toolbar {
   > toolitem {
     > .linked > button.image-button.raised { // 'shuffle/repeat'
-      min-height: 36px;
-      min-width: 36px;
+      min-height: rescale(36px);
+      min-width: rescale(36px);
       padding: 0;
       margin: 0;
       @if $variant == 'dark' { border: none; }
@@ -1588,17 +1592,17 @@ window.background > box.vertical > toolbar.primary-toolbar {
     }
 
     button.flat.scale { // 'volume'
-      min-height: 24px;
-      min-width: 36px;
+      min-height: rescale(24px);
+      min-width: rescale(36px);
       padding: 0;
-      margin-top: 8px;
-      margin-bottom: 8px;
+      margin-top: rescale(8px);
+      margin-bottom: rescale(8px);
     }
 
     > box.horizontal:not(.linked) > button.toggle,
     > .linked > button:not(.toggle):not(.raised):not(.flat) {
-      min-height: 28px;
-      min-width: 28px;
+      min-height: rescale(28px);
+      min-width: rescale(28px);
       padding: 0;
       margin: 0;
       @if $variant == 'dark' { border: none; }
@@ -1615,13 +1619,13 @@ window.background {
   > headerbar.titlebar { // mode-selector button
     > button.flat.popup.toggle.text-button.title {
       // .title class existed
-      margin: 6px 0; // set standard margins
+      margin: rescale(6px) 0; // set standard margins
 
       > grid > widget { // down arrow
-        padding-top: 3px;
+        padding-top: rescale(3px);
         // add spacing between arrow and label
-        &:dir(ltr) { padding-left: 4px; }
-        &:dir(rtl) { padding-right: 4px; }
+        &:dir(ltr) { padding-left: rescale(4px); }
+        &:dir(rtl) { padding-right: rescale(4px); }
       }
     }
   }
@@ -1711,9 +1715,9 @@ popover.background:not(.emoji-picker) > box.vertical > scrolledwindow {
       background-color: if($variant=='light', $bg_color, lighten($bg_color, 10%));
       color: rgba($fg_color, 0.85);
       border-radius: $bt_radius;
-      border: 1px solid $borders_color;
-      margin: 2px;
-      @if $variant=='light' { box-shadow: $shadow_3, inset 0 0 0 1px rgba($borders_color, 0.01); }
+      border: rescale(1px) solid $borders_color;
+      margin: rescale(2px);
+      @if $variant=='light' { box-shadow: $shadow_3, inset 0 0 0 rescale(1px) rgba($borders_color, 0.01); }
 
       &:hover { @include button(hover); }
       &:active, &:checked { @include button(flat-active); }
@@ -1725,25 +1729,25 @@ popover.background:not(.emoji-picker) > box.vertical > scrolledwindow {
 popover.background:not(.emoji-picker) > box.vertical > stack > box.vertical {
 
   scrolledwindow > viewport.frame {
-    border: 1px solid $borders_color;
+    border: rescale(1px) solid $borders_color;
 
     > list.background > row.activatable.bookmarks-row {
       background-color: rgba($base_color, 0.35);
       color: rgba($fg_color, 0.85);
-      border-bottom: 1px dashed rgba($borders_color, 0.05);
-      padding: 6px;
+      border-bottom: rescale(1px) dashed rgba($borders_color, 0.05);
+      padding: rescale(6px);
 
       &:hover,
       &:active,
       &:checked { color: $fg_color; background-color: rgba($fg_color, 0.05); }
 
       button.flat {
-        min-width: 16px;
-        min-height: 16px;
-        padding: 4px; // Same as of image.sidebar-icon
-//        margin: 0 4px;
-        border-radius: 100px;
-        -gtk-outline-radius: 100px;
+        min-width: rescale(16px);
+        min-height: rescale(16px);
+        padding: rescale(4px); // Same as of image.sidebar-icon
+//        margin: 0 rescale(4px);
+        border-radius: rescale(100px);
+        -gtk-outline-radius: rescale(100px);
       }
     }
   }
@@ -1754,7 +1758,7 @@ flowboxchild.bookmark-tag-widget {
   color: $bg_color; // unchecked
   font-weight: 500;
 
-  label { margin-bottom: 2px; }
+  label { margin-bottom: rescale(2px); }
 
   &-selected { color: $selected_fg_color; } // checked
 }
@@ -1870,7 +1874,7 @@ dialog.background.csd {
 
       > stack {
         > scrolledwindow.frame { // reset border for totem setting dialog
-          border: 1px solid $borders_color;
+          border: rescale(1px) solid $borders_color;
         }
       }
     }
@@ -1889,7 +1893,7 @@ dialog.background.csd {
     }
 
     > stack {
-      // entry { margin: 2px; }
+      // entry { margin: rescale(2px); }
       //
       // spinbutton entry,
       // .linked entry { margin: 0; }
@@ -1912,7 +1916,7 @@ dialog.background.csd {
 
       toolbar.toolbar {
         border-radius: 0 0 $wm_radius $wm_radius;
-        border-width: 1px 0 0 0;
+        border-width: rescale(1px) 0 0 0;
       }
     }
 
@@ -1925,26 +1929,26 @@ dialog.background.csd {
     separator.vertical { background-color: $borders_color; }
   }
 
-  // entry.search { margin: 2px; }
+  // entry.search { margin: rescale(2px); }
 }
 
 //
 // Mate OSD Window
 //
 MsdOsdWindow.background.osd {
-  border-radius: 2px;
-  border: 1px solid darken($osd_bg_color, 8%);
+  border-radius: rescale(2px);
+  border: rescale(1px) solid darken($osd_bg_color, 8%);
 
   .progressbar {
     background-color: $selected_bg_color;
     border: none;
     border-color: red;
-    border-radius: 5px;
+    border-radius: rescale(5px);
   }
   .trough {
     background-color: darken($osd_bg_color, 5%);
     border: none;
-    border-radius: 5px;
+    border-radius: rescale(5px);
   }
 }
 
@@ -1990,7 +1994,7 @@ panel-toplevel.background {
 
   na-tray-applet {
     -NaTrayApplet-icon-padding: 0;
-    -NaTrayApplet-icon-size: 16px;
+    -NaTrayApplet-icon-size: rescale(16px);
   }
 }
 
@@ -2002,7 +2006,7 @@ panel-toplevel.background {
 }
 
 .caja-notebook {
-  border-top: 1px solid $borders_color;
+  border-top: rescale(1px) solid $borders_color;
 }
 
 // .caja-pathbar {
@@ -2018,7 +2022,7 @@ panel-toplevel.background {
     background-color: transparent;
 
     .frame {
-      border-width: 1px 0 0;
+      border-width: rescale(1px) 0 0;
     }
   }
 
@@ -2053,12 +2057,12 @@ panel-toplevel.background {
 }
 
 .caja-notebook .frame {
-  border-width: 0 0 1px;
+  border-width: 0 0 rescale(1px);
 }
 
 .caja-search-bar {
   entry {
-    // margin: 2px 0;
+    // margin: rescale(2px) 0;
 
     &:focus {
       box-shadow: none;
@@ -2069,9 +2073,9 @@ panel-toplevel.background {
 //
 // Xfce4
 //
-$text_shadow: 0 0 1px rgba(0, 0, 0, 0.26),
-              0 1px 2px rgba(0, 0, 0, 0.32),
-              0 2px 3px rgba(0, 0, 0, 0.12);
+$text_shadow: 0 0 rescale(1px) rgba(0, 0, 0, 0.26),
+              0 rescale(1px) rescale(2px) rgba(0, 0, 0, 0.32),
+              0 rescale(2px) rescale(3px) rgba(0, 0, 0, 0.12);
 
 %panelbutton {
   color: $panel_fg;
@@ -2081,12 +2085,12 @@ $text_shadow: 0 0 1px rgba(0, 0, 0, 0.26),
 
   &:hover:not(:active):not(:checked) {
     color: $fg_color;
-    box-shadow: inset 0 -2px rgba($selected_bg_color, 0.5);
+    box-shadow: inset 0 rescale(-2px) rgba($selected_bg_color, 0.5);
   }
 
   &:checked {
     color: $fg_color;
-    box-shadow: inset 0 -2px $selected_bg_color;
+    box-shadow: inset 0 rescale(-2px) $selected_bg_color;
     background-color: rgba($fg_color, 0.12);
     background-image: none;
     label, image { color: inherit; }
@@ -2096,7 +2100,7 @@ $text_shadow: 0 0 1px rgba(0, 0, 0, 0.26),
     background-color: rgba($fg_color, 0.18);
     color: $fg_color;
     background-image: none;
-    box-shadow: inset 0 -2px $selected_bg_color;
+    box-shadow: inset 0 rescale(-2px) $selected_bg_color;
   }
 }
 
@@ -2128,7 +2132,7 @@ $text_shadow: 0 0 1px rgba(0, 0, 0, 0.26),
   frame > border { border: none; }
 
   &#XfcePanelWindow { // main panel container >= 4.13.3?
-    // FIXME: unneeded 1px borders are reserved by its code itself
+    // FIXME: unneeded rescale(1px) borders are reserved by its code itself
     border: none;
 
     &, &.marching-ants { transition: none; } // unset transitions
@@ -2154,7 +2158,7 @@ $text_shadow: 0 0 1px rgba(0, 0, 0, 0.26),
     }
 
     &#xfce4-notification-plugin {
-      padding: 0 1px; // for 4.12.2
+      padding: 0 rescale(1px); // for 4.12.2
     }
   }
 
@@ -2174,7 +2178,7 @@ $text_shadow: 0 0 1px rgba(0, 0, 0, 0.26),
 }
 
 XfdesktopIconView.view {
-  border-radius: 2px;
+  border-radius: rescale(2px);
   background: transparent;
   color: $selected_fg_color;
   text-shadow: $text_shadow;
@@ -2198,8 +2202,8 @@ window#whiskermenu-window {
 
   scrolledwindow {
     > viewport button.radio {
-      padding: 2px 6px;
-      margin: 2px;
+      padding: rescale(2px) rescale(6px);
+      margin: rescale(2px);
 
       &:hover { background-color: if($variant == 'light', rgba(black, 0.12), rgba(white, 0.12)); }
 
@@ -2224,7 +2228,7 @@ dialog.background {
   > box.vertical > .dialog-vbox {
     > .dialog-action-box {
       > .dialog-action-area {
-        padding: 3px 6px 6px;
+        padding: rescale(3px) rescale(6px) rescale(6px);
       }
     }
   }
@@ -2267,10 +2271,10 @@ window.thunar {
   }
 
   toolbar#location-toolbar {
-    border-bottom: 1px solid $borders_color;
+    border-bottom: rescale(1px) solid $borders_color;
 
     // FIXME: need to unset for weird allocation height
-    entry { min-height: if($variant == 'light', 20px, 22px); }
+    entry { min-height: if($variant == 'light', rescale(20px), rescale(22px)); }
   }
 
   notebook {
@@ -2294,7 +2298,7 @@ window.thunar {
   separator { opacity: 0; }
 
   > button { // button
-    min-width: 22px;
+    min-width: rescale(22px);
   }
 }
 
@@ -2304,11 +2308,11 @@ window.thunar {
   box-shadow: none;
 
   > button { // button
-    min-width: 22px;
+    min-width: rescale(22px);
   }
 
   > box.linked.raised.horizontal > button.image-button {
-    border-right: 1px solid $header_button_border;
+    border-right: rescale(1px) solid $header_button_border;
 
     &, &:hover, &:active, &:checked, &:disabled {
       @extend %linked_header;
@@ -2319,8 +2323,8 @@ window.thunar {
       border-left: none;
 
       @if $variant == 'light' {
-        &:active { box-shadow: -1px 0 $header_button_active_bg; }
-        &:checked { box-shadow: -1px 0 $header_button_checked_bg; }
+        &:active { box-shadow: rescale(-1px) 0 $header_button_active_bg; }
+        &:checked { box-shadow: rescale(-1px) 0 $header_button_checked_bg; }
       }
 
       @if $variant == 'dark' {
@@ -2331,7 +2335,7 @@ window.thunar {
 }
 
 // .geary-composer-box {
-//   entry { margin: 0 2px 2px 2px; }
+//   entry { margin: 0 rescale(2px) rescale(2px) rescale(2px); }
 // }
 
 window#GearyMainWindow.background.csd {
@@ -2365,9 +2369,9 @@ window.background:not(.csd) {
   > widget {
     // for the bookmark toolbar's separators
     > separator {
-      padding-top: 1px;
-      margin-top: 1px;
-      min-height: 2px;
+      padding-top: rescale(1px);
+      margin-top: rescale(1px);
+      min-height: rescale(2px);
       background-color: $borders_color;
     }
 
@@ -2380,17 +2384,17 @@ window.background:not(.csd) {
 
     > entry,
     .entry { // Set for linked entrys
-      // min-height: 26px;
+      // min-height: rescale(26px);
       border-radius: $bt_radius;
       background-image: image($base_color);
-      border: 1px solid $borders_color;
+      border: rescale(1px) solid $borders_color;
 
-      &:focus { border-color: $selection_mode_bg; box-shadow: inset 0 0 0 2px $entry_highlight; }
+      &:focus { border-color: $selection_mode_bg; box-shadow: inset 0 0 0 rescale(2px) $entry_highlight; }
     }
 
     > spinbutton {
       background-image: image($button_bg);
-      border: 1px solid $borders_color;
+      border: rescale(1px) solid $borders_color;
 
       @if $variant == 'light' {
         &:active {
@@ -2403,8 +2407,8 @@ window.background:not(.csd) {
     }
 
     > button {
-      padding-top: 3px;
-      padding-bottom: 3px;
+      padding-top: rescale(3px);
+      padding-bottom: rescale(3px);
     }
 
     > button > button {
@@ -2416,11 +2420,11 @@ window.background:not(.csd) {
           border-radius: $bt_radius;
           border: none;
           background-image: image($bg_color);
-          box-shadow: inset 0 0 0 1px $borders_color;
+          box-shadow: inset 0 0 0 rescale(1px) $borders_color;
         }
       }
 
-      label { padding: 4px 6px; }
+      label { padding: rescale(4px) rescale(6px); }
     }
   }
 
@@ -2431,13 +2435,13 @@ window.background:not(.csd) {
   }
 
   > menu > menuitem {
-    padding: 4px 6px;
+    padding: rescale(4px) rescale(6px);
 
     > label:disabled { color: $insensitive_fg_color; }
 
     > radio,
     > check {
-      padding: 0 2px 0 4px;
+      padding: 0 rescale(2px) 0 rescale(4px);
     }
   }
 
@@ -2490,8 +2494,8 @@ window.background:not(.csd) {
 
     // revert to standard separators
     > separator {
-      margin-top: 2px;
-      margin-bottom: 2px;
+      margin-top: rescale(2px);
+      margin-bottom: rescale(2px);
       background-color: $borders_color;
     }
   }
@@ -2545,8 +2549,8 @@ window.background.chromium {
     // from nav_button_provider_gtk3.cc (> 62.0.3202?)
     button.titlebutton { // title-buttons
       // define global titlebutton class sizing
-      min-width: if($titlebutton == 'thin', 17px, 16px);
-      min-height: if($titlebutton == 'thin', 17px, 16px);
+      min-width: if($titlebutton == 'thin', rescale(17px), rescale(16px));
+      min-height: if($titlebutton == 'thin', rescale(17px), rescale(16px));
       margin: 0; // unset margins
       padding: 0 0;
       background-size: auto;
@@ -2557,7 +2561,7 @@ window.background.chromium {
   // FIXME: not for actual button widgets but for toolbar's separators
   // crazy: src/+/master/chrome/browser/ui/libgtkui/gtk_ui.cc#891
   button { // for active-tab borders
-    border-width: 1px;
+    border-width: rescale(1px);
     border-style: solid;
     border-color: $solid_borders_color;
     background-color: $chrome_bg_color;
@@ -2567,7 +2571,7 @@ window.background.chromium {
   entry.chromium {
     &, &:focus { // overrides standard borders
       border-image: none;
-      border: 1px solid $solid_borders_color;
+      border: rescale(1px) solid $solid_borders_color;
       background-color: $chrome_bg_color;
       color: $chrome_fg_color;
     }
@@ -2582,14 +2586,14 @@ window.background.chromium {
   > menubar { background-color: $header_bg; }
 
   // > menu {
-  //   border: 1px solid $solid_borders_color;
+  //   border: rescale(1px) solid $solid_borders_color;
   //   color: $chrome_menu_fg_color;
   //   background-color: $chrome_menu_bg_color;
   //
   //   > separator, .separator {
-  //     margin: 2px 0;
+  //     margin: rescale(2px) 0;
   //     min-height: 0;
-  //     border-bottom: 2px solid $_menu_bd;
+  //     border-bottom: rescale(2px) solid $_menu_bd;
   //     background: none;
   //   }
   //
@@ -2620,13 +2624,13 @@ window.background:not(.solid-csd) {
   > grid.horizontal > grid.horizontal {
     background-image: $menubar_bg_image;
     background-color: transparent;
-    box-shadow: inset 0 -1px $borders_color;
+    box-shadow: inset 0 rescale(-1px) $borders_color;
 
     > button.flat.small-button {
       // 'close' button
       color: $header_fg;
       border: none;
-      border-radius: 50px;
+      border-radius: rescale(50px);
       background-image: none;
 
       &:hover {
@@ -2666,7 +2670,7 @@ window.background:not(.solid-csd) {
 
 // in-line titlebars
 widget > box.terminal-titlebar {
-  padding: 0 6px;
+  padding: 0 rescale(6px);
 
   > button.flat.popup.toggle {
     border: none;
@@ -2674,8 +2678,8 @@ widget > box.terminal-titlebar {
     padding-top: 0;
     padding-bottom: 0;
 
-    &:dir(ltr) { padding-right: 6px; }
-    &:dir(rtl) { padding-left: 6px; }
+    &:dir(ltr) { padding-right: rescale(6px); }
+    &:dir(rtl) { padding-left: rescale(6px); }
 
     &:hover, &:checked, &:active {
       border-radius: 0;
@@ -2689,10 +2693,10 @@ widget > box.terminal-titlebar {
 
   > button.image-button { // 'plus' and 'close'
     &, &.toggle {
-      margin: 2px 0;
+      margin: rescale(2px) 0;
       padding: 0;
-      min-height: 24px;
-      min-width: 24px;
+      min-height: rescale(24px);
+      min-width: rescale(24px);
       border-radius: $bt_radius;
       -gtk-outline-radius: $bt_radius;
     }
@@ -2704,11 +2708,11 @@ list.tilix-session-sidebar {
   background-image: image($dark_sidebar_bg);
 
   button.tilix-sidebar-close-button {
-    min-height: 20px;
-    min-width: 20px;
+    min-height: rescale(20px);
+    min-width: rescale(20px);
     padding: 0;
-    border-radius: 100px;
-    -gtk-outline-radius: 100px;
+    border-radius: rescale(100px);
+    -gtk-outline-radius: rescale(100px);
     background-color: $destructive_color;
     &, &:hover, &:active, &:checked { color: white; }
 
@@ -2729,7 +2733,7 @@ window.background.csd {
     > box.horizontal {
       > list {
         background-color: transparent;
-        border-right: 1px solid $borders_color;
+        border-right: rescale(1px) solid $borders_color;
         border-bottom-left-radius: $wm_radius;
 
         label:disabled { color: $insensitive_fg_color; }
@@ -2763,7 +2767,7 @@ window.background.csd {
       > revealer > stack {
         > list {
           background-color: transparent;
-          border-right: 1px solid $borders_color;
+          border-right: rescale(1px) solid $borders_color;
           border-bottom-left-radius: $wm_radius;
 
           label:disabled { color: $insensitive_fg_color; }
@@ -2773,7 +2777,7 @@ window.background.csd {
           > viewport.frame {
             list {
               background-color: transparent;
-              border-right: 1px solid $borders_color;
+              border-right: rescale(1px) solid $borders_color;
               border-bottom-left-radius: $wm_radius;
 
               label:disabled { color: $insensitive_fg_color; }
@@ -2788,7 +2792,7 @@ window.background.csd {
         > viewport.frame {
           list {
             background-color: transparent;
-            border-right: 1px solid $borders_color;
+            border-right: rescale(1px) solid $borders_color;
             border-bottom-left-radius: $wm_radius;
 
             label:disabled { color: $insensitive_fg_color; }
@@ -2810,7 +2814,7 @@ window.background.csd {
       > revealer > stack > stack {
         list {
           background-color: $base_color;
-          border-right: 1px solid if($variant=='light', $borders_color, $header_border);
+          border-right: rescale(1px) solid if($variant=='light', $borders_color, $header_border);
           border-bottom-left-radius: $wm_radius;
 
           label:disabled { color: $insensitive_fg_color; }
@@ -2831,7 +2835,7 @@ window.background.csd {
           > viewport.frame {
             list {
               background-color: transparent;
-              border-right: 1px solid if($variant=='light', $borders_color, $header_border);
+              border-right: rescale(1px) solid if($variant=='light', $borders_color, $header_border);
               border-bottom-left-radius: $wm_radius;
 
               label:disabled { color: $insensitive_fg_color; }
@@ -2857,7 +2861,7 @@ window.background.csd {
           > viewport.frame {
             list {
               background-color: transparent;
-              // border-right: 1px solid if($variant=='light', $borders_color, $header_border);
+              // border-right: rescale(1px) solid if($variant=='light', $borders_color, $header_border);
               border-bottom-right-radius: $wm_radius;
 
               label:disabled { color: $insensitive_fg_color; }
@@ -2886,9 +2890,9 @@ window > box.vertical > box.horizontal {
     toolitem > box {
       label,
       entry {
-        min-height: 20px;
-        padding-top: 2px;
-        padding-bottom: 2px;
+        min-height: rescale(20px);
+        padding-top: rescale(2px);
+        padding-bottom: rescale(2px);
         font-size: 90%;
       }
 
@@ -2904,7 +2908,7 @@ window > box.vertical > box.horizontal {
 //
 window#ValaPanel.background {
   // background-image: linear-gradient(0deg, $panel_bottom_color 0%, $panel_top_color 100%);
-  // border: 1px solid $header_border;
+  // border: rescale(1px) solid $header_border;
   // color: currentColor;
 
   widget.-vala-panel-background {
@@ -2921,13 +2925,13 @@ button.flat.-panel-icon-button {
   @extend %budgie_icon_tasklist_button;
 
   &:hover {
-    box-shadow: inset 0 -2px rgba($selected_bg_color, 0.5);
+    box-shadow: inset 0 rescale(-2px) rgba($selected_bg_color, 0.5);
     background: none;
   }
 
   &:active,
   &:checked {
-    box-shadow: inset 0 -2px $selected_bg_color;
+    box-shadow: inset 0 rescale(-2px) $selected_bg_color;
     color: if($variant == 'light', darken($panel_fg, 5%), $selected_fg_color);
     background: none;
   }
@@ -2940,7 +2944,7 @@ button.flat.-panel-icon-button {
   &:hover,
   &:active,
   &:checked {
-    box-shadow: inset 0 -2px $selected_bg_color;
+    box-shadow: inset 0 rescale(-2px) $selected_bg_color;
     color: if($variant == 'light', darken($panel_fg, 5%), $selected_fg_color);
   }
 }
@@ -2956,7 +2960,7 @@ button.flat.-panel-icon-button {
   &:hover,
   &:active,
   &:checked {
-    box-shadow: inset 0 -2px $selected_bg_color;
+    box-shadow: inset 0 rescale(-2px) $selected_bg_color;
     color: if($variant == 'light', darken($panel_fg, 5%), $selected_fg_color);
   }
 }
@@ -2988,7 +2992,7 @@ button.flat.-panel-icon-button {
     &, &.color-light, &.color-dark {
       background-color: transparent;
       background-image: linear-gradient(0deg, rgba($panel_bottom_color, 0.95) 0%, rgba($panel_top_color, 0.95) 100%);
-      border-bottom: 1px solid if($variant == 'light', $panel_border_color, $header_border);
+      border-bottom: rescale(1px) solid if($variant == 'light', $panel_border_color, $header_border);
       transition: all 100ms ease-in-out;
       color: $panel_fg;
     }
@@ -3013,10 +3017,10 @@ button.flat.-panel-icon-button {
   }
 
   popover {
-    padding: 2px 4px;
-    margin: 0 6px 15px 6px;
-    border: 1px solid if($variant == 'light', rgba(black, 0.35), rgba(black, 0.45));
-    box-shadow: 0 3px 5px rgba(black, 0.12), 0 5px 8px rgba(black, 0.08);
+    padding: rescale(2px) rescale(4px);
+    margin: 0 rescale(6px) rescale(15px) rescale(6px);
+    border: rescale(1px) solid if($variant == 'light', rgba(black, 0.35), rgba(black, 0.45));
+    box-shadow: 0 rescale(3px) rescale(5px) rgba(black, 0.12), 0 rescale(5px) rescale(8px) rgba(black, 0.08);
 
     button {
       @include button(undecorated);
@@ -3037,7 +3041,7 @@ button.flat.-panel-icon-button {
     list { background-color: transparent; }
 
     separator.horizontal {
-      margin: 0 -4px;
+      margin: 0 rescale(-4px);
     }
 
     separator.vertical {
@@ -3070,7 +3074,7 @@ button.flat.-panel-icon-button {
 }
 
 .composited-indicator {
-  padding: 0 6px;
+  padding: 0 rescale(6px);
 
   > revealer label,
   > revealer image,
@@ -3084,18 +3088,18 @@ button.flat.-panel-icon-button {
 
   > revealer image,
   > revealer spinner {
-    padding: 3px 0;
+    padding: rescale(3px) 0;
   }
 
   > revealer label {
-    padding: 3px 6px;
+    padding: rescale(3px) rescale(6px);
   }
 
   .keyboard {
     background-color: $panel_fg;
-    border-radius: 2px;
+    border-radius: rescale(2px);
     color: $panel_bg;
-    padding: 0 3px;
+    padding: 0 rescale(3px);
     font-weight: normal;
     box-shadow: none;
     text-shadow: none;
@@ -3137,8 +3141,8 @@ MarlinViewWindow {
 }
 
 .marlin-pathbar.pathbar {
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: rescale(4px);
+  padding-right: rescale(4px);
 
   @include entry(header-normal);
   &:focus { @include entry(header-focus) }
@@ -3148,8 +3152,8 @@ MarlinViewWindow {
 window.background.csd {
   > paned.horizontal {
     > separator {
-      &:dir(ltr) { margin-left: -1px; }
-      &:dir(rtl) { margin-right: -1px; }
+      &:dir(ltr) { margin-left: rescale(-1px); }
+      &:dir(rtl) { margin-right: rescale(-1px); }
     }
 
     > scrolledwindow {
@@ -3162,9 +3166,9 @@ window.background.csd {
           }
 
           color: $dark_sidebar_fg;
-          padding-top: 3px;
-          padding-bottom: 3px;
-          border-right: 1px solid $header_border;
+          padding-top: rescale(3px);
+          padding-bottom: rescale(3px);
+          border-right: rescale(1px) solid $header_border;
           @extend %view;
 
           &:not(:selected):hover { background-color: if($variant == 'light', rgba(black, 0.05), rgba(white, 0.05)); }
@@ -3215,22 +3219,22 @@ window.background.csd {
 
 headerbar.titlebar {
   > box.horizontal > entry.pathbar {
-    min-height: 20px;
-    padding: 2px 16px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    min-height: rescale(20px);
+    padding: rescale(2px) rescale(16px);
+    margin-top: rescale(2px);
+    margin-bottom: rescale(2px);
   }
 
   > button.flat.image-button.toggle {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: rescale(5px);
+    margin-bottom: rescale(5px);
 
     &:not(:checked):not(:active) {
       background-clip: if($variant=='light', padding-box, padding-box);
     }
 
     @if $variant == 'light' {
-      border-width: 1px;
+      border-width: rescale(1px);
       border-style: solid;
       border-color: $borders_color;
     }
@@ -3242,7 +3246,7 @@ headerbar.titlebar {
     &:disabled { color: transparentize($header_fg, 0.4); }
     &:backdrop { opacity: 0.7; background-image: none;}
 
-    + button.flat.image-button.toggle { margin-right: if($variant=='light', -6px, -5px); }
+    + button.flat.image-button.toggle { margin-right: if($variant=='light', rescale(-6px), rescale(-5px)); }
   }
 
   // .linked.raised {
@@ -3262,8 +3266,8 @@ headerbar.titlebar {
   //
   //   fixed ugly border color
   //   > button.toggle:not(:last-child) {
-  //     &:active { @if $variant=='light' { box-shadow: 1px 0 $header_button_active_bg; }}
-  //     &:checked { @if $variant=='light' { box-shadow: 1px 0 $header_button_checked_bg; }}
+  //     &:active { @if $variant=='light' { box-shadow: rescale(1px) 0 $header_button_active_bg; }}
+  //     &:checked { @if $variant=='light' { box-shadow: rescale(1px) 0 $header_button_checked_bg; }}
   //   }
   //
   //   @include pathbar_linking_rules ($button_rules: 'header');
@@ -3272,8 +3276,8 @@ headerbar.titlebar {
   // Hide Code header format-bar
   > grid.linked.horizontal.format-bar {
     background-image: $headerbar_bg_image;
-    margin-top: 6px;
-    margin-bottom: 6px;
+    margin-top: rescale(6px);
+    margin-bottom: rescale(6px);
     border: none;
 
     button.toggle {
@@ -3291,9 +3295,9 @@ headerbar.titlebar {
 
 // Gala
 .gala-notification {
-    border: 1px solid $dark_borders_color;
+    border: rescale(1px) solid $dark_borders_color;
     border-radius: $wm_radius;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 rescale(2px) rescale(4px) rgba(0, 0, 0, 0.2);
     background-image: _solid($osd_bg_color);
     background-color: transparent;
 
@@ -3305,11 +3309,11 @@ headerbar.titlebar {
 // system setting
 actionbar.inline-toolbar {
   border: none;
-  border-top: 1px solid $borders_color;
+  border-top: rescale(1px) solid $borders_color;
 
   button { // Reset buttons
     border-radius: $bt_radius;
-    // border: 1px solid $dark_borders_color;
+    // border: rescale(1px) solid $dark_borders_color;
 
     &:first-child {
       border-right-style: solid;
@@ -3323,10 +3327,10 @@ actionbar.inline-toolbar {
 
 // Nightlight warmth trough
 scale.warmth trough {
-  min-height: 4px;
-  border-radius: 3px;
+  min-height: rescale(4px);
+  border-radius: rescale(3px);
   background-image: linear-gradient(to right, $suggested_color, $destructive_color);
-  box-shadow: inset 0 0 0 1px rgba(black, 0.25);
+  box-shadow: inset 0 0 0 rescale(1px) rgba(black, 0.25);
 }
 
 // Terminal
@@ -3334,8 +3338,8 @@ scale.warmth trough {
   headerbar.titlebar.default-decoration {
     background-image: $headerbar_bg_image;
     background-color: $header_bg;
-    border-bottom: 1px solid $header_border;
-    box-shadow: inset 0 1px $highlight;
+    border-bottom: rescale(1px) solid $header_border;
+    box-shadow: inset 0 rescale(1px) $highlight;
 
     &:backdrop {
       transition: $backdrop_transition;
@@ -3348,7 +3352,7 @@ scale.warmth trough {
 
   .search-bar {
     background-color: $bg_color;
-    border-bottom: 1px solid $solid_borders_color;
+    border-bottom: rescale(1px) solid $solid_borders_color;
   }
 
   .dynamic-notebook {

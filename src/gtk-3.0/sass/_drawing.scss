@@ -1,12 +1,13 @@
+
 // Shadows
-$shadow_0: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 2px 2px 0 rgba(0, 0, 0, 0.05);  // Slider hover shadow
-$shadow_1: 0 1px 1px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.06); // Header-button shadow
-$shadow_2: 0 1px 1px 0 rgba(16, 16, 16, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05);  // Slider normal shadow
-$shadow_3: 0 1px 1px 0 rgba(0, 0, 0, 0.03);                                     // Normal button shadow
-$shadow_4: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.15);  // Switch-slider hover shadow
-$shadow_5: 0 1px 2px 0 rgba(0, 0, 0, 0.15), 0 2px 3px 0 rgba(0, 0, 0, 0.1);  // Switch-slider normal shadow
-$text_shadow: 0 -1px rgba(#ffffff, 0.04), -1px 0 rgba(0, 0, 0, 0.05), 1px 0 rgba(0, 0, 0, 0.05),
-              0 1px rgba(0, 0, 0, 0.3), 0 2px rgba(0, 0, 0, 0.05); // text and icon shadow
+$shadow_0: 0 rescale(1px) rescale(2px) 0 rgba(0, 0, 0, 0.1), 0 rescale(2px) rescale(2px) 0 rgba(0, 0, 0, 0.05);  // Slider hover shadow
+$shadow_1: 0 rescale(1px) rescale(1px) 0 rgba(0, 0, 0, 0.12), 0 rescale(1px) rescale(2px) 0 rgba(0, 0, 0, 0.06); // Header-button shadow
+$shadow_2: 0 rescale(1px) rescale(1px) 0 rgba(16, 16, 16, 0.1), 0 rescale(1px) rescale(2px) 0 rgba(0, 0, 0, 0.05);  // Slider normal shadow
+$shadow_3: 0 rescale(1px) rescale(1px) 0 rgba(0, 0, 0, 0.03);                                     // Normal button shadow
+$shadow_4: 0 rescale(2px) rescale(3px) 0 rgba(0, 0, 0, 0.2), 0 rescale(3px) rescale(5px) 0 rgba(0, 0, 0, 0.15);  // Switch-slider hover shadow
+$shadow_5: 0 rescale(1px) rescale(2px) 0 rgba(0, 0, 0, 0.15), 0 rescale(2px) rescale(3px) 0 rgba(0, 0, 0, 0.1);  // Switch-slider normal shadow
+$text_shadow: 0 rescale(-1px) rgba(#ffffff, 0.04), rescale(-1px) 0 rgba(0, 0, 0, 0.05), rescale(1px) 0 rgba(0, 0, 0, 0.05),
+              0 rescale(1px) rgba(0, 0, 0, 0.3), 0 rescale(2px) rgba(0, 0, 0, 0.05); // text and icon shadow
 
 // Transitions
 $ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -116,7 +117,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
     background-image: $header_button_image;
 
     @if $variant == 'dark' {
-      box-shadow: inset 0 1px $header_button_highlight;
+      box-shadow: inset 0 rescale(1px) $header_button_highlight;
     }
 
     image, image:hover { color: inherit; }
@@ -131,7 +132,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
     background-color: $entry_bg;
 
     @if $variant == 'dark' {
-      box-shadow: inset 0 1px transparent;
+      box-shadow: inset 0 rescale(1px) transparent;
     }
   }
 
@@ -143,7 +144,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
     background-color: $header_button_bg;
 
     @if $variant == 'dark' {
-      box-shadow: inset 0 1px $header_button_highlight;
+      box-shadow: inset 0 rescale(1px) $header_button_highlight;
     }
   }
 
@@ -196,7 +197,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
     background-color: $button_bg;
     @if $variant=='light' { box-shadow: $shadow_3; }
     @if $variant=='dark' {
-      box-shadow: inset 0 1px $button_highlight, $shadow_3;
+      box-shadow: inset 0 rescale(1px) $button_highlight, $shadow_3;
     }
   }
 
@@ -211,7 +212,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
     background-color: if($variant=='light', darken($button_bg, 3%), lighten($button_bg, 3%));
     @if $variant=='light' { box-shadow: none; }
     @if $variant=='dark' {
-      box-shadow: inset 0 1px rgba($button_highlight, 0.12), $shadow_3;
+      box-shadow: inset 0 rescale(1px) rgba($button_highlight, 0.12), $shadow_3;
     }
   }
 
@@ -321,7 +322,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
 
     @if $variant == 'dark' {
       border: none;
-      box-shadow: inset 0 1px $header_button_highlight;
+      box-shadow: inset 0 rescale(1px) $header_button_highlight;
     }
   }
 
@@ -333,7 +334,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
     color: darken($header_fg, 2%);
     background-color: $header_button_hover_bg;
     background-image: $header_button_hover_image;
-    @if $variant == 'dark' { box-shadow: inset 0 1px $header_button_hover_highlight; }
+    @if $variant == 'dark' { box-shadow: inset 0 rescale(1px) $header_button_hover_highlight; }
   }
 
   @else if $t==header-active {
@@ -354,7 +355,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
     background-color: $header_button_checked_bg;
     background-image: $header_button_checked_image;
     border-color: $borders_color;
-    @if $variant == 'dark' { box-shadow: inset 0 1px $header_button_checked_highlight; }
+    @if $variant == 'dark' { box-shadow: inset 0 rescale(1px) $header_button_checked_highlight; }
   }
 
   @else if $t==header-insensitive {
@@ -364,7 +365,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
     label, & { color: rgba($header_fg, 0.35); }
     background-color: $header_button_bg;
 
-    @if $variant == 'dark' { box-shadow: inset 0 1px $header_button_highlight; }
+    @if $variant == 'dark' { box-shadow: inset 0 rescale(1px) $header_button_highlight; }
   }
 
   @else if $t==header-insensitive-active {
@@ -499,7 +500,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
   $_undershoot_color_light: transparentize(white, 0.8);
 
   $_gradient_dir: left;
-  $_dash_bg_size: 10px 1px;
+  $_dash_bg_size: rescale(10px) rescale(1px);
   $_gradient_repeat: repeat-x;
   $_bg_pos: center $p;
 
@@ -507,7 +508,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
 
   @if ($p == left) or ($p == right) {
     $_gradient_dir: top;
-    $_dash_bg_size: 1px 10px;
+    $_dash_bg_size: rescale(1px) rescale(10px);
     $_gradient_repeat: repeat-y;
     $_bg_pos: $p center;
   }
@@ -516,7 +517,7 @@ $switch_animation: switch_ripple_effect 0.3s cubic-bezier(0, 0, 0.2, 1);
                                     $_undershoot_color_light 50%,
                                     $_undershoot_color_dark 50%);
 
-  padding-#{$p}: 1px;
+  padding-#{$p}: rescale(1px);
   background-size: $_dash_bg_size;
   background-repeat: $_gradient_repeat;
   background-origin: content-box;

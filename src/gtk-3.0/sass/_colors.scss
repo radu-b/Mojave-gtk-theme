@@ -1,6 +1,10 @@
 // When color definition differs for dark and light variant,
 // it gets @if ed depending on $variant
 
+@function rescale($pixels) {  
+    @return floor(1.375 * $pixels);  
+}
+
 // Base colors
 $base_color: if($variant =='light', #ffffff, #242424);
 $text_color: if($variant == 'light', #363636, #dadada);

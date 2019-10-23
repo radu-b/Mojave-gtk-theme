@@ -7,8 +7,8 @@ $con_asset_suffix: if($variant=='dark', '', '-dark');
 $darker_asset_suffix: if($darker=='true', '-dark', $asset_suffix);
 $alt_suffix: if($titlebutton=='alt', '-alt', '');
 $small_suffix: if($buttonsize=='small', '-small', '');
-$bt_radius: 5px;
-$wm_radius: 6px;
+$bt_radius: rescale(5px);
+$wm_radius: rescale(6px);
 
 * {
   padding: 0;
@@ -28,8 +28,8 @@ $wm_radius: 6px;
   // We use the outline properties to signal the focus properties
   outline-color: gtkalpha(currentColor, 0.3);
   outline-style: dashed;
-  outline-offset: -3px;
-  outline-width: 1px;
+  outline-offset: rescale(-3px);
+  outline-width: rescale(1px);
   -gtk-outline-radius: $bt_radius;
 
   -gtk-secondary-caret-color: $selected_bg_color;
@@ -42,17 +42,17 @@ $wm_radius: 6px;
 %outline_dashed {
   outline-color: gtkalpha(currentColor, 0.3);
   outline-style: dashed;
-  outline-offset: -3px;
-  outline-width: 1px;
+  outline-offset: rescale(-3px);
+  outline-width: rescale(1px);
   -gtk-outline-radius: $bt_radius;
 }
 
 %outline_solid {
   outline-color: $entry_highlight;
   outline-style: solid;
-  outline-offset: -1px;
-  outline-width: 3px;
-  -gtk-outline-radius: $bt_radius + 1px;
+  outline-offset: rescale(-1px);
+  outline-width: rescale(3px);
+  -gtk-outline-radius: $bt_radius + rescale(1px);
 }
 
 .background {
@@ -119,7 +119,7 @@ textview {
 
   // &:focus {
   //   border-radius: 0;
-  //   box-shadow: inset 0 0 0 2px $entry_highlight;
+  //   box-shadow: inset 0 0 0 rescale(2px) $entry_highlight;
   // }
 
   text {
@@ -140,7 +140,7 @@ iconview {
 
 rubberband,
 .rubberband {
-  border: 1px solid darken($selected_bg_color, 10%);
+  border: rescale(1px) solid darken($selected_bg_color, 10%);
   background-color: transparentize(darken($selected_bg_color, 10%), 0.8);
 }
 
@@ -148,17 +148,17 @@ flowbox {
   rubberband { @extend rubberband }
 
   flowboxchild {
-    padding: 3px;
+    padding: rescale(3px);
     border-radius: $bt_radius;
 
     &:selected {
       @extend %selected_items;
 
-      outline-offset: -2px;
+      outline-offset: rescale(-2px);
     }
   }
 
-  &.search-bar { border-bottom: 1px solid $header_border; }
+  &.search-bar { border-bottom: rescale(1px) solid $header_border; }
 }
 
 label {
@@ -187,15 +187,15 @@ label {
 }
 
 assistant {
-  // min-height: 38px;
+  // min-height: rescale(38px);
   .sidebar {
     background-color: $base_color;
-    border-top: 1px solid $borders_color;
+    border-top: rescale(1px) solid $borders_color;
   }
 
   &.csd .sidebar { border-top-style: none; }
 
-  .sidebar label { padding: 6px 12px; }
+  .sidebar label { padding: rescale(6px) rescale(12px); }
 
   .sidebar label.highlight {
     background-color: $selected_bg_color;
@@ -240,7 +240,7 @@ spinner {
 %Linked_entrys {
   @include entry(normal);
   border-image: none;
-  border: 1px solid;
+  border: rescale(1px) solid;
   border-color: $entry_border;
   border-bottom-color: $entry_bottom_border;
 
@@ -258,10 +258,10 @@ spinner {
 }
 
 entry {
-  min-height: if($variant =='light', 16px, 16px);
-  border: 3px solid transparent;
-  padding: 2px 8px;
-  border-radius: 7px;
+  min-height: if($variant =='light', rescale(16px), rescale(16px));
+  border: rescale(3px) solid transparent;
+  padding: rescale(2px) rescale(8px);
+  border-radius: rescale(7px);
   caret-color: currentColor;
 
 
@@ -269,7 +269,7 @@ entry {
 
   @include entry(normal);
 
-  border-image-width: 6px 6px 6px 6px;
+  border-image-width: rescale(6px) rescale(6px) rescale(6px) rescale(6px);
   border-image-slice: 6 6 6 6;
   border-image-repeat: stretch;
   border-image-source: -gtk-scaled(url("assets/entry#{$asset_suffix}.png"));
@@ -277,8 +277,8 @@ entry {
   image { // icons inside the entry
     color: mix($fg_color,$base_color,80%);
 
-    &.left { padding-left: 0; padding-right: 5px; }
-    &.right { padding-right: 0; padding-left: 5px; }
+    &.left { padding-left: 0; padding-right: rescale(5px); }
+    &.right { padding-right: 0; padding-left: rescale(5px); }
   }
 
   &.flat {
@@ -292,14 +292,14 @@ entry {
 
   &:focus {
     @include entry(focus);
-    border-radius: 7px;
+    border-radius: rescale(7px);
     transition: border-image 200ms ease-out, box-shadow 200ms ease-out;
     border-image-source: -gtk-scaled(url("assets/entry-focus#{$asset_suffix}.png"));
   }
 
   &:disabled {
     @include entry(insensitive);
-    border-radius: 7px;
+    border-radius: rescale(7px);
     border-image-source: -gtk-scaled(url("assets/entry-disabled#{$asset_suffix}.png"));
   }
 
@@ -329,7 +329,7 @@ entry {
   }
 
   row & {
-    min-height: 24px;
+    min-height: rescale(24px);
   }
 
   selection { &:focus, & { @extend %selected_items; }}
@@ -383,9 +383,9 @@ entry {
   }
 
   progress {
-    margin: 0 -6px;
+    margin: 0 rescale(-6px);
     border-radius: 0;
-    border-width: 0 0 2px;
+    border-width: 0 0 rescale(2px);
     border-color: $progress_color;
     border-style: solid;
     background-image: none;
@@ -417,7 +417,7 @@ treeview entry {
     border-radius: 0;
     background-image: none;
     background-color: $base_color;
-    border: 1px solid $borders_color;
+    border: rescale(1px) solid $borders_color;
     border-image: none;
 
     &:focus {
@@ -428,32 +428,32 @@ treeview entry {
 }
 
 .entry-tag {
-  $tag_height: 24px;
-  $tag_margin: 8px;
+  $tag_height: rescale(24px);
+  $tag_margin: rescale(8px);
 
   margin: $tag_margin; // instead of min-height: $tag_height;
-  border-radius: 50px;
+  border-radius: rescale(50px);
   box-shadow: none;
   background-color: $destructive_color;
   color: $selected_fg_color;
   border: none;
 
-  &:hover { box-shadow: 0 0 0 1px $borders_color; }
+  &:hover { box-shadow: 0 0 0 rescale(1px) $borders_color; }
 
   // side margins: compensate the entry padding with a negative margin
   // then the negative margin itself
   :dir(ltr) & {
-    margin-left: 8px;
-    margin-right: $tag_margin - 8px;
-    padding-left: 8px;
-    padding-right: ($tag_height - 16px) / 2;
+    margin-left: rescale(8px);
+    margin-right: $tag_margin - rescale(8px);
+    padding-left: rescale(8px);
+    padding-right: ($tag_height - rescale(16px)) / 2;
   }
 
   :dir(rtl) & {
-    margin-left: $tag_margin - 8px;
-    margin-right: 8px;
-    padding-left: ($tag_height - 16px) / 2;
-    padding-right: 8px;
+    margin-left: $tag_margin - rescale(8px);
+    margin-right: rescale(8px);
+    padding-left: ($tag_height - rescale(16px)) / 2;
+    padding-right: rescale(8px);
   }
 
   // seems any sizing doesn't work
@@ -491,22 +491,22 @@ $_dot_color: $selected_bg_color;
 }
 
 button {
-  min-height: 20px;
-  min-width: 16px;
+  min-height: rescale(20px);
+  min-width: rescale(16px);
   transition: $button_transition;
-  border: 1px solid;
+  border: rescale(1px) solid;
   border-radius: $bt_radius;
-  padding: 0 6px;
+  padding: 0 rescale(6px);
   @include button(normal);
 
-  separator { margin: 4px 1px; }
+  separator { margin: rescale(4px) rescale(1px); }
 
   // &.flat, &.osd, &.sidebar-button, &.circular {
   //   @extend %outline_dashed;
   // }
 
   &.flat {
-    min-height: if($variant =='light', 24px, 24px);
+    min-height: if($variant =='light', rescale(24px), rescale(24px));
     @include button(flat-normal);
     // to avoid adiacent buttons borders clashing when transitioning, the transition on the normal state is set
     // to none, while it's added back in the hover state, so the button decoration will fade in on hover, but
@@ -557,40 +557,40 @@ button {
   }
 
   &.image-button {
-    min-height: 24px;
-    padding-left: 5px;
-    padding-right: 5px;
+    min-height: rescale(24px);
+    padding-left: rescale(5px);
+    padding-right: rescale(5px);
   }
 
   &.text-button {
-    min-height: 20px;
-    padding-left: 12px;
-    padding-right: 12px;
+    min-height: rescale(20px);
+    padding-left: rescale(12px);
+    padding-right: rescale(12px);
   }
 
   &.text-button.image-button {
-    min-height: 24px;
-    padding-left: 5px;
-    padding-right: 5px;
+    min-height: rescale(24px);
+    padding-left: rescale(5px);
+    padding-right: rescale(5px);
 
     label {
       &:first-child {
-        padding-left: 8px;
-        padding-right: 2px;
+        padding-left: rescale(8px);
+        padding-right: rescale(2px);
       }
 
       &:last-child {
-        padding-right: 8px;
-        padding-left: 2px;
+        padding-right: rescale(8px);
+        padding-left: rescale(2px);
       }
 
       &:only-child {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: rescale(8px);
+        padding-right: rescale(8px);
       }
     }
 
-    &.popup { padding-right: 6px; padding-left: 6px; }
+    &.popup { padding-right: rescale(6px); padding-left: rescale(6px); }
   }
 
   &.close { // The Bloody Circul Button
@@ -611,8 +611,8 @@ button {
 
     &.image-button {
       padding: 0;
-      min-height: 42px;
-      min-width: 42px;
+      min-height: rescale(42px);
+      min-width: rescale(42px);
     }
 
     &:hover { color: $selected_bg_color; }
@@ -680,23 +680,23 @@ button {
     // child, a label needs just lateral padding while an icon needs vertical
     // padding added too.
 
-    outline-offset: -3px; // needs to be set or it gets overridden by GtkRadioButton outline-offset
+    outline-offset: rescale(-3px); // needs to be set or it gets overridden by GtkRadioButton outline-offset
 
     > label {
-      padding-left: 6px;  // label padding
-      padding-right: 6px; //
+      padding-left: rescale(6px);  // label padding
+      padding-right: rescale(6px); //
     }
     > image {
-      padding-left: 6px;
-      padding-right: 6px;
+      padding-left: rescale(6px);
+      padding-right: rescale(6px);
     }
     &.text-button {
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: rescale(10px);
+      padding-right: rescale(10px);
     }
     &.image-button {
-      padding-left: 2px;
-      padding-right: 2px;
+      padding-left: rescale(2px);
+      padding-right: rescale(2px);
     }
 
     &.needs-attention {
@@ -719,14 +719,14 @@ button {
                                     center center, 0.5,
                                     to($_dot_color),
                                     to(transparent));
-    background-size: 6px 6px, 6px 6px;
+    background-size: rescale(6px) rescale(6px), rescale(6px) rescale(6px);
     background-repeat: no-repeat;
-    @if $variant == 'light' { background-position: right 3px, right 4px; }
-    @else { background-position: right 3px, right 2px; }
+    @if $variant == 'light' { background-position: right rescale(3px), right rescale(4px); }
+    @else { background-position: right rescale(3px), right rescale(2px); }
 
     &:dir(rtl) {
-      @if $variant == 'light' { background-position: left 3px, left 4px; }
-      @else { background-position: left 3px, left 2px; }
+      @if $variant == 'light' { background-position: left rescale(3px), left rescale(4px); }
+      @else { background-position: left rescale(3px), left rescale(2px); }
     }
   }
 
@@ -760,7 +760,7 @@ button {
 // should really be deprecated...
 .inline-toolbar toolbutton > button { // redefining the button look is
                                           // needed since those are flat...
-  min-height: 20px;
+  min-height: rescale(20px);
   @include button(flat-normal);
   &:hover { @include button(flat-hover); }
   &:active,
@@ -802,8 +802,8 @@ toolbar.inline-toolbar toolbutton {
                                ('.error:focus', $error_color) {
 
       > entry#{$e_type}:not(:only-child) {
-        @if $variant == 'dark' { box-shadow: inset 0 0 0 1px $e_color; }
-        @if $variant == 'light' { box-shadow: 0 1px 1px 0px transparent, inset 0 0 0 1px $e_color; }
+        @if $variant == 'dark' { box-shadow: inset 0 0 0 rescale(1px) $e_color; }
+        @if $variant == 'light' { box-shadow: 0 rescale(1px) rescale(1px) rescale(0px) transparent, inset 0 0 0 rescale(1px) $e_color; }
       }
 
       > entry + entry#{$e_type}:not(:last-child),
@@ -826,7 +826,7 @@ toolbar.inline-toolbar toolbutton {
                                ('.warning:focus', $warning_color),
                                ('.error:focus', $error_color) {
       > entry#{$e_type}:not(:only-child) {
-        @if $variant == 'dark' { box-shadow: inset 0 0 0 2px $e_color; }
+        @if $variant == 'dark' { box-shadow: inset 0 0 0 rescale(2px) $e_color; }
       }
     }
   }
@@ -972,10 +972,10 @@ headerbar.titlebar {
 menuitem.button.flat,
 modelbutton.flat {
   transition: $transition_2;
-  min-height: 26px;
-  padding-left: 8px;
-  padding-right: 8px;
-  outline-offset: -3px;
+  min-height: rescale(26px);
+  padding-left: rescale(8px);
+  padding-right: rescale(8px);
+  outline-offset: rescale(-3px);
   border-radius: $bt_radius;
 
   @extend %undecorated_button;
@@ -998,10 +998,10 @@ modelbutton.flat {
 
   // FIXME: temporary workaround
   check:last-child,
-  radio:last-child { margin-left: 8px; }
+  radio:last-child { margin-left: rescale(8px); }
 
   check:first-child,
-  radio:first-child { margin-right: 8px; }
+  radio:first-child { margin-right: rescale(8px); }
 }
 
 modelbutton.flat arrow {
@@ -1054,26 +1054,26 @@ spinbutton {
   &:disabled { color: $insensitive_fg_color; }
 
   entry {
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: rescale(2px);
+    padding-bottom: rescale(2px);
     @extend %Linked_entrys;
 
     &:focus {
-      @if $variant == 'dark' { box-shadow: inset 0 0 0 1px $entry_highlight; }
-      @if $variant == 'light' { box-shadow: 0 1px 1px 0 transparent, inset 0 0 0 1px $entry_highlight; }
+      @if $variant == 'dark' { box-shadow: inset 0 0 0 rescale(1px) $entry_highlight; }
+      @if $variant == 'light' { box-shadow: 0 rescale(1px) rescale(1px) 0 transparent, inset 0 0 0 rescale(1px) $entry_highlight; }
     }
 
     &:drop(active) {
-      @if $variant == 'dark' { box-shadow: inset 0 0 0 1px $drop_target_color; }
-      @if $variant == 'light' { box-shadow: 0 1px 1px 0 transparent, inset 0 0 0 1px $drop_target_color; }
+      @if $variant == 'dark' { box-shadow: inset 0 0 0 rescale(1px) $drop_target_color; }
+      @if $variant == 'light' { box-shadow: 0 rescale(1px) rescale(1px) 0 transparent, inset 0 0 0 rescale(1px) $drop_target_color; }
     }
   }
 
   &:not(.vertical) {
     entry {
-      padding-top: 2px;
-      padding-bottom: 2px;
-      min-width: 28px;
+      padding-top: rescale(2px);
+      padding-bottom: rescale(2px);
+      min-width: rescale(28px);
     }
 
     button, entry { @extend %linked; }
@@ -1084,10 +1084,10 @@ spinbutton {
     > button + button { border-left-style: none; }
 
     > button:hover:not(:active),
-    > button:hover + button { box-shadow: inset 1px 0 $button_border; }
+    > button:hover + button { box-shadow: inset rescale(1px) 0 $button_border; }
 
     > button:disabled + button:not(:disabled):not(:active):not(:checked):not(:hover),
-    > button:not(:disabled):not(:active):not(:checked):not(:hover) + button:disabled { box-shadow: inset 1px 0 transparentize($button_border, 0.5); }
+    > button:not(:disabled):not(:active):not(:checked):not(:hover) + button:disabled { box-shadow: inset rescale(1px) 0 transparentize($button_border, 0.5); }
 
     > button:first-child:hover:not(:active),
     > button.up:dir(rtl):hover:not(:active),
@@ -1099,7 +1099,7 @@ spinbutton {
     .osd & {
       &, &:focus, &:drop(active) { border-image: none; }
       > button:hover:not(:active),
-      > button:hover + button { box-shadow: inset 1px 0 $osd_button_border; }
+      > button:hover + button { box-shadow: inset rescale(1px) 0 $osd_button_border; }
 
       > button:first-child:hover:not(:active),
       > button.up:dir(rtl):hover:not(:active),
@@ -1111,8 +1111,8 @@ spinbutton {
 
   &.vertical {
     button, entry {
-      padding-left: 4px;
-      padding-right: 4px;
+      padding-left: rescale(4px);
+      padding-right: rescale(4px);
       min-width: 0;
 
       @extend %linked_vertical;
@@ -1131,16 +1131,16 @@ spinbutton {
 combobox {
   button.combo {
     min-width: 0;       // otherwise the arrow placement is unsymmetric
-    min-height: 20px;
+    min-height: rescale(20px);
     // margin: 0;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: rescale(12px);
+    padding-right: rescale(12px);
   }
 
   arrow {
     -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
-    min-height: 16px;
-    min-width: 16px;
+    min-height: rescale(16px);
+    min-width: rescale(16px);
   }
 
   .background & button.combo arrow {
@@ -1148,12 +1148,12 @@ combobox {
     -gtk-icon-source: -gtk-scaled(
                        url("assets/combobox-arrow.png"),
                        url("assets/combobox-arrow@2.png"));
-    min-height: 16px;
-    min-width: 16px;
+    min-height: rescale(16px);
+    min-width: rescale(16px);
     padding: 0;
-    margin: -1px -13px -1px -1px;
+    margin: rescale(-1px) rescale(-13px) rescale(-1px) rescale(-1px);
     border-radius: 0 $bt_radius $bt_radius 0;
-    border-width: 1px;
+    border-width: rescale(1px);
     border-style: solid;
     border-left-style: none;
   }
@@ -1193,21 +1193,21 @@ combobox {
 //
 toolbar {
   -GtkWidget-window-dragging: true;
-  padding: 4px;
+  padding: rescale(4px);
   background-color: $header_bg;
   // border-radius: $wm_radius;
 
-  &.horizontal { border-bottom: 1px solid $borders_color; }
+  &.horizontal { border-bottom: rescale(1px) solid $borders_color; }
 
   separator { background: none; }
-  &.horizontal separator { margin: 0 6px; }
-  &.vertical separator { margin: 6px 0; }
+  &.horizontal separator { margin: 0 rescale(6px); }
+  &.vertical separator { margin: rescale(6px) 0; }
 
   .osd & { background-color: transparent; }
 
   &.osd {
-    padding: 8px;
-    border: 1px solid $borders_color;
+    padding: rescale(8px);
+    border: rescale(1px) solid $borders_color;
     border-radius: $bt_radius;
     background-color: $base_color;
 
@@ -1216,10 +1216,10 @@ toolbar {
     &.top,
     &.bottom { border-radius: 0; } // positional classes for `attached` osd toolbars
 
-    &.top { border-width: 0 0 1px 0; }
-    &.bottom { border-width: 1px 0 0 0; }
-    &.left { border-width: 0 1px 0 0; }
-    &.right { border-width: 0 0 0 1px; }
+    &.top { border-width: 0 0 rescale(1px) 0; }
+    &.bottom { border-width: rescale(1px) 0 0 0; }
+    &.left { border-width: 0 rescale(1px) 0 0; }
+    &.right { border-width: 0 0 0 rescale(1px); }
   }
 
   &:not(.inline-toolbar) {
@@ -1228,8 +1228,8 @@ toolbar {
     entry,
     spinbutton,
     button {
-      margin-right: 1px;
-      margin-bottom: 1px;
+      margin-right: rescale(1px);
+      margin-bottom: rescale(1px);
     }
 
     .linked > button,
@@ -1241,7 +1241,7 @@ toolbar {
   color: $text_color;
   background-color: transparent;
   box-shadow: none;
-  border-width: 0 0 1px 0;
+  border-width: 0 0 rescale(1px) 0;
   border-style: solid;
   border-image: linear-gradient(to bottom, $borders_color, $borders_color) 1 0 1 0; //temporary hack for rhythmbox 3.1
 
@@ -1255,8 +1255,8 @@ toolbar {
   background-color: darken($bg_color, 3%);
   border-style: solid;
   border-color: $borders_color;
-  border-width: 0 1px 1px;
-  padding: 3px;
+  border-width: 0 rescale(1px) rescale(1px);
+  padding: rescale(3px);
 
   .background.csd & {
     border-radius: 0 0 $bt_radius $bt_radius;
@@ -1270,12 +1270,12 @@ searchbar {
   border: none;
 
   > revealer > box {
-    padding: 6px;
-    margin: -6px;
+    padding: rescale(6px);
+    margin: rescale(-6px);
     border-style: solid;
     border-color: $solid_borders_color;
     background-color: $bg_color;
-    border-width: 0 0 1px;
+    border-width: 0 0 rescale(1px);
   }
 
   // Close button on searchbar
@@ -1285,8 +1285,8 @@ searchbar {
 }
 
 actionbar {
-  padding: 6px;
-  border-top: 1px solid $borders_color;
+  padding: rescale(6px);
+  border-top: rescale(1px) solid $borders_color;
   background-color: darken($bg_color, 3%);
 
   .background.csd & {
@@ -1302,18 +1302,18 @@ $_header_radius: if($darker=='false' and $variant=='light', $wm_radius, $wm_radi
 
 headerbar,
 %titlebar {
-  min-height: 34px;
-  padding: 0 8px;
+  min-height: rescale(34px);
+  padding: 0 rescale(8px);
   background-image: $headerbar_bg_image;
 
   color: $header_fg;
   background-color: $header_bg;
-  border-bottom: 1px solid $header_border;
+  border-bottom: rescale(1px) solid $header_border;
 
   .csd & {  // Transparent header-bars only in csd windows
     background-image: $headerbar_bg_image;
     background-color: $header_bg;
-    border-bottom: 1px solid $header_border;
+    border-bottom: rescale(1px) solid $header_border;
   }
 
   &:backdrop {
@@ -1331,7 +1331,7 @@ headerbar,
 
   .maximized & {
     background-color: $header_bg;
-    // border-bottom: 1px solid $header_border;
+    // border-bottom: rescale(1px) solid $header_border;
 
     &:backdrop {
       background-color: $header_bg_backdrop;
@@ -1340,15 +1340,15 @@ headerbar,
   }
 
   .title {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: rescale(12px);
+    padding-right: rescale(12px);
   }
 
   .subtitle {
     font-size: smaller;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-top: -3px;
+    padding-left: rescale(12px);
+    padding-right: rescale(12px);
+    margin-top: rescale(-3px);
     @extend .dim-label;
   }
 
@@ -1371,8 +1371,8 @@ headerbar,
 
     .selection-menu {
       box-shadow: none;
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: rescale(10px);
+      padding-right: rescale(10px);
       GtkArrow { -GtkArrow-arrow-scaling: 1; }
 
       .arrow {
@@ -1398,8 +1398,8 @@ headerbar,
   }
 
   &.default-decoration {
-    min-height: 26px;
-    padding: 0 6px;
+    min-height: rescale(26px);
+    padding: 0 rescale(6px);
     background-color: $header_bg;
     background-image: $headerbar_top_image;
 
@@ -1409,8 +1409,8 @@ headerbar,
 
     button.titlebutton {
       border: none;
-      min-width: 16px;
-      min-height: 16px;
+      min-width: rescale(16px);
+      min-height: rescale(16px);
       margin: 0;
       padding: 0;
 
@@ -1443,7 +1443,7 @@ headerbar,
   }
 
   &, & headerbar {
-    box-shadow: inset 0 1px $highlight;
+    box-shadow: inset 0 rescale(1px) $highlight;
 
     .tiled &,
     .maximized &,
@@ -1455,8 +1455,8 @@ headerbar {
   @extend %header_widgets;
 
   button, spinbutton, separator:not(.sidebar) {
-    margin-top: 6px;
-    margin-bottom: 6px;
+    margin-top: rescale(6px);
+    margin-bottom: rescale(6px);
   }
 
   &.titlebar headerbar:not(.titlebar) {
@@ -1472,7 +1472,7 @@ headerbar {
   separator.sidebar {
     background: none;
     border-right: none;
-    box-shadow: inset 0 -1px $header_border;
+    box-shadow: inset 0 rescale(-1px) $header_border;
   }
 
   // Fixes split headerbars
@@ -1566,11 +1566,11 @@ window.background > box.vertical > headerbar:not(.titlebar) { // reset headerbar
   }
 
   > separator {
-    min-width: 1px;
-    min-height: 1px;
+    min-width: rescale(1px);
+    min-height: rescale(1px);
     background-color: $header_bg;
     background-image: $headerbar_bg_image;
-    box-shadow: inset 0 -1px $header_border, inset 0 1px $highlight;
+    box-shadow: inset 0 rescale(-1px) $header_border, inset 0 rescale(1px) $highlight;
 
     &:backdrop {
       transition: $backdrop_transition;
@@ -1581,7 +1581,7 @@ window.background > box.vertical > headerbar:not(.titlebar) { // reset headerbar
     .tiled &,
     .maximized &,
     .fullscreen & {
-      box-shadow: inset 0 -1px $header_border;
+      box-shadow: inset 0 rescale(-1px) $header_border;
     }
   }
 
@@ -1590,30 +1590,30 @@ window.background > box.vertical > headerbar:not(.titlebar) { // reset headerbar
 
 headerbar, .titlebar {
   button {
-    min-height: if($variant == 'light', 24px, 26px);
-    min-width: 22px;
+    min-height: if($variant == 'light', rescale(24px), rescale(26px));
+    min-width: rescale(22px);
   }
 
   entry { // Reset entrys
-    min-height: if($variant == 'light', 19px, 21px);
-    margin-top: if($variant == 'light', 4px, 3px);
-    margin-bottom: if($variant == 'light', 4px, 3px);
+    min-height: if($variant == 'light', rescale(19px), rescale(21px));
+    margin-top: if($variant == 'light', rescale(4px), rescale(3px));
+    margin-bottom: if($variant == 'light', rescale(4px), rescale(3px));
     margin-left: 0;
     margin-right: 0;
-    padding: 2px 8px;
-    border-radius: 7px;
+    padding: rescale(2px) rescale(8px);
+    border-radius: rescale(7px);
   }
 
   .linked > entry { // Reset linking entrys
     @include entry(header-normal);
-    margin-top: 6px;
-    margin-bottom: 6px;
-    padding: 0 8px;
+    margin-top: rescale(6px);
+    margin-bottom: rescale(6px);
+    padding: 0 rescale(8px);
     border-radius: $bt_radius;
 
     @if $variant == 'light' {
-      border-width: 1px;
-      border: 1px solid $borders_color;
+      border-width: rescale(1px);
+      border: rescale(1px) solid $borders_color;
     }
 
     &:focus {
@@ -1632,7 +1632,7 @@ headerbar, .titlebar {
 
       @if $variant == 'dark' {
         border: none;
-        border-right: 1px solid $header_button_border;
+        border-right: rescale(1px) solid $header_button_border;
 
         &:last-child {
           border-right: none;
@@ -1681,9 +1681,9 @@ headerbar, .titlebar {
 // Headerbar Entries
 %headerbar_entrys {
   @include entry(header-normal);
-  border-radius: 7px;
-  border: 3px solid transparent;
-  border-image-width: 6px 6px 6px 6px;
+  border-radius: rescale(7px);
+  border: rescale(3px) solid transparent;
+  border-image-width: rescale(6px) rescale(6px) rescale(6px) rescale(6px);
   border-image-slice: 6 6 6 6;
   border-image-repeat: stretch;
   background-clip: padding-box;
@@ -1694,14 +1694,14 @@ headerbar, .titlebar {
   &:focus {
     @include entry(header-focus);
     box-shadow: none;
-    border-radius: 7px;
+    border-radius: rescale(7px);
     border-image-source: -gtk-scaled(url("assets/entry-focus#{$asset_suffix}.png"));
   }
 
   &:disabled {
     @include entry(header-insensitive);
-    border-radius: 7px;
-    border: 3px solid transparent;
+    border-radius: rescale(7px);
+    border: rescale(3px) solid transparent;
     border-image-source: -gtk-scaled(url("assets/header-entry-disabled.png"));
   }
 
@@ -1768,7 +1768,7 @@ headerbar, .titlebar {
 
   &:disabled { @include button(header-insensitive); }
   &:disabled:active, &:disabled:checked { @include button(header-insensitive-active); }
-  // &.text-button.image-button label { padding-left: 6px; padding-right: 6px; }
+  // &.text-button.image-button label { padding-left: rescale(6px); padding-right: rescale(6px); }
 
   &.flat {
     @include button(undecorated);
@@ -1787,7 +1787,7 @@ headerbar, .titlebar {
     @extend %headerbar_buttons;
   }
 
-  // button.toggle.popup { margin-right: 3px; } // Nautilus 3.30 popup button
+  // button.toggle.popup { margin-right: rescale(3px); } // Nautilus 3.30 popup button
 
   &.selection-mode button {
     &, &.flat {
@@ -1808,9 +1808,9 @@ headerbar, .titlebar {
 
   // Reset linked buttons
   .linked:not(.vertical) > button {
-    min-width: 20px;
+    min-width: rescale(20px);
     @extend %outline_dashed;
-    border-right: 1px solid $header_button_border;
+    border-right: rescale(1px) solid $header_button_border;
 
     &, &:hover, &:active, &:checked, &:disabled {
       @extend %linked_header;
@@ -1818,8 +1818,8 @@ headerbar, .titlebar {
 
     @if $variant == 'light' {
       &:not(:first-child) {
-        &:active { box-shadow: -1px 0 mix(black, $header_button_active_bg, 15%); }
-        &:checked { box-shadow: -1px 0 mix(black, $header_button_checked_bg, 15%); }
+        &:active { box-shadow: rescale(-1px) 0 mix(black, $header_button_active_bg, 15%); }
+        &:checked { box-shadow: rescale(-1px) 0 mix(black, $header_button_checked_bg, 15%); }
       }
     }
 
@@ -1835,10 +1835,10 @@ headerbar, .titlebar {
 
     &, &:hover, &:active, &:checked, &:disabled {
       border-radius: $bt_radius;
-      margin-right: if($variant=='light', 0, 1px);
+      margin-right: if($variant=='light', 0, rescale(1px));
       border-right: none;
 
-      @if $variant == 'light' { border: 1px solid $borders_color; }
+      @if $variant == 'light' { border: rescale(1px) solid $borders_color; }
     }
   }
 
@@ -1846,7 +1846,7 @@ headerbar, .titlebar {
   .linked:not(.vertical):not(.path-bar).stack-switcher,
   .linked:not(.vertical).path-bar {
     > button {
-      min-height: if($variant == 'light', 24px, 26px);
+      min-height: if($variant == 'light', rescale(24px), rescale(26px));
       @extend %outline_dashed;
       @include button(header-normal);
       &:hover { @include button(header-hover); }
@@ -1856,7 +1856,7 @@ headerbar, .titlebar {
       &:backdrop { opacity: 0.65; background-image: none; }
 
       @if $variant=='dark' {
-        border-right: 1px solid $borders_color;
+        border-right: rescale(1px) solid $borders_color;
 
         &:last-child {
           border-right: none;
@@ -1912,7 +1912,7 @@ headerbar, .titlebar {
     > button + button { border-left-style: none; }
 
     > button:hover:not(:active),
-    > button:hover + button { box-shadow: inset 1px 0 $button_border; }
+    > button:hover + button { box-shadow: inset rescale(1px) 0 $button_border; }
 
     > button:disabled + button:not(:disabled):not(:active):not(:checked):not(:hover),
     > button:not(:disabled):not(:active):not(:checked):not(:hover) + button:disabled { }
@@ -2004,12 +2004,12 @@ headerbar, .titlebar {
 // Pathbars
 //
 .path-bar button {
-  min-width: 12px;
-  min-height: if($variant == 'light', 20px, 22px);
+  min-width: rescale(12px);
+  min-height: if($variant == 'light', rescale(20px), rescale(22px));
 
   &.text-button, &.image-button, & {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: rescale(6px);
+    padding-right: rescale(6px);
   }
 
   &:hover { box-shadow: none; }
@@ -2026,19 +2026,19 @@ headerbar, .titlebar {
   &.text-button.image-button label { padding-left: 0; padding-right: 0; }
 
   &.text-button.image-button, & {
-    label:last-child { padding-right: 10px; }
-    label:first-child { padding-left: 10px; }
+    label:last-child { padding-right: rescale(10px); }
+    label:first-child { padding-left: rescale(10px); }
   }
 
   &.slider-button,
   &:not(.image-button):not(.text-button) {
-    padding-left: 1px;
-    padding-right: 1px;
+    padding-left: rescale(1px);
+    padding-right: rescale(1px);
   }
 
   image {
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: rescale(4px);
+    padding-right: rescale(4px);
   }
 }
 
@@ -2081,13 +2081,13 @@ treeview.view {
   }
 
   &.separator {
-    min-height: 2px;
+    min-height: rescale(2px);
     color: $borders_color;
   }
 
   &:drop(active) {
     border-style: solid none;
-    border-width: 1px;
+    border-width: rescale(1px);
     border-color: mix($fg_color, $selected_bg_color, 50%);
 
     &.after { border-top-style: none; }
@@ -2141,9 +2141,9 @@ treeview.view {
     button {
       $_column_header_color: mix($fg_color,$base_color,80%);
 
-      min-height: if($variant =='light', 24px, 26px);
-      min-width: 38px;
-      padding: 0 6px;
+      min-height: if($variant =='light', rescale(24px), rescale(26px));
+      min-width: rescale(38px);
+      padding: 0 rescale(6px);
       font-weight: bold;
 
       color: $_column_header_color;
@@ -2156,7 +2156,7 @@ treeview.view {
                                     $base_color 20%,
                                     transparentize(if($variant == 'light', black, white), 0.89) 20%,
                                     transparentize(if($variant == 'light', black, white), 0.89) 80%,
-                                    $base_color 80%) 0 1 0 0 / 0 1px 0 0 stretch;
+                                    $base_color 80%) 0 1 0 0 / 0 rescale(1px) 0 0 stretch;
 
       &:hover { color: $selected_bg_color; }
       &:active { color: $fg_color; }
@@ -2179,7 +2179,7 @@ treeview.view {
   button.dnd,
   header.button.dnd {
     &, &:selected, &:hover, &:active {
-      padding: 0 6px;
+      padding: 0 rescale(6px);
       transition: none;
       color: $selected_fg_color;
       background-color: $selected_bg_color;
@@ -2204,7 +2204,7 @@ menubar,
   background-color: $header_bg;
   background-image: $menubar_bg_image;
   color: $header_fg;
-  box-shadow: inset 0 -1px $borders_color;
+  box-shadow: inset 0 rescale(-1px) $borders_color;
 
   &:backdrop {
     color: transparentize($header_fg, 0.2);
@@ -2214,7 +2214,7 @@ menubar,
 
   > menuitem {
     transition: all 0.2s cubic-bezier(0.0, 0.0, 0.2, 1);
-    padding: 4px 8px;
+    padding: rescale(4px) rescale(8px);
 
     > window.popup.background.csd > decoration { border-radius: 0 0 $wm_radius $wm_radius; }
 
@@ -2240,32 +2240,32 @@ menubar,
 .context-menu,
 menu,
 .menu {
-  // margin: 4px;
-  padding: 6px 0;
+  // margin: rescale(4px);
+  padding: rescale(6px) 0;
   border-radius: $wm_radius;
   background-color: opacify($_menu_bg, 1);
-  border: 1px solid $solid_borders_color;
+  border: rescale(1px) solid $solid_borders_color;
   color: $fg_color;
 
   .csd & {
     background-color: $_menu_bg;
     @if $variant == 'light' { border: none; }
-    @if $variant == 'dark' { border: 1px solid lighten($_menu_bg, 10%); }
+    @if $variant == 'dark' { border: rescale(1px) solid lighten($_menu_bg, 10%); }
   }
 
   separator,
   .csd & separator {
-    margin: 2px 0;
+    margin: rescale(2px) 0;
     min-height: 0;
-    border-bottom: 2px solid $_menu_bd;
+    border-bottom: rescale(2px) solid $_menu_bd;
     background-color: transparent;
   }
 
   > menuitem {
     transition: background-color 50ms cubic-bezier(0.0, 0.0, 0.2, 1);
-    min-height: 12px;
-    min-width: 40px;
-    padding: 2px 6px;
+    min-height: rescale(12px);
+    min-width: rescale(40px);
+    padding: rescale(2px) rescale(6px);
     text-shadow: none;
     color: $fg_color;
 
@@ -2298,8 +2298,8 @@ menu,
 
     //submenu indicators
     arrow {
-      min-height: 16px;
-      min-width: 16px;
+      min-height: rescale(16px);
+      min-width: rescale(16px);
       background-color: transparent;
       background-image: none;
       border: none;
@@ -2320,10 +2320,10 @@ menu,
       accelerator { color: gtkalpha(currentColor,0.55); }
 
       check, radio {
-        min-height: 16px;
-        min-width: 16px;
-        &:dir(ltr) { margin-right: 6px; margin-left: 2px; }
-        &:dir(rtl) { margin-left: 6px; margin-right: 2px; }
+        min-height: rescale(16px);
+        min-width: rescale(16px);
+        &:dir(ltr) { margin-right: rescale(6px); margin-left: rescale(2px); }
+        &:dir(rtl) { margin-left: rescale(6px); margin-right: rescale(2px); }
       }
     }
   }
@@ -2331,9 +2331,9 @@ menu,
   // overflow buttons
   %menu_overflow_arrow,
   > arrow {
-    min-width: 16px;
-    min-height: 16px;
-    padding: 2px;
+    min-width: rescale(16px);
+    min-height: rescale(16px);
+    padding: rescale(2px);
     background-color: transparent;
     border-radius: 0;
     border: none;
@@ -2341,17 +2341,17 @@ menu,
     color: $fg_color;
 
     &.top {
-      margin-top: -6px;
+      margin-top: rescale(-6px);
       border-radius: $wm_radius $wm_radius 0 0;
-      border-bottom: 1px solid $borders_color;
+      border-bottom: rescale(1px) solid $borders_color;
       -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
     }
 
     &.bottom {
-      margin-top: 12px;
-      margin-bottom: -16px;
+      margin-top: rescale(12px);
+      margin-bottom: rescale(-16px);
       border-radius: 0 0 $wm_radius $wm_radius;
-      border-top: 1px solid $borders_color;
+      border-top: rescale(1px) solid $borders_color;
       -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
     }
 
@@ -2379,19 +2379,19 @@ popover.background {
   background-clip: border-box;
   background-color: $_popover_bg;
 
-  box-shadow: 0 3px 6px 0 if($variant=='light', transparentize(black, 0.85), transparentize(black, 0.85)),
-              0 0 0 1px if($variant=='light', rgba($borders_color, 0.03), rgba($dark_borders_color, 0.55));
+  box-shadow: 0 rescale(3px) rescale(6px) 0 if($variant=='light', transparentize(black, 0.85), transparentize(black, 0.85)),
+              0 0 0 rescale(1px) if($variant=='light', rgba($borders_color, 0.03), rgba($dark_borders_color, 0.55));
 
   .csd &, & {
     border-radius: $wm_radius;
-    border: 1px solid if($variant=='light', rgba($borders_color, 0.2), lighten($_popover_bg, 10%));
+    border: rescale(1px) solid if($variant=='light', rgba($borders_color, 0.2), lighten($_popover_bg, 10%));
   }
 
   separator,
   & separator,
   .csd & separator {
-    // margin: 4px -9px;
-    // min-height: 2px;
+    // margin: rescale(4px) rescale(-9px);
+    // min-height: rescale(2px);
     border: none;
     background-color: transparent;
   }
@@ -2428,10 +2428,10 @@ cursor-handle {
 //
 notebook {
   padding: 0;
-  // margin-top: -1px;
+  // margin-top: rescale(-1px);
 
   &.frame {
-    border: 1px solid $solid_borders_color;
+    border: rescale(1px) solid $solid_borders_color;
 
     > header {
       &.top,
@@ -2463,56 +2463,56 @@ notebook {
     // Set box-shadow to make the header frame color more easy to see
     // Set margin to hide the ugly borders around the header
     &.top {
-      box-shadow: inset 0 1px $solid_borders_color, inset 0 -1px $borders_color;
+      box-shadow: inset 0 rescale(1px) $solid_borders_color, inset 0 rescale(-1px) $borders_color;
       @if $variant=='light' {
-          box-shadow: inset 0 1px $borders_color,
-                      inset 0 -1px $borders_color,
-                            1px 0 $borders_color,
-                            -1px 0 $borders_color;
+          box-shadow: inset 0 rescale(1px) $borders_color,
+                      inset 0 rescale(-1px) $borders_color,
+                            rescale(1px) 0 $borders_color,
+                            rescale(-1px) 0 $borders_color;
       }
-      margin-top: -1px;
+      margin-top: rescale(-1px);
     }
 
     &.bottom {
-      box-shadow: inset 0 1px $borders_color, inset 0 -1px $solid_borders_color;
+      box-shadow: inset 0 rescale(1px) $borders_color, inset 0 rescale(-1px) $solid_borders_color;
       @if $variant=='light' {
-          box-shadow: inset 0 1px $borders_color,
-                      inset 0 -1px $borders_color,
-                      1px 0 $borders_color,
-                      -1px 0 $borders_color;
+          box-shadow: inset 0 rescale(1px) $borders_color,
+                      inset 0 rescale(-1px) $borders_color,
+                      rescale(1px) 0 $borders_color,
+                      rescale(-1px) 0 $borders_color;
       }
-      margin-bottom: -1px;
+      margin-bottom: rescale(-1px);
     }
 
     &.right {
-      box-shadow: inset 1px 0 $borders_color, inset -1px 0 $solid_borders_color;
+      box-shadow: inset rescale(1px) 0 $borders_color, inset rescale(-1px) 0 $solid_borders_color;
       @if $variant=='light' {
-          box-shadow: inset 1px 0 $borders_color,
-                      inset -1px 0 $borders_color,
-                      0 1px $borders_color,
-                      0 -1px $borders_color;
+          box-shadow: inset rescale(1px) 0 $borders_color,
+                      inset rescale(-1px) 0 $borders_color,
+                      0 rescale(1px) $borders_color,
+                      0 rescale(-1px) $borders_color;
       }
-      margin-right: -1px;
+      margin-right: rescale(-1px);
     }
 
     &.left {
-      box-shadow: inset 1px 0 $solid_borders_color, inset -1px 0 $borders_color;
+      box-shadow: inset rescale(1px) 0 $solid_borders_color, inset rescale(-1px) 0 $borders_color;
       @if $variant=='light' {
-          box-shadow: inset 1px 0 $borders_color,
-                      inset -1px 0 $borders_color,
-                      0 1px $borders_color,
-                      0 -1px $borders_color;
+          box-shadow: inset rescale(1px) 0 $borders_color,
+                      inset rescale(-1px) 0 $borders_color,
+                      0 rescale(1px) $borders_color,
+                      0 rescale(-1px) $borders_color;
       }
-      margin-left: -1px;
+      margin-left: rescale(-1px);
     }
 
     button.flat {
-      min-height: 24px;
-      min-width: 24px;
+      min-height: rescale(24px);
+      min-width: rescale(24px);
       padding: 0;
       border: none;
       box-shadow: none;
-      // margin: 2px;
+      // margin: rescale(2px);
     }
 
     @each $_pos, $_bpos in (top, bottom), (bottom, top), (right, left), (left, right) {
@@ -2521,17 +2521,17 @@ notebook {
         padding: 0;
 
         tab {
-          padding: 2px 10px;
-          min-width: 20px;
-          min-height: 20px;
+          padding: rescale(2px) rescale(10px);
+          min-width: rescale(20px);
+          min-height: rescale(20px);
           border-radius: 0;
-          outline-offset: -4px;
+          outline-offset: rescale(-4px);
           // border-#{$_pos}: none;
 
           // tab overlap
           + tab {
-            @if $_pos==top or $_pos==bottom { margin-left: -1px; }
-            @else { margin-top: -1px; }
+            @if $_pos==top or $_pos==bottom { margin-left: rescale(-1px); }
+            @else { margin-top: rescale(-1px); }
           }
         }
       }
@@ -2541,24 +2541,24 @@ notebook {
     &.top, &.bottom {
       > tabs > arrow.up {
         -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
-        &:last-child { margin-left: 2px; }
+        &:last-child { margin-left: rescale(2px); }
       }
 
       > tabs > arrow.down {
         -gtk-icon-source: -gtk-icontheme('pan-start-symbolic');
-        &:first-child { margin-right: 2px; }
+        &:first-child { margin-right: rescale(2px); }
       }
     }
 
     &.left, &.right {
       > tabs > arrow.up {
         -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
-        &:last-child { margin-top: 2px; }
+        &:last-child { margin-top: rescale(2px); }
       }
 
       > tabs > arrow.down {
         -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
-        &:first-child { margin-bottom: 2px; }
+        &:first-child { margin-bottom: rescale(2px); }
       }
     }
 
@@ -2589,7 +2589,7 @@ notebook {
     tabs > tab {
       color: $insensitive_fg_color;
       background-color: transparentize($base_color, 1);
-      border: 1px solid transparent;
+      border: rescale(1px) solid transparent;
       transition: all 150ms ease-out;
 
       &:hover:not(:checked) {
@@ -2606,11 +2606,11 @@ notebook {
 
       // close button
       button.flat {
-        min-height: 16px;
-        min-width: 16px;
-        border-radius: 3px;
+        min-height: rescale(16px);
+        min-width: rescale(16px);
+        border-radius: rescale(3px);
         padding: 0;
-        margin: 2px 0;
+        margin: rescale(2px) 0;
         color: mix($bg_color, $fg_color, 35%);
 
         &:hover {
@@ -2635,7 +2635,7 @@ notebook {
 $_scrollbar_bg_color: if($variant == 'light', darken($base_color, 1%), lighten($base_color, 1%));
 
 scrollbar {
-  $_slider_min_length: 40px;
+  $_slider_min_length: rescale(40px);
 
   // disable steppers
   @at-root * {
@@ -2647,10 +2647,10 @@ scrollbar {
   transition: 300ms $ease-out-quad;
 
   // scrollbar border
-  // &.top { border-bottom: 1px solid $borders_color; }
-  // &.bottom { border-top: 1px solid $borders_color; }
-  // &.left { border-right: 1px solid $borders_color; }
-  // &.right { border-left: 1px solid $borders_color; }
+  // &.top { border-bottom: rescale(1px) solid $borders_color; }
+  // &.bottom { border-top: rescale(1px) solid $borders_color; }
+  // &.left { border-right: rescale(1px) solid $borders_color; }
+  // &.right { border-left: rescale(1px) solid $borders_color; }
 
   border: none;
 
@@ -2668,11 +2668,11 @@ scrollbar {
 
   // slider
   slider {
-    min-width: 4px;
-    min-height: 4px;
-    margin: -1px;
-    border: 4px solid transparent;
-    border-radius: 8px;
+    min-width: rescale(4px);
+    min-height: rescale(4px);
+    margin: rescale(-1px);
+    border: rescale(4px) solid transparent;
+    border-radius: rescale(8px);
     background-clip: padding-box;
     background-color: mix($fg_color, $bg_color, 40%);
 
@@ -2683,12 +2683,12 @@ scrollbar {
 
   &.fine-tune {
     slider {
-      min-width: 4px;
-      min-height: 4px;
+      min-width: rescale(4px);
+      min-height: rescale(4px);
     }
 
-    &.horizontal slider { border-width: 5px 4px; }
-    &.vertical slider { border-width: 4px 5px; }
+    &.horizontal slider { border-width: rescale(5px) rescale(4px); }
+    &.vertical slider { border-width: rescale(4px) rescale(5px); }
   }
 
   &.overlay-indicator {
@@ -2699,19 +2699,19 @@ scrollbar {
 
       slider {
         margin: 0;
-        min-width: 4px;
-        min-height: 4px;
+        min-width: rescale(4px);
+        min-height: rescale(4px);
         background-color: mix($fg_color, $bg_color, 70%);
-        border: 1px solid $borders_color;
+        border: rescale(1px) solid $borders_color;
       }
 
       &.horizontal slider {
-        margin: 0 3px;
+        margin: 0 rescale(3px);
         min-width: $_slider_min_length;
       }
 
       &.vertical slider {
-        margin: 3px 0;
+        margin: rescale(3px) 0;
         min-height: $_slider_min_length;
       }
     }
@@ -2750,16 +2750,16 @@ scrollbar {
   // 'indeterminate' is the synthetic wildcard
   &:not(:indeterminate) {
     @extend %reset_switch;
-    min-width: 40px;
-    min-height: 24px;
+    min-width: rescale(40px);
+    min-height: rescale(24px);
     margin: 0;
-    background-size: 40px 24px;
+    background-size: rescale(40px) rescale(24px);
     transition: all 350ms $ease-out-quad;
 
     slider:not(:indeterminate) {
       @extend %reset_switch;
       margin: 0;
-      background-size: 40px 24px;
+      background-size: rescale(40px) rescale(24px);
     }
 
     // use ugly pixmaps
@@ -2806,16 +2806,16 @@ scrollbar {
     // 'indeterminate' is the synthetic wildcard
     &:not(:indeterminate) {
       @extend %reset_switch;
-      min-width: 50px;
-      min-height: 20px;
-      margin: 6px 2px;
-      background-size: 50px 20px;
+      min-width: rescale(50px);
+      min-height: rescale(20px);
+      margin: rescale(6px) rescale(2px);
+      background-size: rescale(50px) rescale(20px);
       transition: all 350ms $ease-out-quad;
 
       slider:not(:indeterminate) {
         @extend %reset_switch;
         margin: 0;
-        background-size: 50px 20px;
+        background-size: rescale(50px) rescale(20px);
       }
 
       // use ugly pixmaps
@@ -2843,8 +2843,8 @@ scrollbar {
 %switch,
 switch {
   transition: $transition_1;
-  margin: 6px 0;
-  border-radius: 50px;
+  margin: rescale(6px) 0;
+  border-radius: rescale(50px);
   background-color: rgba($fg_color, 0.3);
   background-clip: padding-box;
   color: rgba($fg_color, 0.3);
@@ -2868,11 +2868,11 @@ switch {
 
   slider {
     transition: $transition_1, $shadow_transition, margin 0;
-    min-width: 18px;
-    min-height: 18px;
-    margin: 2px 0 2px 2px;
-    border-radius: 50px;
-    -gtk-outline-radius: 50px;
+    min-width: rescale(18px);
+    min-height: rescale(18px);
+    margin: rescale(2px) 0 rescale(2px) rescale(2px);
+    border-radius: rescale(50px);
+    -gtk-outline-radius: rescale(50px);
     background-color: white;
     box-shadow: $shadow_5;
   }
@@ -2880,7 +2880,7 @@ switch {
   &:hover slider { box-shadow: $shadow_4; }
 
   &:checked slider {
-    margin: 2px 2px 2px 0;
+    margin: rescale(2px) rescale(2px) rescale(2px) 0;
     background-color: $selected_fg_color;
   }
 
@@ -2947,23 +2947,23 @@ switch {
 checkbutton, radiobutton {
     // this is for a nice focus on check and radios text
     &.text-button {
-      padding: 2px 0;
+      padding: rescale(2px) 0;
       outline-offset: 0;
       &:hover { color: darken($fg_color, 15%); }
       &:disabled { color: $insensitive_fg_color; }
     }
 
   label:not(:only-child) {
-    &:first-child { margin-left: 4px; }
-    &:last-child { margin-right: 4px; }
+    &:first-child { margin-left: rescale(4px); }
+    &:last-child { margin-right: rescale(4px); }
   }
 }
 
 check,
 radio {
-  min-width: 16px;
-  min-height: 16px;
-  margin: 0 2px;
+  min-width: rescale(16px);
+  min-height: rescale(16px);
+  margin: 0 rescale(2px);
 
   &:only-child,
   menu menuitem & { margin: 0; }
@@ -2978,40 +2978,40 @@ radio {
 // GtkScale
 //
 scale {
-  $_marks_length: 3px;
-  $_marks_distance: 1px;
+  $_marks_length: rescale(3px);
+  $_marks_distance: rescale(1px);
 
-  min-height: 15px;
-  min-width: 15px;
-  padding: 3px;
+  min-height: rescale(15px);
+  min-width: rescale(15px);
+  padding: rescale(3px);
 
   &.horizontal {
-    trough { padding: 0 4px; }
-    highlight, fill { margin: 0 -4px; }
+    trough { padding: 0 rescale(4px); }
+    highlight, fill { margin: 0 rescale(-4px); }
   }
 
   &.vertical {
-    trough { padding: 4px 0; }
-    highlight, fill { margin: -4px 0; }
+    trough { padding: rescale(4px) 0; }
+    highlight, fill { margin: rescale(-4px) 0; }
   }
 
   // The slider is inside the trough, negative margin to make it bigger
   slider {
-    min-height: 15px;
-    min-width: 15px;
-    margin: -7px;
+    min-height: rescale(15px);
+    min-width: rescale(15px);
+    margin: rescale(-7px);
   }
 
   // Click-and-hold the slider to activate
   &.fine-tune {
     // Make the trough grow in fine-tune mode
-    slider { margin: -4px; }
+    slider { margin: rescale(-4px); }
 
     fill,
     highlight,
     trough {
-      border-radius: 5px;
-      -gtk-outline-radius: 7px;
+      border-radius: rescale(5px);
+      -gtk-outline-radius: rescale(7px);
     }
   }
 
@@ -3019,8 +3019,8 @@ scale {
   trough {
     $_scale_trough_bg: rgba(black, 0.2);
 
-    outline-offset: 2px;
-    -gtk-outline-radius: 6px;
+    outline-offset: rescale(2px);
+    -gtk-outline-radius: rescale(6px);
 
     border-radius: $bt_radius;
     background-color: $_scale_trough_bg;
@@ -3077,7 +3077,7 @@ scale {
     $_slider_border: if($variant=='light', transparentize(darken($button_border, 0%), 0), transparentize($button_border, 0));
 
     background-color: $selected_fg_color;
-    border: 1px solid $_slider_border;
+    border: rescale(1px) solid $_slider_border;
     border-radius: 100%;
     box-shadow: $shadow_2;
 
@@ -3168,26 +3168,26 @@ scale {
                                                      (top, left, right),
                                                      (bottom, right, left) {
       &.#{$marks_class} {
-        margin-#{$marks_margin}: ($_marks_distance - 1px);
-        margin-#{$marks_pos}: -($_marks_distance + $_marks_length - 2px);
+        margin-#{$marks_margin}: ($_marks_distance - rescale(1px));
+        margin-#{$marks_pos}: -($_marks_distance + $_marks_length - rescale(2px));
       }
     }
   }
   &.horizontal {
     indicator {
       min-height: $_marks_length;
-      min-width: 1px;
+      min-width: rescale(1px);
     }
 
-    &.fine-tune indicator { min-height: ($_marks_length - 1px); }
+    &.fine-tune indicator { min-height: ($_marks_length - rescale(1px)); }
   }
   &.vertical {
     indicator {
-      min-height: 1px;
+      min-height: rescale(1px);
       min-width: $_marks_length;
     }
 
-    &.fine-tune indicator { min-width: ($_marks_length - 1px); }
+    &.fine-tune indicator { min-width: ($_marks_length - rescale(1px)); }
   }
 
   // *WARNING* scale with marks madness following
@@ -3209,7 +3209,7 @@ scale {
             &#{$state} {
               // an asymmetric slider asset is used here, so the margins are uneven, the smaller
               // margin is set on the point side.
-              margin: -10px;
+              margin: rescale(-10px);
               $_scale_asset: 'assets/slider-#{$dir_infix}-#{$marks_infix}#{$state_infix}';
               border-style: none;
               border-radius: 0;
@@ -3220,30 +3220,30 @@ scale {
               $_scale_slider_bg_pos: bottom;
 
               @if $dir_class == 'horizontal' {
-                min-height: 26px;
-                min-width: 24px;
+                min-height: rescale(26px);
+                min-width: rescale(24px);
 
                 @if $marks_infix == 'scale-has-marks-above' {
-                  margin-top: -14px;
+                  margin-top: rescale(-14px);
 
                   $_scale_slider_bg_pos: top;
                 }
 
-                @else { margin-bottom: -14px; }
+                @else { margin-bottom: rescale(-14px); }
               }
 
               @else {
-                min-height: 24px;
-                min-width: 26px;
+                min-height: rescale(24px);
+                min-width: rescale(26px);
 
                 @if $marks_infix == 'scale-has-marks-above' {
-                  margin-left: -14px;
+                  margin-left: rescale(-14px);
 
                   $_scale_slider_bg_pos: left bottom;
                 }
 
                 @else {
-                  margin-right: -14px;
+                  margin-right: rescale(-14px);
 
                   $_scale_slider_bg_pos: right bottom;
                 }
@@ -3257,18 +3257,18 @@ scale {
 
           &.fine-tune slider {
             // bigger negative margins to make the trough grow here as well
-            margin: -7px;
+            margin: rescale(-7px);
 
             @if $dir_class == 'horizontal' {
-              @if $marks_infix == 'scale-has-marks-above' { margin-top: -11px; }
+              @if $marks_infix == 'scale-has-marks-above' { margin-top: rescale(-11px); }
 
-              @else { margin-bottom: -11px; }
+              @else { margin-bottom: rescale(-11px); }
             }
 
             @else {
-              @if $marks_infix == 'scale-has-marks-above' { margin-left: -11px; }
+              @if $marks_infix == 'scale-has-marks-above' { margin-left: rescale(-11px); }
 
-              @else { margin-right: -11px; }
+              @else { margin-right: rescale(-11px); }
             }
           }
         }
@@ -3287,8 +3287,8 @@ progressbar {
   color: transparentize($fg_color, 0.3);
 
   &.osd {
-    min-width: 3px;
-    min-height: 3px;
+    min-width: rescale(3px);
+    min-height: rescale(3px);
     background-color: transparent;
 
     trough {
@@ -3299,8 +3299,8 @@ progressbar {
   }
   // Moving bit
   progress {
-    min-height: 4px;
-    min-width: 4px;
+    min-height: rescale(4px);
+    min-width: rescale(4px);
     background-color: $progress_color;
     border: none;
     border-radius: $bt_radius;
@@ -3311,8 +3311,8 @@ progressbar {
   }
   // Trough
   trough {
-    min-height: 4px;
-    min-width: 4px;
+    min-height: rescale(4px);
+    min-width: rescale(4px);
     border: none;
     border-radius: $bt_radius;
     background-color: if($variant == 'light', $button_border, darken($bg_color, 5%));
@@ -3327,26 +3327,26 @@ progressbar {
 //
 levelbar {
   block {
-    min-width: 32px;
-    min-height: 1px;
+    min-width: rescale(32px);
+    min-height: rescale(1px);
   }
   &.vertical block {
-    min-width: 1px;
-    min-height: 32px;
+    min-width: rescale(1px);
+    min-height: rescale(32px);
   }
 
   trough {
     border: none;
-    padding: 3px;
+    padding: rescale(3px);
     border-radius: $bt_radius;
     background-color: if($variant == 'light', $button_border, darken($bg_color, 5%));
   }
 
-  &.horizontal.discrete block { margin: 0 1px; }
-  &.vertical.discrete block { margin: 1px 0; }
+  &.horizontal.discrete block { margin: 0 rescale(1px); }
+  &.vertical.discrete block { margin: rescale(1px) 0; }
 
   block:not(.empty) {
-    border: 1px solid $selected_bg_color;
+    border: rescale(1px) solid $selected_bg_color;
     background-color: $selected_bg_color;
     border-radius: $bt_radius;
   }
@@ -3373,12 +3373,12 @@ levelbar {
 //
 printdialog {
   paper {
-    border: 1px solid $borders_color;
+    border: rescale(1px) solid $borders_color;
     background: $base_color;
     padding: 0;
   }
 
-  .dialog-action-box { margin: 12px; }
+  .dialog-action-box { margin: rescale(12px); }
 }
 
 //
@@ -3389,7 +3389,7 @@ frame > border,
   margin: 0;
   padding: 0;
   border-radius: 0;
-  border: 1px solid $borders_color;
+  border: rescale(1px) solid $borders_color;
 }
 
 frame.flat > border,
@@ -3422,7 +3422,7 @@ scrolledwindow {
 
   @at-root junction { // the small square between two scrollbars
     border-style: solid none none solid;
-    border-width: 1px;
+    border-width: rescale(1px);
     border-color: $borders_color;
     background-color: $_scrollbar_bg_color;
 
@@ -3433,8 +3433,8 @@ scrolledwindow {
 //vbox and hbox separators
 separator {
   background-color: $borders_color;
-  min-width: 1px;
-  min-height: 1px;
+  min-width: rescale(1px);
+  min-height: rescale(1px);
 
   // &.vertical {
   //   background-color: if($variant=='light', $borders_color, $header_border);
@@ -3449,7 +3449,7 @@ list {
   border-color: $borders_color;
   // border-radius: $wm_radius;
 
-  row { padding: 2px; }
+  row { padding: rescale(2px); }
 }
 
 row {
@@ -3486,14 +3486,14 @@ row {
 // App Notifications
 //
 .app-notification {
-  padding: 16px;
-  margin: 0 8px 8px 8px;
+  padding: rescale(16px);
+  margin: 0 rescale(8px) rescale(8px) rescale(8px);
   color: $fg_color;
   background-color: $bg_color;
   background-image: linear-gradient(0deg, $bg_color 0%, $bg_color 85%, darken($bg_color, 5%) 95%, darken($bg_color, 15%) 100%);
   border-radius: 0;
   border: none;
-  box-shadow: $shadow_5, 0 0 0 1px $borders_color;
+  box-shadow: $shadow_5, 0 0 0 rescale(1px) $borders_color;
 
   border { border: none; }
 
@@ -3515,8 +3515,8 @@ row {
 //
 expander {
   arrow {
-    min-width: 16px;
-    min-height: 16px;
+    min-width: rescale(16px);
+    min-height: rescale(16px);
     -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
 
     &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
@@ -3531,14 +3531,14 @@ expander {
 %calendar,
 calendar {
   color: $fg_color;
-  border: 1px solid $borders_color;
+  border: rescale(1px) solid $borders_color;
   border-radius: $bt_radius;
-  padding: 2px 6px;
+  padding: rescale(2px) rescale(6px);
   margin: 0;
 
   &:selected {
     @extend %selected_items;
-    border-radius: 50px;
+    border-radius: rescale(50px);
   }
 
   &:disabled { color: $insensitive_fg_color; }
@@ -3587,17 +3587,17 @@ calendar {
 messagedialog { // Message Dialog styling
 
   .titlebar {
-    min-height: 20px;
+    min-height: rescale(20px);
     background-color: $header_bg;
-    border-bottom: 1px solid $header_border;
+    border-bottom: rescale(1px) solid $header_border;
   }
 
   .dialog-action-area {
-    padding: 6px;
+    padding: rescale(6px);
 
     button {
-      min-height: 16px;
-      padding: 2px 8px;
+      min-height: rescale(16px);
+      padding: rescale(2px) rescale(8px);
       box-shadow: none;
     }
 
@@ -3638,8 +3638,8 @@ messagedialog { // Message Dialog styling
       padding: 0;
 
       button {
-        min-height: 16px;
-        padding: 6px 12px;
+        min-height: rescale(16px);
+        padding: rescale(6px) rescale(12px);
         border-bottom: none;
         background-image: none;
 
@@ -3656,7 +3656,7 @@ messagedialog { // Message Dialog styling
 // Filechooser
 //
 filechooser {
-  #pathbarbox { border-bottom: 1px solid transparentize($borders_color, 0.5); }
+  #pathbarbox { border-bottom: rescale(1px) solid transparentize($borders_color, 0.5); }
 
   stack.view {
     background-color: transparent;
@@ -3689,14 +3689,14 @@ filechooserbutton:drop(active) {
   &:dir(ltr),
   &.left,
   &.left:dir(rtl) {
-    border-right: 1px solid $borders_color;
+    border-right: rescale(1px) solid $borders_color;
     border-left-style: none;
   }
 
   @at-root %sidebar_right,
   &:dir(rtl),
   &.right {
-    border-left: 1px solid $borders_color;
+    border-left: rescale(1px) solid $borders_color;
     border-right-style: none;
   }
 
@@ -3724,15 +3724,15 @@ stacksidebar {
   }
 
   row {
-    padding: 4px 4px;
+    padding: rescale(4px) rescale(4px);
 
     > label {
-      padding-left: 6px;
-      padding-right: 6px;
+      padding-left: rescale(6px);
+      padding-right: rescale(6px);
     }
     &.needs-attention > label {
       @extend %needs_attention;
-      background-size: 6px 6px, 0 0;
+      background-size: rescale(6px) rescale(6px), 0 0;
     }
   }
 }
@@ -3742,32 +3742,32 @@ placessidebar {
 
   row {
     // Needs overriding of the GtkListBoxRow padding
-    min-height: 24px;
-    padding: 2px 2px 2px 10px;
+    min-height: rescale(24px);
+    padding: rescale(2px) rescale(2px) rescale(2px) rescale(10px);
     // Using margins/padding directly in the SidebarRow
     // will make the animation of the new bookmark row jump
     > revealer {
-      padding: 0 10px;
+      padding: 0 rescale(10px);
     }
 
     image.sidebar-icon {
-      &:dir(ltr) { padding-right: 8px; }
-      &:dir(rtl) { padding-left: 8px; }
+      &:dir(ltr) { padding-right: rescale(8px); }
+      &:dir(rtl) { padding-left: rescale(8px); }
     }
 
     label.sidebar-label {
-      &:dir(ltr) { padding-right: 2px; }
-      &:dir(rtl) { padding-left: 2px; }
+      &:dir(ltr) { padding-right: rescale(2px); }
+      &:dir(rtl) { padding-left: rescale(2px); }
     }
 
     @at-root button.sidebar-button {
-      min-width: 22px;
-      min-height: 22px;
-      margin-top: 2px;
-      margin-bottom: 2px;
+      min-width: rescale(22px);
+      min-height: rescale(22px);
+      margin-top: rescale(2px);
+      margin-bottom: rescale(2px);
       padding: 0;
-      border-radius: 100px;
-      -gtk-outline-radius: 100px;
+      border-radius: rescale(100px);
+      -gtk-outline-radius: rescale(100px);
 
       > image { opacity: 0.85 };
 
@@ -3789,8 +3789,8 @@ placessidebar {
     }
 
     &.sidebar-placeholder-row {
-      padding: 0 8px;
-      min-height: 2px;
+      padding: 0 rescale(8px);
+      min-height: rescale(2px);
       background-image: _solid($drop_target_color);
       background-clip: content-box;
     }
@@ -3800,8 +3800,8 @@ placessidebar {
     &:drop(active):not(:disabled) {
       &, label, image { color: $drop_target_color; }
 
-      box-shadow: inset 0 1px $drop_target_color,
-                  inset 0 -1px $drop_target_color;
+      box-shadow: inset 0 rescale(1px) $drop_target_color,
+                  inset 0 rescale(-1px) $drop_target_color;
 
       &:selected {
         &, label, image { color: $dark_sidebar_fg; }
@@ -3826,8 +3826,8 @@ placesview {
 
   // this selects the "connect to server" label
   > actionbar > revealer > box > label {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: rescale(8px);
+    padding-right: rescale(8px);
   }
 }
 
@@ -3836,35 +3836,35 @@ placesview {
 //
 paned {
   > separator {
-    min-width: 1px;
-    min-height: 1px;
+    min-width: rescale(1px);
+    min-height: rescale(1px);
     -gtk-icon-source: none;
     border-style: none;
     background-color: transparent;
     background-image: _solid($borders_color);
-    background-size: 1px 1px;
+    background-size: rescale(1px) rescale(1px);
 
     &:selected { background-image: _solid($selected_bg_color); }
 
     &.wide {
-      min-width: 5px;
-      min-height: 5px;
+      min-width: rescale(5px);
+      min-height: rescale(5px);
       background-color: $bg_color;
       background-image: _solid($solid_borders_color), _solid($solid_borders_color);
-      background-size: 1px 1px, 1px 1px;
+      background-size: rescale(1px) rescale(1px), rescale(1px) rescale(1px);
     }
   }
 
   &.horizontal > separator {
     background-repeat: repeat-y;
     &:dir(ltr) {
-      margin: 0 -8px 0 0;
-      padding: 0 8px 0 0;
+      margin: 0 rescale(-8px) 0 0;
+      padding: 0 rescale(8px) 0 0;
       background-position: left;
     }
     &:dir(rtl) {
-      margin: 0 0 0 -8px;
-      padding: 0 0 0 8px;
+      margin: 0 0 0 rescale(-8px);
+      padding: 0 0 0 rescale(8px);
       background-position: right;
     }
 
@@ -3877,8 +3877,8 @@ paned {
   }
 
   &.vertical > separator {
-    margin: 0 0 -8px 0;
-    padding: 0 0 8px 0;
+    margin: 0 0 rescale(-8px) 0;
+    padding: 0 0 rescale(8px) 0;
     background-repeat: repeat-x;
     background-position: top;
 
@@ -3912,7 +3912,7 @@ infobar {
     caret-color: currentColor;
 
     button {
-      min-height: 28px;
+      min-height: rescale(28px);
       @extend %selected-button;
     }
 
@@ -3983,7 +3983,7 @@ tooltip {
     background-clip: padding-box;
     border-radius: $bt_radius;
 
-    label { padding: 4px; }
+    label { padding: rescale(4px); }
     }
   }
 
@@ -4006,14 +4006,14 @@ colorswatch {
   // is GtkColorSwatch .overlay {}, GtkColorSwatch has the programmatically set background, so most of the style
   // is applied to the overlay box.
 
-  $_colorswatch-radius: 2px;
+  $_colorswatch-radius: rescale(2px);
 
   &, &:drop(active) { border-style: none; }
 
   // border rounding
   &.top {
-    border-top-left-radius: $_colorswatch-radius + 0.5px;
-    border-top-right-radius: $_colorswatch-radius + 0.5;
+    border-top-left-radius: $_colorswatch-radius + rescale(0.5px);
+    border-top-right-radius: $_colorswatch-radius + rescale(0.5px);
 
     overlay {
       border-top-left-radius: $_colorswatch-radius;
@@ -4021,8 +4021,8 @@ colorswatch {
     }
   }
   &.bottom {
-    border-bottom-left-radius: $_colorswatch-radius + 0.5px;
-    border-bottom-right-radius: $_colorswatch-radius + 0.5;
+    border-bottom-left-radius: $_colorswatch-radius + rescale(0.5px);
+    border-bottom-right-radius: $_colorswatch-radius + rescale(0.5px);
 
     overlay {
       border-bottom-left-radius: $_colorswatch-radius;
@@ -4030,16 +4030,16 @@ colorswatch {
     }
   }
   &.left, &:first-child:not(.top) {
-    border-top-left-radius: $_colorswatch_radius + 0.5px;
-    border-bottom-left-radius: $_colorswatch_radius + 0.5px;
+    border-top-left-radius: $_colorswatch_radius + rescale(0.5px);
+    border-bottom-left-radius: $_colorswatch_radius + rescale(0.5px);
     overlay {
       border-top-left-radius: $_colorswatch_radius;
       border-bottom-left-radius: $_colorswatch_radius;
     }
   }
   &.right, &:last-child:not(.bottom) {
-    border-top-right-radius: $_colorswatch_radius + 0.5px;
-    border-bottom-right-radius: $_colorswatch_radius + 0.5px;
+    border-top-right-radius: $_colorswatch_radius + rescale(0.5px);
+    border-bottom-right-radius: $_colorswatch_radius + rescale(0.5px);
     overlay {
       border-top-right-radius: $_colorswatch_radius;
       border-bottom-right-radius: $_colorswatch_radius;
@@ -4060,7 +4060,7 @@ colorswatch {
   }
 
   overlay {
-    border: 1px solid if($variant == 'light', transparentize(black, 0.85), $borders_color);
+    border: rescale(1px) solid if($variant == 'light', transparentize(black, 0.85), $borders_color);
     &:hover { background-color: transparentize(white, 0.8) }
   }
 
@@ -4074,7 +4074,7 @@ colorswatch {
 
   &#add-color-button {
     border-style: solid; // the borders are drawn by the overlay for standard colorswatches to have them semi
-    border-width: 1px;   // translucent on the colored background, here it's not necessary so they need to be set
+    border-width: rescale(1px);   // translucent on the colored background, here it's not necessary so they need to be set
     @include button(normal);
     &:hover { @include button(hover); }
     overlay { @include button(undecorated); } // reset the overlay to not cover the button style underneath
@@ -4086,7 +4086,7 @@ button.color {
 
   colorswatch:first-child:last-child {
     &, overlay {
-      margin: 4px;
+      margin: rescale(4px);
       border-radius: 0;
     }
   }
@@ -4126,11 +4126,11 @@ colorchooser .popover.osd { border-radius: $bt_radius; }
 //
 %circular_button,
 button.circular {
-  border-radius: 100px;
-  -gtk-outline-radius: 100px;
+  border-radius: rescale(100px);
+  -gtk-outline-radius: rescale(100px);
   padding: 0 0 0 0;
-  min-height: 28px;
-  min-width: 28px;
+  min-height: rescale(28px);
+  min-width: rescale(28px);
 
   &:active, &:checked {
     @if $variant=='light' {
@@ -4143,20 +4143,20 @@ button.circular {
 }
 
 .keycap {
-  min-width: 16px;
-  min-height: 20px;
+  min-width: rescale(16px);
+  min-height: rescale(20px);
 
-  padding: 3px 6px 4px 6px;
+  padding: rescale(3px) rescale(6px) rescale(4px) rescale(6px);
 
   color: $fg_color;
   background-color: $base_color;
-  border: 1px solid $borders_color;
+  border: rescale(1px) solid $borders_color;
   border-radius: $bt_radius;
-  box-shadow: inset 0px -2px 0px if($variant=='light', transparentize(black, 0.95), transparentize(black, 0.85));
+  box-shadow: inset rescale(0px) rescale(-2px) rescale(0px) if($variant=='light', transparentize(black, 0.95), transparentize(black, 0.85));
 }
 
 stackswitcher button {
-  &.text-button { min-width: 80px; }
+  &.text-button { min-width: rescale(80px); }
 }
 
 stackswitcher button.circular,
@@ -4169,7 +4169,7 @@ stackswitcher button.text-button.circular { // FIXME aggregate with buttons
 //
 *:drop(active):focus,
 *:drop(active) {
-  box-shadow: inset 0 0 0 1px $drop_target_color;
+  box-shadow: inset 0 0 0 rescale(1px) $drop_target_color;
 }
 
 //
@@ -4180,28 +4180,28 @@ $_wm_shadow: if($variant=='light', rgba(black, 0.15), rgba(black, 0.35));
 $_wm_border: $_wm_shadow;
 
 @if $variant == 'light' {
-  $_wm_border: 0 0 0 2px rgba(black, 0.03), 0 0 0 1px rgba(black, 0.12);
+  $_wm_border: 0 0 0 rescale(2px) rgba(black, 0.03), 0 0 0 rescale(1px) rgba(black, 0.12);
 }
 
 @if $variant == 'dark' {
-  $_wm_border: 0 0 0 2px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.75);
+  $_wm_border: 0 0 0 rescale(2px) rgba(black, 0.1), 0 0 0 rescale(1px) rgba(black, 0.75);
 }
 
 decoration {
   transition: $shadow_transition;
   border-radius: if($darker=='false' and $variant=='light', $wm_radius, $wm_radius);
-  box-shadow: 0 5px 5px 0 $_wm_shadow,
-              0 8px 15px 0 $_wm_shadow,
+  box-shadow: 0 rescale(5px) rescale(5px) 0 $_wm_shadow,
+              0 rescale(8px) rescale(15px) 0 $_wm_shadow,
               $_wm_border;
 
   // this is used for the resize cursor area
-  margin: 6px;
+  margin: rescale(6px);
 
   &:backdrop {
     // the transparent shadow here is to enforce that the shadow extents don't
     // change when we go to backdrop, to prevent jumping windows
-    box-shadow: 0 5px 5px 0 transparent, 0 8px 15px 0 transparent,
-                0 3px 3px 0 $_wm_shadow,
+    box-shadow: 0 rescale(5px) rescale(5px) 0 transparent, 0 rescale(8px) rescale(15px) 0 transparent,
+                0 rescale(3px) rescale(3px) 0 $_wm_shadow,
                 $_wm_border;
   }
 
@@ -4213,7 +4213,7 @@ decoration {
   .tiled-bottom &,
   .tiled-left & {
     border-radius: 0;
-    box-shadow: 0 3px 3px 0 $_wm_shadow,
+    box-shadow: 0 rescale(3px) rescale(3px) 0 $_wm_shadow,
                 $_wm_border;
   }
 
@@ -4224,20 +4224,20 @@ decoration {
 
   // server-side decorations as used by mutter
   .ssd & {
-    margin: -5px;
+    margin: rescale(-5px);
     border-radius: $wm_radius $wm_radius 0 0;
-    box-shadow: 0 0 5px 0 $_wm_shadow, $_wm_border;
+    box-shadow: 0 0 rescale(5px) 0 $_wm_shadow, $_wm_border;
     &.maximized { border-radius: 0; }
   }
 
   .csd.popup & {
     border-radius: $wm_radius;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15), 0 8px 15px rgba(0, 0, 0, 0.08), $_wm_border;
+    box-shadow: 0 rescale(5px) rescale(8px) rgba(0, 0, 0, 0.15), 0 rescale(8px) rescale(15px) rgba(0, 0, 0, 0.08), $_wm_border;
   }
 
   tooltip.csd & {
     border-radius: $wm_radius;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 rescale(1px) rescale(3px) 0 rgba(0, 0, 0, 0.15);
   }
 
   messagedialog.csd & {
@@ -4245,7 +4245,7 @@ decoration {
   }
 
   .solid-csd & {
-    border: 1px solid $header_border;
+    border: rescale(1px) solid $header_border;
     border-radius: 0;
     margin: 0;
     background-color: $header_bg;
@@ -4296,8 +4296,8 @@ headerbar,
     }
 
     &.close, &.maximize, &.minimize, &.restore {
-      min-width: 16px;
-      min-height: 16px;
+      min-width: rescale(16px);
+      min-height: rescale(16px);
       margin: 0;
       padding: 0;
       color: transparent;
@@ -4357,19 +4357,19 @@ popover.emoji-picker {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     box-shadow: none;
-    border-width: 0 0 1px 0;
-    padding: 6px 12px;
+    border-width: 0 0 rescale(1px) 0;
+    padding: rescale(6px) rescale(12px);
     background: none;
 
     &, &:focus, &:disabled {
-      margin: -1px -1px 0 -1px;
+      margin: rescale(-1px) rescale(-1px) 0 rescale(-1px);
       border-image: none;
-      border-bottom: 1px solid $borders_color;
+      border-bottom: rescale(1px) solid $borders_color;
     }
   }
 
   scrolledwindow {
-    border-bottom: 1px solid $borders_color;
+    border-bottom: rescale(1px) solid $borders_color;
 
     &.view {
       background: none;
@@ -4379,11 +4379,11 @@ popover.emoji-picker {
 
 // mimic tab style
 button.emoji-section {
-  margin: 2px 1px;
-  padding: 1px 12px;
+  margin: rescale(2px) rescale(1px);
+  padding: rescale(1px) rescale(12px);
   border-radius: $wm_radius;
   border: none;
-  outline-offset: -2px;
+  outline-offset: rescale(-2px);
   box-shadow: none;
   // &:first-child { border-radius: 0 0 0 $wm_radius; }
   // &:last-child { border-radius: 0 0 $wm_radius 0; }

@@ -7,15 +7,15 @@ filechooser,
     border: none;
     background-color: transparent;
     background-image: image($base_color);
-    background-size: 8px 8px;
+    background-size: rescale(8px) rescale(8px);
     background-position: left bottom;
 
-    &:dir(ltr) { margin-left: -1px; }
-    &:dir(rtl) { margin-right: -1px; }
+    &:dir(ltr) { margin-left: rescale(-1px); }
+    &:dir(rtl) { margin-right: rescale(-1px); }
   }
 }
 
-filechooser placessidebar.sidebar.frame { border-right: 1px solid if($variant=='light', $borders_color, $header_border); }
+filechooser placessidebar.sidebar.frame { border-right: rescale(1px) solid if($variant=='light', $borders_color, $header_border); }
 
 // transparent sidebars
 %placessidebar,
@@ -26,7 +26,7 @@ filechooser,
   &.csd.background, placessidebar { background-color: $dark_sidebar_bg; border-radius: 0 0 $wm_radius $wm_radius; }
 
   placessidebar.sidebar {
-    border-right: 1px solid if($variant=='light', $borders_color, $header_border);
+    border-right: rescale(1px) solid if($variant=='light', $borders_color, $header_border);
     background-color: transparent;
 
     row.sidebar-row {
@@ -109,11 +109,11 @@ filechooser {
     border: none;
     background-color: transparent;
     background-image: image($base_color);
-    background-size: 8px 8px;
+    background-size: rescale(8px) rescale(8px);
     background-position: left bottom;
 
-    &:dir(ltr) { margin-left: -1px; }
-    &:dir(rtl) { margin-right: -1px; }
+    &:dir(ltr) { margin-left: rescale(-1px); }
+    &:dir(rtl) { margin-right: rescale(-1px); }
   }
 }
 
@@ -225,7 +225,7 @@ filechooser {
     border: none;
   }
   slider {
-    min-width: 4px;
+    min-width: rescale(4px);
     background-color: transparentize(lighten($dark_sidebar_fg, 15%), 0.3);
 
     &:hover { background-color: lighten($dark_sidebar_fg, 20%); }
