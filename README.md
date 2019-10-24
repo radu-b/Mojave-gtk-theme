@@ -1,4 +1,4 @@
-_This fork makes the theme look good on 4k 27' monitors (things are scaled up by 1.375)._
+_This fork makes the theme look good on 4k 27' monitors, where the DPI is high (and the normal theme tiny) but not high enough to allow 200% display scaling. I also set the font scaling in Gnome Tweaks to 1.5._
 
 <img src="https://github.com/vinceliuice/Sierra-gtk-theme/blob/imgs/logo.png" alt="Logo" align="right" /> Mojave Gtk Theme
 ======
